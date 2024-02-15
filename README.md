@@ -31,12 +31,12 @@
 ## 1. 개발 환경
 
 - Front : HTML, CSS, JavaScript, jQuery
-- Back-end : 제공된 API 활용, SpringBoot
+- Back-end : SpringBoot
 - API : 영화진흥위원회 오픈API, 공공데이털포털 오픈API
 - 버전 및 이슈관리 : Github
 - 협업 툴 : Notion, Github, Padlet
 - 서비스 배포 환경 : AMAZON EC2 Linux
-- 디자인 : [Figma]
+- 디자인 : Figma
   
 <br>
 
