@@ -4,10 +4,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/management/views/store.css">
 </head>
 <body>
 	<main>
 		<h1>스토어페이지</h1>
+		<div  style="margin: auto; width: 200px; height: 100px;">
+			테스트
+		</div>
+		<div class="main">
+			<table class="store-table">
+				<thead>
+					<tr>
+						<th>주문번호</th>
+						<th>아이디</th>
+						<th>주소</th>
+						<th>상품</th>
+						<th>수량</th>
+						<th>가격</th>
+						<th>주문처리</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="store-td">
+						<td>1</td>
+						<td>green</td>
+						<td>서울시 노원구 상계동 13-1</td>
+						<td>양념치킨</td>
+						<td>1</td>
+						<td>13,000</td>
+						<td>
+							<button>수락</button>
+							<button>취소</button>
+						</td>
+					</tr>
+					<tr th:each="dto:${list}" class="store-td">
+						<td th:text="${dto.no}">1</td>
+						<td th:text="${dto.username}">green</td>
+						<td th:text="${dto.address}">서울시 노원구 상계동 13-1</td>
+						<th:block th:each="prod:${dto.products}">
+							<td>
+								<ul>
+									<li th:text="${prod.name}">
+								</ul>
+							</td>
+							<td th:text="${prod.quantity}"></td>
+							<td th:text="${prod.price}"></td>
+						</th:block>
+						<td>
+							<button>수락</button>
+							<button>취소</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</main>
 </body>
 </html>
