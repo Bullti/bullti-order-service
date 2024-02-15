@@ -21,7 +21,7 @@
 
 | **김병욱** | **인성빈** | **최현종** | **이예슬** | **최영진** |
 | :------: |  :------: | :------: | :------: | :------: |
-| [<img src="[https://avatars.githubusercontent.com/u/106502312?v=4](https://github.com/Bullti/bullti-order-service/assets/141594307/db1581b5-327e-4ebc-9343-07f63ab44250)" height=150 width=150> <br/> @yeon1615](https://github.com/yeon1615) | [<img src="https://avatars.githubusercontent.com/u/112460466?v=4" height=150 width=150> <br/> @Cheorizzang](https://github.com/Cheorizzang) | [<img src="https://avatars.githubusercontent.com/u/112460506?v=4" height=150 width=150> <br/> @heejiyang](https://github.com/heejiyang) | [<img src="https://avatars.githubusercontent.com/u/76766459?v=4" height=150 width=150> <br/> @journey-ji](https://github.com/journey-ji) |
+| [<div src="[https://avatars.githubusercontent.com/u/106502312?v=4](https://github.com/Bullti/bullti-order-service/assets/141594307/db1581b5-327e-4ebc-9343-07f63ab44250)" height=150 width=150></div> <br/> | [<img src="https://avatars.githubusercontent.com/u/112460466?v=4" height=150 width=150> <br/> | [<img src="https://avatars.githubusercontent.com/u/112460506?v=4" height=150 width=150> <br/>  | [<img src="https://avatars.githubusercontent.com/u/76766459?v=4" height=150 width=150> <br/> |
 
 </div>
 
