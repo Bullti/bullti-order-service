@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+.basket_line{
+	border-top: 1px solid #444444;
+	margin: 30px 0px;
+}
+
+.basket_all{
+	
+	width: 430px;
+	height: 932px;
+	display: flex;
+	justify-content: space-between;
+    flex-direction: column;
+}
+
+.basket_head{
+	
+	display: flex;
+	justify-content: space-between;
+}
+
+.basket_right_button{
+	display: flex;	
+}
+
+.basket_store_contents{
+	display: flex;
+	justify-content: space-between;
+}
+
+#basket_store_contents_left{
+	
+	display: flex;
+	justify-content: space-between;
+}
+
+.basket_menu{
+	display: flex;
+	justify-content: space-between;
+}
+
+.basket_menu_imageline{
+
+display: flex;
+	justify-content: space-between;
+}
+
+.basket_menu_imageline_left{
+	
+	display: flex;
+}
+
+
+.basket_plusline{
+display: flex;
+  
+	
+}
+
+.basket_plusline *{
+	display: table-cell;
+	
+}
+
+
+.basket_allprice{
+	display: flex;
+	justify-content: space-between;
+}
+	
+
+.basket_expectprice{
+	display: flex;
+	justify-content: space-between;
+}
+
+
+.basket_delivery{
+	display:flex;
+	justify-content: center;
+}
+
+
+#chat-bot{
+
+	top:700px;
+}
+
+.red    {background: #FFFFE0;}
+
+.btn-gradient.mini{
+	height: 30px;
+  padding: 4px 12px;  
+  font-size: 12px;
+  border-radius: 2px;
+  width: 95%;
+  text-align: center;
+  color: tomato;
+ 
+  
+}
+
+
+
