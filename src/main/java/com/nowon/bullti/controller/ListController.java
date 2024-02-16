@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class SlideController {
+public class ListController {
 
-	@GetMapping("/slide")
+	@GetMapping("/list")
 	public String slide() {
-		return "slide/slide";
+		return "list/list";
 	}
 }
