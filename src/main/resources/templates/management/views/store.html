@@ -8,10 +8,6 @@
 </head>
 <body>
 	<main>
-		<h1>스토어페이지</h1>
-		<div  style="margin: auto; width: 200px; height: 100px;">
-			테스트
-		</div>
 		<div class="main">
 			<table class="store-table">
 				<thead>
@@ -26,32 +22,25 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="store-td">
-						<td>1</td>
-						<td>green</td>
-						<td>서울시 노원구 상계동 13-1</td>
-						<td>양념치킨</td>
-						<td>1</td>
-						<td>13,000</td>
-						<td>
-							<button>수락</button>
-							<button>취소</button>
-						</td>
-					</tr>
 					<tr th:each="dto:${list}" class="store-td">
 						<td th:text="${dto.no}">1</td>
 						<td th:text="${dto.username}">green</td>
 						<td th:text="${dto.address}">서울시 노원구 상계동 13-1</td>
-						<th:block th:each="prod:${dto.products}">
-							<td>
-								<ul>
-									<li th:text="${prod.name}">
-								</ul>
-							</td>
-							<td th:text="${prod.quantity}"></td>
-							<td th:text="${prod.price}"></td>
-						</th:block>
 						<td>
+							<ul>
+								<li th:each="prod:${dto.products}" th:text="${prod.name}">
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<li th:each="prod:${dto.products}" th:text="${prod.quantity}"></li>
+							</ul>
+						</td>
+						<td>
+							<span th:text="${#numbers.formatInteger(dto.totalPrice,3,'COMMA')}"></span>
+							<span>원</span>
+						</td>
+						<td class="button-container">
 							<button>수락</button>
 							<button>취소</button>
 						</td>

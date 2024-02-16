@@ -22,8 +22,7 @@ public class StoreProcess implements StoreService {
 			for(int j=0; j<3; j++) {
 				products.add(TestProduct.builder()
 						.name("양념치킨"+j)
-						.quantity(j)
-						.price(13000+j)
+						.quantity(j+1)
 						.build());
 			}
 			list.add(StoreOrderListDTO.builder()
@@ -31,6 +30,7 @@ public class StoreProcess implements StoreService {
 					.username("green"+i)
 					.address("서울시 노원구 상계동 13-"+i)
 					.products(products)
+					.totalPrice(54000+i)
 					.build());
 		}
 		model.addAttribute("list", list);

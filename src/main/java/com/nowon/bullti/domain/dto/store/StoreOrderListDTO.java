@@ -17,4 +17,5 @@ public class StoreOrderListDTO {
 	private String username;
 	private String address;
 	private List<TestProduct> products;
+	private int totalPrice;
 }
