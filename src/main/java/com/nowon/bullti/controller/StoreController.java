@@ -12,4 +12,5 @@ public class StoreController {
 	public String page() {
 		return "management/views/store";
 	}
+	
 }

@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
 <head>
+<link rel="stylesheet" href="/css/index/index.css">
+<script defer src=/js/index.js></script>
 </head>
 <body>
 	<main>
-		<h1>메인</h1>
+		<section id="slider1" class="slider">
+			<div class="box">
+				<img src="/images/index/banner1.png" width="980px">
+			</div>
+			<div class="box">
+				<img src="/images/index/banner3.png" width="980px">
+			</div>
+			<div class="box">
+				<img src="/images/index/banner2.png" width="980px">
+			</div>
+		</section>
+		<div class="login-space">
+			<div class="login-event">
+				<span>Bullti 회원은 다양한 혜택이 제공됩니다!</span>
+			</div>
+			<div>
+				<form>
+					<button type="submit" class="login-button">
+						<span>Bullti 로그인</span>
+					</button>
+				</form>
+			</div>
+			<div class="login-help">
+				<ul>
+					<li><a href="#">아이디 찾기</a></li>
+					<li>|</li>
+					<li><a href="#">비밀번호 찾기</a></li>
+					<li>|</li>
+					<li><a href="#">회원가입</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="order-space">
+			<form>
+				<button type="submit" class="order-button">
+					<img src="/images/index/order-button.PNG" width="400px">
+				</button>
+			</form>
+		</div>
 	</main>
 </body>
 </html>

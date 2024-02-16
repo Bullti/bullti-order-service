@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.search {
+	margin-top: 30px;
+	font-size: 50px;
+}
+
+.input {
+	height: 50px;
+	font-size: 50px;
+}
+
+.btn {
+	font-size: 30px;
+	border-radius: 10px;
+	background-color: blue;
+	border: none;
+	color: #f8f9fa;
+}
