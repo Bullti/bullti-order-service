@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/management/login.css}"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Signup</h1>
+        <form method="post" action="/signup" th:object="${member}">
+            <div th:if="${#fields.hasErrors('*')}" class="error">
+                Errors in the form
+            </div>
+            <input type="text" name="id" th:field="*{id}" placeholder="닉네임" required />
+            <input type="text" name="name" th:field="*{name}" placeholder="이름" required />
+            <input type="password" name="password" th:field="*{password}" placeholder="비밀번호" required />
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>
