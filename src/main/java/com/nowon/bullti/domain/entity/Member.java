@@ -63,7 +63,9 @@ public class Member {
 	private Set<Role> memberRoles = new HashSet<>();
 
 	
-
+	public void setPassword(String password) {
+	       this.password = password;
+	   }
 	
 	
 }
