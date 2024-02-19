@@ -58,5 +58,9 @@ public class Order {
 	@OneToMany(mappedBy = "order")
 	private List<OrderItem> orderItem;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "member_no")
+	private Member member;
+	
 //private 가맹점
 }
