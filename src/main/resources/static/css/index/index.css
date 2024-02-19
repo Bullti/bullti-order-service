@@ -33,9 +33,10 @@
 	border: none;
 	background-color: #dc143c;
 	height: 100px;
-	width: 974px;
-	border-radius: 40px;
+	width: 824px;
+	border-radius: 30px;
 	font-size: 40px;
+	font-weight: bold;
 	color: #f8f9fa;
 }
 

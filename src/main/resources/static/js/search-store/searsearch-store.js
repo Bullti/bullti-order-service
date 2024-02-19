@@ -51,7 +51,7 @@ var data; // 전역 변수로 데이터 저장
 			  }
 		  getAddressCoords(item.address)
 		    .then(function(coords) {
-		      var imageSrc = "/img/location/image.webp";
+		      var imageSrc = "/images/map/image.webp";
 		      var imageSize = new kakao.maps.Size(80, 90);
 		      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 

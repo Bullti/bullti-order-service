@@ -2,18 +2,21 @@
 
 .search {
 	margin-top: 30px;
-	font-size: 50px;
+	font-size: 40px;
 }
 
 .input {
 	height: 50px;
-	font-size: 50px;
+	font-size: 40px;
+	width: 620px;
 }
 
 .btn {
 	font-size: 30px;
 	border-radius: 10px;
-	background-color: blue;
+	background-color: #dc143c;
 	border: none;
 	color: #f8f9fa;
+	height: 50px;
+	width: 78px;
 }
