@@ -6,7 +6,9 @@
 	bottom: 5%;
 }
 
-
+.bot-menu {
+	align-items: end;
+}
 #conversation>.wrap>.bot-menu>li>.btn-bot{
 	width: 44px;
 	height: 44px;
@@ -21,9 +23,7 @@
 	font-size: 14px;
 	border-radius: 3px;
 	box-shadow: 0 0 15px lightblue;
-	position: fixed;
 	top: 50%;
-	transform: translateY(-50%);
 	right: 150px;
 	z-index: 999999;
 	display: none;
