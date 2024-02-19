@@ -22,4 +22,5 @@ public class StoreController {
 		service.list(model);
 		return "management/views/store";
 	}
+	
 }

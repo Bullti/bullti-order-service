@@ -33,6 +33,7 @@ dependencies {
 	implementation 'org.webjars:webjars-locator-core:0.55'
 	implementation 'org.webjars:jquery:3.7.1'
 	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.1.0'
+	implementation 'javax.servlet:javax.servlet-api:4.0.1'
 	
 	implementation 'org.hibernate.validator:hibernate-validator'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
