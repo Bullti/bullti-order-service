@@ -4,8 +4,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.nowon.bullti.domain.dto.MemberSaveDTO;
-import com.nowon.bullti.domain.entity.Member;
-import com.nowon.bullti.domain.entity.MemberRepository;
+import com.nowon.bullti.domain.entity.member.Member;
+import com.nowon.bullti.domain.entity.member.MemberRepository;
 import com.nowon.bullti.service.MemberService;
 
 import lombok.RequiredArgsConstructor;

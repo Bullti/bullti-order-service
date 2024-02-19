@@ -1,13 +1,15 @@
-package com.nowon.bullti.domain.entity;
+package com.nowon.bullti.domain.entity.basket;
 
 import java.util.List;
 
+import com.nowon.bullti.domain.entity.item.ItemEntity;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,17 +20,19 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "basket")
+@Table(name = "basket_item")
 @Entity
-public class Basket {
+public class BasketItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long no;
-
-	@OneToOne(mappedBy = "basket")
-	private Member member;
 	
-	@OneToMany(mappedBy = "basket")
-	private List<BasketItem> basketItem;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Basket basket;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private ItemEntity item;
+	
+	private int count;
 }

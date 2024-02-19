@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.nowon.bullti.domain.entity.Member;
-import com.nowon.bullti.domain.entity.Role;
+import com.nowon.bullti.domain.entity.member.Member;
+import com.nowon.bullti.domain.entity.member.Role;
 
 import lombok.Getter;
 import lombok.Setter;

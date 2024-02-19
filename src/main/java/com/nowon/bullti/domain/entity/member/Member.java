@@ -1,9 +1,12 @@
-package com.nowon.bullti.domain.entity;
+package com.nowon.bullti.domain.entity.member;
 
 import java.time.LocalDate;
-import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import com.nowon.bullti.domain.entity.basket.Basket;
+import com.nowon.bullti.domain.entity.order.Order;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -16,7 +19,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
