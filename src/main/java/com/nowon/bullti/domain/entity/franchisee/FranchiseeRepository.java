@@ -1,4 +1,4 @@
-package com.nowon.bullti.domain.entity;
+package com.nowon.bullti.domain.entity.franchisee;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

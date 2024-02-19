@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.nowon.bullti.domain.dto.MemberSaveDTO;
-import com.nowon.bullti.domain.entity.Member;
-import com.nowon.bullti.domain.entity.Role;
+import com.nowon.bullti.domain.entity.member.Member;
+import com.nowon.bullti.domain.entity.member.MemberRepository;
 import com.nowon.bullti.service.MemberService;
 
 import jakarta.validation.Valid;
 
-import com.nowon.bullti.domain.entity.MemberRepository;
 
 @Controller
 public class SignupController {

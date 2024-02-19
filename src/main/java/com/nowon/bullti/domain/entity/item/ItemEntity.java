@@ -2,9 +2,8 @@ package com.nowon.bullti.domain.entity.item;
 
 import java.util.List;
 
-import com.nowon.bullti.domain.entity.Basket;
-import com.nowon.bullti.domain.entity.BasketItem;
-import com.nowon.bullti.domain.entity.OrderItem;
+import com.nowon.bullti.domain.entity.basket.BasketItem;
+import com.nowon.bullti.domain.entity.order.OrderItem;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

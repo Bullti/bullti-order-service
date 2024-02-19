@@ -1,16 +1,17 @@
-package com.nowon.bullti.domain.entity;
+package com.nowon.bullti.domain.entity.order;
 
-import java.time.LocalDateTime;
 
-import org.hibernate.annotations.CreationTimestamp;
+import java.util.List;
+
+import com.nowon.bullti.domain.entity.item.ItemEntity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,21 +23,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Table(name = "payment")
-public class Payment {
-	
+@Table(name = "order_item")
+public class OrderItem {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long no;
 	
-	private Long totalPrice;
+	private int count;
 	
-	@CreationTimestamp
-	private LocalDateTime payDateTime;
-	
-	@Enumerated(EnumType.STRING)
-	private PayMethod method;
-	
-	@OneToOne(mappedBy = "payment")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "order_no")
 	private Order order;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "item_no")
+	private ItemEntity item;
 }

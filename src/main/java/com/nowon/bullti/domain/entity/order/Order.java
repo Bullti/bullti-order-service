@@ -1,9 +1,13 @@
-package com.nowon.bullti.domain.entity;
+package com.nowon.bullti.domain.entity.order;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.nowon.bullti.domain.entity.franchisee.FranchiseeEntity;
+import com.nowon.bullti.domain.entity.member.Member;
+import com.nowon.bullti.domain.entity.payment.Payment;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

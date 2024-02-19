@@ -1,4 +1,4 @@
-package com.nowon.bullti.domain.entity;
+package com.nowon.bullti.domain.entity.payment;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.nowon.bullti.domain.entity;
+package com.nowon.bullti.domain.entity.member;
 
 import java.util.Collection;
 import java.util.Set;

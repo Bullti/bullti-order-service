@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.nowon.bullti.domain.entity.Member;
-import com.nowon.bullti.domain.entity.MemberRepository;
-import com.nowon.bullti.domain.entity.MyUser;
+import com.nowon.bullti.domain.entity.member.Member;
+import com.nowon.bullti.domain.entity.member.MemberRepository;
+import com.nowon.bullti.domain.entity.member.MyUser;
 
 public class CustomUserDetailsService implements UserDetailsService{
 
