@@ -62,6 +62,10 @@ public class Member {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Set<Role> memberRoles = new HashSet<>();
 
+	public Member addRole(Role role) {
+		memberRoles.add(role);
+		return this;
+	}
 	
 	public void setPassword(String password) {
 	       this.password = password;
