@@ -144,140 +144,27 @@ form{
 	visibility: hidden;
 }
 
-.container{
-	width: 1200px;
-    margin: 50px auto;
-    font-size: 18px;
-}
-
-.shop-head{
-	font-size: 32px;
-	color: #333;
-	margin-bottom: 15px;
-}
-
-.cart-list-box{
-	margin-top: 10px;
-	display: flex;
-    justify-content: space-between;
-}
-
-.cart-list-box-left{
-	width: 830px;
-}
-.cart-list-box-right{
-	width: 328px;
-    position: sticky;
-    left: 0;
-    top: 30px;
-    height: 600px;
-}
-
-.left-title{
-	display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-    background: #f4f4f4;
-    border: 1px solid #E0E0E0;
-    padding: 0 20px;
-}
-
-.left-title > h2{
-	font-size: 20px;
-}
-
-.left-title > p{
-	font-size: 13px;
-}
-
-.cart-controller{
-	display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 65px;
-    margin-top: 13px;
-}
-
-.all-select{
-	font-size: 16px;
-}
-
-.btns{
-	font-size: 12px;	
-}
-
-.btns a:first-child{
-	padding-right: 3.5px;
-	border-right: #828282 solid 1px;
-}
-
-.listLi{
-	display: flex;
-    align-items: center;
-    width: 100%;
-    border-top: 1px solid #e2e2e2;
-    border-bottom: 1px solid #e2e2e2;
-    padding: 30px 0;
-}
-
-.listLi-check {
-	align-self: start;
-}
-
-.listLi-img{
-	width: 308px;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.listLi-img2{
-	background-color: #6BA43A;
-}
-
-.listLi-img section {
-	width: 100px;
-	height: 100px;
-}
-
-.listLi-name {
-	width: 150px;
-	height: 50px;
-	min-height: 42px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    white-space: normal;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    font-size: 15px;
-    line-height: 1.34;
-    font-weight: 400;
-}
 
 .listLi-count{
 	display: flex;
     align-items: center;
     height: 32px;
-    border-radius: 5px;
-    border: 1px solid #e0e0e0;
     overflow: hidden;
+    margin-top:10px;
 }
 
 .listLi-count a {
-	width: 32px;
-    height: 32px;
+	width: 40px;
+    height: 40px;
     cursor: pointer;
     position: relative;
 }
 
 .listLi-count a::before{
 	content: "";
-    width: 12px;
+    width: 22px;
     height: 2px;
-    background: #828282;
+    background: black;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -287,8 +174,8 @@ form{
 .btnUp::after {
 	content: "";
     width: 2px;
-    height: 12px;
-    background: #828282;
+    height: 22px;
+    background: black;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -296,220 +183,14 @@ form{
 }
 
 .quantity{
-	width: 30px;
-    height: 32px;
-    font-size: 16px;
+	width: 42px;
+    height: 50px;
+    font-size: 36px;
     text-align: center;
     white-space: nowrap;
     outline: none;
 }
 
-.listLi-disc {
-	font-size: 14px;
-    width: 120px;
-    margin-left: 7px;
-    height: 40px;
-    text-align: center;
-    align-items: center;
-    line-height: 2.5;
-}
-
-.listLi-price {
-	font-size: 14px;
-    width: 120px;
-    margin-left: 7px;
-    height: 40px;
-    text-align: center;
-    line-height: 2.5;
-}
-
-.listLi-del {
-	display: inline-block;
-    width: 30px;
-    height: 30px;
-    position: relative;
-    margin-left: auto;
-    background-image:url("/images/shopingbasket/close.svg") ;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.total-price{
-	font-style: normal;
-    border-top:#333 solid 2px;
-    border: 1px solid #e0e0e0;
-    background: #F4F4F4;
-}
-
-.total-price ul {
-	display: flex;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.total-price > ul li {
-    font-size: 15px;
-    min-width: 100px;
-    text-align: center;
-    position: relative;
-    box-sizing: content-box;
-}
-
-.total-price > ul li+li{
-	margin-left: 34px;
-    padding-left: 44px;
-}
-
-.total-price > ul li strong {
-    display: block;
-    font-size: 20px;
-    line-height: 1;
-    margin-top: 6px;
-    font-weight: 500;
-    letter-spacing: -.3px;
-}
-
-.price_sale::before{
-	content: '';
-    position: absolute;
-    background: #828282;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 14px;
-    height: 2px;
-}
-
-.price_delivery::before{
-	content: '';
-    position: absolute;
-    background: #828282;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    width: 14px;
-    height: 2px;
-}
-
-.price_delivery::after{
-	left: 6px;
-    width: 2px;
-    height: 14px;
-    content: '';
-    position: absolute;
-    background: #828282;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.price_total::before{
-	top: calc(50% - 3px);
-	content: '';
-    position: absolute;
-    background: #828282;
-    left: 0;
-    transform: translateY(-50%);
-    width: 14px;
-    height: 2px;
-}
-
-.price_total::after{
-	top: calc(50% + 3px);
-	content: '';
-    position: absolute;
-    background: #828282;
-    left: 0;
-    transform: translateY(-50%);
-    width: 14px;
-    height: 2px;
-}
-
-.deliveryAdd_right{
-	display: block;
-    background: #f7f7f7;
-    border: 1px solid #e0e0e0;
-    padding: 20px;
-}
-
-.deliveryAdd_right p {
-	font-size: 16px;
-    margin: 14px 0;
-    color: #212121;
-    line-height: 1.375;
-    font-weight: 700;
-}
-
-.adress::before{
-	content: '';
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: url("/images/shopingbasket/home.svg") no-repeat 0 0 / 100% 100%;
-    margin-right: 4px;
-}
-
-.cartTotalList{
-	border: 1px solid #E0E0E0;
-    border-top: 0;
-    padding: 30px 20px;
-}
-
-.cartTotalList li {
-	display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.cartTotalList li+li {
-	margin-top: 22px;
-}
-
-.cartTotalList li p {
-	font-size: 15px;
-}
-
-.cartTotalList li strong {
-	font-size: 18px;
-    font-weight: 400;
-}
-
-.cartTotalList li:last-child{
-	border-top: 1px solid #E0E0E0;
-    padding-top: 30px;
-    font-weight: 600;
-}
-
-.freeDelivery_oasis{
-	width: 100%;
-    color: #6BA43A;
-    text-align: right;
-    font-size: 14px;
-    margin-top: 4px;
-    padding-bottom: 20px;
-}
-
-.cart_order_btns{
-	display: flex;
-	width: 328px;
-	height: 80px;
-}
-
-
-.btn_orderSelect{
-	width: 100%;
-	margin-top: 10px;
-	background: #6BA43A;
-    color: #fff;
-    font-size: 20px;
-    border-color: #6BA43A;  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-}
 
 .btn_del{
 	position: absolute;

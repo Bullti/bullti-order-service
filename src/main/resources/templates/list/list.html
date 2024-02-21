@@ -176,6 +176,7 @@
 		   $('.title1').click(function() {
 		        // 클릭한 요소에서 p 태그들의 텍스트를 가져와서 변수에 저장
 		        var koreanText = $(this).find('p:first').text();
+		        var price = $(this).find('p:last').text();
 		
 		        // 현재 선택된 요소의 하위에 있는 .title1, section.selected 클래스를 모두 제거
 		        $('.title1, section.selected').removeClass('selected');
@@ -190,10 +191,12 @@
 		            type: 'POST',
 		            url: '/order',
 		            data: {
-		                koreanText: koreanText
+		                koreanText: koreanText,
+		                price : price
 		            },
 		            success: function(response) {
 		                console.log('Korean Text:', koreanText);
+		                console.log('price:', price);
 		            },
 		            error: function(error) {
 		                console.error('Error:', error);

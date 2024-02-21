@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nowon.bullti.domain.entity.member.MyUser;
 import com.nowon.bullti.service.MemberService;
@@ -33,7 +34,8 @@ public class OrderController {
 	}
 	
 	@PostMapping("/order")
-	public String orderlist() {
+	public String orderlist(@RequestParam String price) {
+		System.out.println(price);
 		return "order/order";
 	}
 
