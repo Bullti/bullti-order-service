@@ -23,4 +23,6 @@ public class MemberProcess implements MemberService{
 	    memberRepository.save(member);
 	    
 	}
+
+
 }
