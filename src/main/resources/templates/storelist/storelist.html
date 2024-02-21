@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/map/searchstore.css">
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b4d10c092ae135f954caef18aff79de&libraries=services"></script>
+<script defer src=/js/search-store/searsearch-store.js>
+	
+</script>
+</head>
+<body>
+	<main>
+    <div id="map" style="width: 100%;"></div>
+    <div id="menu_wrap" class="search">
+        <div class="option">
+            <div class="search">
+                <form onsubmit="searchPlaces(); return false;">
+                    매장검색 : <input class="input" type="text" id="keyword" size="15">
+                    <button class="btn" type="submit">
+                        <span class="btn">찾기</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <table class="content">
+            <thead>
+            <tr class="list">
+                <th style="width: 150px">매장명</th>
+                <th style="width: 300px">주소</th>
+                <th style="width: 200px">상세주소</th>
+                <th style="width: 230px">전화번호</th>
+            </tr>
+            </thead>
+            <tbody id="dynamic_table">
+            <tr th:each="post : ${list}">
+                <td style="width: 150px" th:text="${post.name}"></td>
+                <td style="width: 300px" th:text="${post.location}"></td>
+                <td style="width: 200px" th:text="${post.locationDetail}"></td>
+                <td style="width: 230px" th:text="${post.phone}"></td>
+                <td style="width: 100px"><a href="#">선택</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

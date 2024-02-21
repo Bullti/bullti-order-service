@@ -1,7 +1,8 @@
-package com.nowon.bullti.domain.entity.franchisee;
+package com.nowon.bullti.domain.entity.franchise;
 
 import java.util.List;
 
+import com.nowon.bullti.domain.dto.storelist.StoreListDTO;
 import com.nowon.bullti.domain.entity.order.Order;
 
 import jakarta.persistence.Column;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "franchisee")
 @Entity
-public class FranchiseeEntity {
+public class FranchiseEntity {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long no;
 	@Column(nullable = false)
@@ -30,8 +31,17 @@ public class FranchiseeEntity {
 	private String locationDetail;
 	@Column(nullable = false)
 	private String phone;
-	private long member_no;
+	
+	@Column(nullable = true)
+	private long memberNo;
 	
 	@OneToMany(mappedBy = "franchisee")
 	private List<Order> order;
+	
+	public StoreListDTO toStoreListDTO() {
+		
+		return StoreListDTO.builder()
+				.id(no).name(name).location(location).locationDetail(locationDetail).phone(phone)
+				.build();
+	}
 }
