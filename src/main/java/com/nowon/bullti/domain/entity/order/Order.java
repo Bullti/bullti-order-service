@@ -34,7 +34,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
 
 	@Id
