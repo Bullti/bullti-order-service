@@ -34,7 +34,7 @@ public class OrderController {
 	}
 	
 	@PostMapping("/order")
-	public String orderlist(@RequestParam String price) {
+	public String orderlist(@RequestParam("price") String price) {
 		System.out.println(price);
 		return "order/order";
 	}
