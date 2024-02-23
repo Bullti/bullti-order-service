@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/css/index/index.css">
 <script defer src=/js/index.js></script>
 </head>
@@ -11,13 +12,13 @@
 			th:value="${error_msg}">
 		<section id="slider1" class="slider">
 			<div class="box">
-				<img src="/images/index/banner1.png" width="980px">
+				<img src="/images/index/banner1.png">
 			</div>
 			<div class="box">
-				<img src="/images/index/banner3.png" width="980px">
+				<img src="/images/index/banner3.png">
 			</div>
 			<div class="box">
-				<img src="/images/index/banner2.png" width="980px">
+				<img src="/images/index/banner2.png">
 			</div>
 		</section>
 		<div class="login-space">

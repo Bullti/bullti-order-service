@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/map/searchstore.css">
+<script defer src="/js/search-store/searsearch-store.js"></script>
+</head>
+<body>
+	<main>
+		<div id="map" style="width: 100%;"></div>
+		<div id="menu_wrap" class="search" style="width: 100%;">
+			<div class="option">
+				<div class="search">
+					<form onsubmit="searchFunction(); return false;">
+						<input class="input" type="text" id="keyword" size="15">
+						<button class="btn" type="submit">
+							<span class="btn">찾기</span>
+						</button>
+					</form>
+				</div>
+			</div>
+			<hr>
+			<table class="content">
+				<thead>
+					<tr>
+						<th>매장명</th>
+						<th>주소</th>
+						<th>상세주소</th>
+						<th>전화번호</th>
+					</tr>
+				</thead>
+				<tbody id="dynamic_table">
+					<tr th:each="post : ${list}">
+						<td th:text="${post.name}"></td>
+						<td th:text="${post.location}"></td>
+						<td th:text="${post.locationDetail}"></td>
+						<td th:text="${post.phone}"></td>
+						<td><a href="#">선택</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b4d10c092ae135f954caef18aff79de&libraries=services"></script>
+		<script>
+		var data; // 전역 변수로 데이터 저장
+		var markers = []; // 전역 변수로 마커 배열 저장
+		var infowindows = []; // 전역 변수로 인포윈도우 배열 저장
+
+		// GET 요청 예제
+		fetch('/storelist/storelist')
+		  .then(response => {
+		    if (!response.ok) {
+		      throw new Error('Network response was not ok');
+		    }
+		    return response.json();
+		  })
+		  .then(jsonData => {
+		    data = jsonData; // 데이터 저장
+		    // 성공적으로 응답을 받았을 때의 처리
+		    for (var item of data) {
+		      createMarker(item);
+		    }
+		  })
+		  .catch(error => {
+		    // 오류 발생 시의 처리
+		    console.error('Fetch error:', error);
+		  });
+
+		function getAddressCoords(location) {
+		    var geocoder = new kakao.maps.services.Geocoder();
+		    return new Promise(function(resolve, reject) {
+		        geocoder.addressSearch(location, function(result, status) {
+		            if (status === kakao.maps.services.Status.OK) {
+		                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		                console.log("Geocoding result:", coords);
+		                resolve(coords);
+		            } else {
+		                reject("주소 검색 실패: " + status);
+		            }
+		        });
+		    });
+		}
+		
+		var mapContainer = document.getElementById('map'),
+		    mapOption = {
+		        center: new kakao.maps.LatLng(37.6572217, 127.0622925),
+		        level: 1
+		    };
+
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		function createMarker(item) {
+			  
+		  getAddressCoords(item.address)
+		    .then(function(coords) {
+		      var imageSrc = "/img/location/image.webp";
+		      var imageSize = new kakao.maps.Size(80, 90);
+		      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+		      var marker = new kakao.maps.Marker({
+		        map: map,
+		        position: coords,
+		        image: markerImage
+		      });
+
+		      markers.push(marker); // 생성된 마커를 배열에 저장
+
+		      var infowindow = new kakao.maps.InfoWindow({
+		        content: `<div style="margin-left:33px; width:80px;text-align:center;display: center;padding:6px 0;">${item.name}</div>`
+		      });
+
+		      infowindows.push(infowindow); // 생성된 인포윈도우를 배열에 저장
+
+		      kakao.maps.event.addListener(marker, 'click', function() {
+			        // 현재 마커에 연결된 인포윈도우 상태 확인
+			        var currentInfowindow = infowindow.getMap();
+			        
+			        // 열려있는 경우 닫고, 닫혀있는 경우 열기
+			        if (currentInfowindow) {
+			          infowindow.close();
+			        } else {
+			          infowindow.open(map, marker);
+			        }
+			        
+			        // 클릭한 마커로 지도의 중심좌표 이동
+			        map.setCenter(coords);
+			        map.setLevel(4); // 지도 레벨 조절 (옵션)
+			      });
+			    })
+			    .catch(function(error) {
+			      console.error(error);
+			    });
+			}
+
+		function removeMarkers() {
+		  for (var i = 0; i < markers.length; i++) {
+		    markers[i].setMap(null);
+		    infowindows[i].close();
+		  }
+		  markers = []; // 배열 초기화
+		  infowindows = []; // 배열 초기화
+		}
+
+		function searchPlaces() {
+		  var keyword = document.getElementById('keyword').value;
+
+		  // 검색어가 비어있으면 모든 매장 표시
+		  if (!keyword) {
+		    removeMarkers(); // 모든 마커 제거
+		    for (var item of data) {
+		      createMarker(item);
+		    }
+		    return;
+		  }
+
+		  // 검색어가 있는 경우, 특정 매장만 표시
+		  removeMarkers(); // 모든 마커 제거
+		  for (var item of data) {
+		    if (item.name.includes(keyword)) {
+		      createMarker(item);
+		    }
+		  }
+		}
+		</script>
+	</main>
+</body>
+</html>
