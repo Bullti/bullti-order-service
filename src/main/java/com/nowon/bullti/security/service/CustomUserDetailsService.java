@@ -24,6 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 		
 		Member member = memberRepository.findById(memberId)
 				.orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 유저"));
+		System.out.println(member.getId());
 		
 		Set<SimpleGrantedAuthority> grantedAuthority = member.getMemberRoles().stream()
 				.map((myRole) -> new SimpleGrantedAuthority("ROLE_" + myRole.name())).collect(Collectors.toSet());

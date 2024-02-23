@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.nowon.bullti.domain.entity.basket.Basket;
 import com.nowon.bullti.domain.entity.order.Order;
 
@@ -26,6 +28,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @Builder
@@ -54,6 +57,7 @@ public class Member {
 	private String address;
 	
 	//가입일
+	@CreationTimestamp
 	private LocalDate createAt;
 	
 	//정보수정일

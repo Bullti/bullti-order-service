@@ -14,7 +14,7 @@ h1 {
 }
 
 input[type="text"], input[type="password"] {
-    width: 380px;
+    width: 340px;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -22,7 +22,7 @@ input[type="text"], input[type="password"] {
 }
 
 button[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #EA5455;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -34,3 +34,18 @@ button[type="submit"] {
     color: red;
     margin-bottom: 10px;
 }
+
+.login_sign{
+	
+	margin-top: 16px;
+}
+
+.container{
+	background-color: white;	
+}
+
+#signupButton{
+	
+	color: #EA5455;
+}
+

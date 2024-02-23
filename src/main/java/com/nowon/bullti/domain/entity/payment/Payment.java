@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.nowon.bullti.domain.entity.order.Order;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -28,8 +29,7 @@ import lombok.NoArgsConstructor;
 public class Payment {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long no;
+	private String no;
 	
 	private Long totalPrice;
 	
@@ -39,6 +39,10 @@ public class Payment {
 	@Enumerated(EnumType.STRING)
 	private PayMethod method;
 	
+	@Enumerated(EnumType.STRING)
+	private PayState state;
+	
 	@OneToOne(mappedBy = "payment")
 	private Order order;
+	
 }

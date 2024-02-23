@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/list/list.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="/css/basket/basket.css">
+<script src="/js/order/cart.js"></script>
 </head>
 <main>
 		<section id="slider1" class="slider">
@@ -19,173 +22,185 @@
     	</section>
     	<section>
 			<form class="form-section">
-				<button><img src="/images/list/delivery-bike.svg">배달</button>
-				<button><img src=/images/list/chicken-packaging.svg>포장</button>
+				<button class="menu-button"><img src="/images/list/delivery-bike.svg">배달</button>
+				<button class="menu-button"><img src=/images/list/chicken-packaging.svg>포장</button>
 			</form>
 		</section>
-    	<section class="menu">
+    	<section class="menu" th:each="list:${list}">
 			<section class="menu-wrap">
 				<div class="menu1">
-					<img src=/images/list/치킨1.jpg>
+					<img th:src="${list.img}">
+					<!--<img src="/images/menu/핫후라이드-콤보_410x271.png">-->
 				</div>
 				<div class="title1">
-					<p>바삭바삭 후라이드</p>
-					<p id="eng">fried chicken</p>
-					<p>35,000원</p>
-				</div>
-			</section>
-			<section class="menu-wrap">
-				<div class="menu1">
-					<img src=/images/list/치킨1.jpg>
-				</div>
-				<div class="title1">
-					<p>바삭바삭 후라이드</p>
-					<p id="eng">fried chicken</p>
-					<p>35,000원</p>
-				</div>
-			</section>
-			<section class="menu-wrap">
-				<div class="menu1">
-					<img src=/images/list/치킨1.jpg>
-				</div>
-				<div class="title1">
-					<p>바삭바삭 후라이드</p>
-					<p id="eng">fried chicken</p>
-					<p>35,000원</p>
+					<p th:text="${list.name}">바삭바삭 후라이드</p>
+					<p id="eng" th:text="${list.content}">fried chicken</p>
+					<p th:text="${#numbers.formatInteger(list.price,3,'COMMA')+'원'}">35,000원</p>
+					<div class="listLi-count border">
+						<a class="btn_down btnDown" href="#" title="수량 빼기">
+						<span class="blind">수량 빼기</span>
+						</a>
+						<input type="text" class="quantity" value="1" readonly="readonly">
+						<a class="btn_up btnUp" href="#" title="수량 더하기">
+						<span class="blind">수량 더하기</span>
+						</a>
+						<button id="cart-button">담기</button>
+					</div>
 				</div>
 			</section>
 		</section>
+		<div class="cart-q" style="display: none;">
+			<div class="button1-area">
+				<button class="button1">X</button>
+			</div>
+			<p>메뉴를 장바구니에 담았습니다</p>
+			<p>장바구니로 이동하시겠습니까?</p>
+			<div class="button2-area">
+				<button class="button2">취소</button>
+				<button id="confirmButton" class="button3" onClick="location.href='/basket'">확인</button>
+			</div>
+		</div>
     	
-    	<script>
-		function Slider(target, type) {
-		  // 상태
-		  let index = 1;
-		  let isMoved = true;
-		  const speed = 1000; // ms
-		
-		  // 방향
-		  const transform = "transform " + speed / 1000 + "s";
-		  let translate = (i) => "translateX(-" + 100 * i + "%)";
-		  if (type === "V") {
-		    translate = (i) => "translateY(-" + 100 * i + "%)";
-		  }
-		
-		  // 슬라이더
-		  const slider = document.querySelector(target);
-		  const sliderRects = slider.getClientRects()[0];
-		  slider.style["overflow"] = "hidden";
-		
-		  // 슬라이더 화면 컨테이너
-		  const container = document.createElement("div");
-		  container.style["display"] = "flex";
-		  container.style["flex-direction"] = type === "V" ? "column" : "row";
-		  container.style["width"] = sliderRects.width + "px";
-		  container.style["height"] = sliderRects.height + "px";
-		  container.style["transform"] = translate(index);
-		
-		  // 슬라이더 화면 목록
-		  let boxes = [].slice.call(slider.children);
-		  boxes = [].concat(boxes[boxes.length - 1], boxes, boxes[0]);
-		
-		  // 슬라이더 화면 스타일
-		  const size = boxes.length;
-		  for (let i = 0; i < size; i++) {
-		    const box = boxes[i];
-		    box.style["flex"] = "none";
-		    box.style["flex-wrap"] = "wrap";
-		    box.style["height"] = "100%";
-		    box.style["width"] = "100%";
-		    container.appendChild(box.cloneNode(true));
-		  }
-		
-		  // 처음/마지막 화면 눈속임 이벤트
-		  container.addEventListener("transitionstart", function () {
-		    isMoved = false;
-		    setTimeout(() => {
-		      isMoved = true;
-		    }, speed);
-		  });
-		  container.addEventListener("transitionend", function () {
-		    // 처음으로 순간이동
-		    if (index === size - 1) {
-		      index = 1;
-		      container.style["transition"] = "none";
-		      container.style["transform"] = translate(index);
-		    }
-		    // 끝으로 순간이동
-		    if (index === 0) {
-		      index = size - 2;
-		      container.style["transition"] = "none";
-		      container.style["transform"] = translate(index);
-		    }
-		  });
-		
-		  // 슬라이더 붙이기
-		  slider.innerHTML = "";
-		  slider.appendChild(container);
-		
-		  return {
-		    move: function (i) {
-		      if (isMoved === true) {
-		        index = i;
-		        container.style["transition"] = transform;
-		        container.style["transform"] = translate(index);
-		      }
-		    },
-		    next: function () {
-		      if (isMoved === true) {
-		        index = (index + 1) % size;
-		        container.style["transition"] = transform;
-		        container.style["transform"] = translate(index);
-		      }
-		    },
-		    prev: function () {
-		      if (isMoved === true) {
-		        index = index === 0 ? index + size : index;
-		        index = (index - 1) % size;
-		        container.style["transition"] = transform;
-		        container.style["transform"] = translate(index);
-		      }
-		    }
-		  };
-		}
-		
-		const s1 = new Slider("#slider1", "H");
-		//const s2 = new Slider("#slider2", "V");
-		
-		setInterval(() => {
-		  s1.next();
-		  //s2.next();
-		}, 2500)
-			
-		</script>
-		
-		
-    
-  <!--  <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const slideCount = slides.length;
- 
-        function showSlide(n) {
-            slides.forEach(slide => slide.style.display = 'none');
-            slides[n].style.display = 'block';
+<script>
+    function Slider(target, type) {
+        let index = 1;
+        let isMoved = true;
+        const speed = 1000;
+
+        const transform = "transform " + speed / 1000 + "s";
+        let translate = (i) => "translateX(-" + 100 * i + "%)";
+        if (type === "V") {
+            translate = (i) => "translateY(-" + 100 * i + "%)";
         }
- 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slideCount;
-            showSlide(currentSlide);
+
+        const slider = document.querySelector(target);
+        const sliderRects = slider.getClientRects()[0];
+        slider.style["overflow"] = "hidden";
+
+        const container = document.createElement("div");
+        container.style["display"] = "flex";
+        container.style["flex-direction"] = type === "V" ? "column" : "row";
+        container.style["width"] = sliderRects.width + "px";
+        container.style["height"] = sliderRects.height + "px";
+        container.style["transform"] = translate(index);
+
+        let boxes = [].slice.call(slider.children);
+        boxes = [].concat(boxes[boxes.length - 1], boxes, boxes[0]);
+
+        const size = boxes.length;
+        for (let i = 0; i < size; i++) {
+            const box = boxes[i];
+            box.style["flex"] = "none";
+            box.style["flex-wrap"] = "wrap";
+            box.style["height"] = "100%";
+            box.style["width"] = "100%";
+            container.appendChild(box.cloneNode(true));
         }
- 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
-            showSlide(currentSlide);
-        }
- 
-        document.addEventListener('DOMContentLoaded', () => {
-            showSlide(currentSlide);
-            setInterval(nextSlide, 3000); // 3초마다 자동 슬라이드
+
+        container.addEventListener("transitionstart", function () {
+            isMoved = false;
+            setTimeout(() => {
+                isMoved = true;
+            }, speed);
         });
-    </script>-->
-</main>
+        container.addEventListener("transitionend", function () {
+            if (index === size - 1) {
+                index = 1;
+                container.style["transition"] = "none";
+                container.style["transform"] = translate(index);
+            }
+            if (index === 0) {
+                index = size - 2;
+                container.style["transition"] = "none";
+                container.style["transform"] = translate(index);
+            }
+        });
+
+        slider.innerHTML = "";
+        slider.appendChild(container);
+
+        return {
+            move: function (i) {
+                if (isMoved === true) {
+                    index = i;
+                    container.style["transition"] = transform;
+                    container.style["transform"] = translate(index);
+                }
+            },
+            next: function () {
+                if (isMoved === true) {
+                    index = (index + 1) % size;
+                    container.style["transition"] = transform;
+                    container.style["transform"] = translate(index);
+                }
+            },
+            prev: function () {
+                if (isMoved === true) {
+                    index = index === 0 ? index + size : index;
+                    index = (index - 1) % size;
+                    container.style["transition"] = transform;
+                    container.style["transform"] = translate(index);
+                }
+            }
+        };
+    }
+
+	    $(document).ready(function () {
+	        const s1 = new Slider("#slider1", "H");
+	
+	        setInterval(() => {
+	            s1.next();
+	        }, 2500);
+	
+	
+		 $('.menu-button').click(function () {
+        // 선택한 메뉴 버튼에만 클래스 'selected'를 추가하고 이전 선택을 제거한다.
+        $('.menu-button').removeClass('selected');
+        $(this).addClass('selected');
+
+        event.preventDefault();
+    });
+	
+		$('.menu').on('click', '#cart-button', function () {
+	        var selectedSection = $(this).closest('section.menu-wrap');
+	        var name = selectedSection.find('p:first').text();
+	        var count = parseInt(selectedSection.find('.quantity').val(), 10);
+	
+	        // Ajax로 서버로 데이터 전송
+	        $.ajax({
+	            type: 'POST',
+	            contentType: 'application/json',
+	            url: '/basket', 
+	            data: JSON.stringify({
+	                name: name,
+	                count: count
+	            }),
+	            success: function (response) {
+	                console.log('name:', name);
+	                console.log('count:', count);
+	                selectedSection.find('.quantity').val(1);
+	            },
+	            error: function (error) {
+	                console.error('Error sending data:', error);
+	            }
+	        });
+	    });
+
+	        $('#cart-button').click(function () {
+	            $('.cart-q').show();
+	            event.preventDefault();
+	        });
+	
+	        $('.button2').click(function () {
+	            $('.cart-q').hide();
+	        });
+	        
+	         $('.button1').click(function () {
+	            $('.cart-q').hide();
+	        });
+	    });
+	
+
+		</script>
+	</main>
 </html>

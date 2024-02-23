@@ -17,11 +17,11 @@ public class LoginController {
         return "management/views/login"; // Returns the login view
     }
 
-    @PostMapping("/login")
-    public String loginFailed(Model model) {
-        model.addAttribute("error", true); // Display error on failure
-        return "list/list";
-    }
+	/*
+	 * @PostMapping("/login") public String loginFailed(Model model) {
+	 * model.addAttribute("error", true); // Display error on failure return
+	 * "list/list"; }
+	 */
 
     @GetMapping("/logout")
     public String logoutSuccessful(Model model) {

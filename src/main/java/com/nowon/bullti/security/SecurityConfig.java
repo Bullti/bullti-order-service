@@ -40,10 +40,10 @@ public class SecurityConfig {
 				.requestMatchers("/store/**").hasRole("STORE")
 				.anyRequest().authenticated())
 		.formLogin(
-				formLogin -> formLogin.loginPage("/login").loginProcessingUrl("/login").usernameParameter("id")
+				formLogin -> formLogin.loginPage("/login").usernameParameter("id")
 						.passwordParameter("pass")
 						.permitAll().defaultSuccessUrl("/")
-						.failureUrl("/login")
+						//.failureUrl("/login")
 						.loginProcessingUrl("/login")
 				)
 		.logout(logout -> logout

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
+<head>
+<link rel="stylesheet" href="/css/basket/basket.css">
+
+<script src="/js/order/cart.js"></script>
+
+</head>
+<main>
+	<form>
+		<div class="info">
+         매장선택
+		</div>
+		<div class="order-list">
+			<div class="flex order-1 border_bottom">
+				<p>주문내역</p>
+				<p>(총 x건)</p>
+				<p>35,000원</p>
+			</div>
+			<section class="menu-wrap">
+				<div class="menu1">
+					<img src=/images/list/치킨1.jpg>
+				</div>
+				<div class="title1">
+					<div class="listLi-del border">
+						<button class="btn_del btnDeleteRow" title="삭제하기">X</button>
+					</div>
+					<p>바삭바삭 후라이드</p>
+					<p id="eng">fried chicken</p>
+					<p>35,000원</p>
+					<!--<p>수량 : x 개</p>-->
+					<div class="listLi-count border">
+						<a class="btn_down btnDown" href="#" title="수량 빼기">
+						<span class="blind">수량 빼기</span>
+						</a>
+						<input type="text" class="quantity" value="1" readonly="readonly">
+						<a class="btn_up btnUp" href="#" title="수량 더하기">
+						<span class="blind">수량 더하기</span>
+						</a>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="plus border_bottom">
+			<img src=/images/list/add_FILL0_wght400_GRAD0_opsz24.svg>
+			<a href="/list">더 담으러 갈래요</a>
+		</div>
+		<div class="pay-info">
+			<div class="flex between border_bottom">
+				<p>결제 금액</p>
+				<p>35,000원</p>
+			</div>
+			<div class="flex between">
+				<p>주문 금액</p>
+				<p>35,000원</p>
+			</div>
+			<div class="flex between border_bottom">
+				<p>배달팁</p>
+				<p>0원</p>
+			</div>
+			<div class="flex between">
+				<p>총 결제 금액</p>
+				<p>35,000원</p>
+			</div>
+		</div>
+		<div class="button-area">
+			<button type="button" onclick="requestPay()">
+				<p>주문하기</p>
+				<img src="/images/list/card.svg">
+			</button>
+		</div>
+	</form>
+
+</main>
+</html>
