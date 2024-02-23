@@ -7,6 +7,13 @@ var key=new Date().getTime();
 $(function(){
 	$("#btn-bot").click(btnBotClicked);
 });
+
+//선택지 선택시 텍스트 추출하여 메세지 보내기
+function choiceValueSend(event) {
+    let choiceValue = $(event.target).text(); // 클릭된 요소의 텍스트 값을 가져옴
+    console.log(choiceValue)
+	sendChatbotMessage(choiceValue);
+}
 function btnCloseClicked(){
 	$("#bot-container").hide();
 	$("#chat-content").html("");
@@ -46,7 +53,7 @@ function userTag(text){
 	`;
 }
 
-function botTag(text){
+function botTag(text, choiceTag){
 	var time=formatTime();
 	return `
 	<div class="msg bot flex">
@@ -56,6 +63,11 @@ function botTag(text){
 		<div class="message">
 			<div class="part">
 				<p>${text}</p>
+			</div>
+			<div>
+				<ul class="choice-container flex">
+					${choiceTag}
+				</ul>
 			</div>
 			<div class="time">${time}</div>
 		</div>
@@ -74,12 +86,22 @@ function connect(){
 	stompClient=Stomp.over(new SockJS("/green-bot"));
 	stompClient.connect({},(frame)=>{
 		//접속이 완료되면 인사말수신-구독
-		stompClient.subscribe(`/topic/question/${key}`,(answerData)=>{
+		stompClient.subscribe(`/topic/order/${key}`,(answerData)=>{
 			//console.log(answerData.body);
 			var message=JSON.parse(answerData.body);
 			var text=message.content;
+			let choiceArray = message.choices;
+			
 			/////////////////////////////
-			var tag=botTag(text);
+			let choiceTag = "";
+			var tag;
+			if(choiceArray) {
+				choiceArray.forEach(choice => {
+					console.log(choice)
+					choiceTag += `<li><button onclick="choiceValueSend(event)" type="button" class="chatbot-choice">${choice}</button></li>`
+				})
+			}
+			tag=botTag(text, choiceTag);
 			/////////////////////////////
 			showMessage(tag);
 		})
@@ -87,7 +109,7 @@ function connect(){
 		var data={
 			key: key,
 			name:"그린",
-			content: "학원에있는영진이전화번호는?."
+			content: "니코틴아마이드 아데닌 다이뉴클레오타이드"
 		}
 		//인사말 보내줘
 		stompClient.send("/message/bot",{},JSON.stringify(data));
@@ -105,8 +127,13 @@ function checkEnterKey(event){
 	}
 }
 
+
 function btnMsgSendClicked() {
 	var content=$("#question").val().trim();
+	sendChatbotMessage(content)
+}
+
+function sendChatbotMessage(content) {
 	
 	var data={
 		key,
