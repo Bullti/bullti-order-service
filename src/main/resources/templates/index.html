@@ -7,6 +7,7 @@
 </head>
 <body>
 	<main>
+		<input type="hidden" th:if="${error_msg != null}" th:value="${error_msg}">
 		<section id="slider1" class="slider">
 			<div class="box">
 				<img src="/images/index/banner1.png" width="980px">
