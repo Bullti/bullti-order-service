@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "UTF-8";
 
 .basket_line{
@@ -305,3 +306,312 @@ html, body {
 }
 
 
+=======
+@charset "UTF-8";
+
+.basket_line{
+	border-top: 1px solid #444444;
+	margin: 30px 0px;
+}
+
+.basket_all{
+	
+	width: 430px;
+	height: 932px;
+	display: flex;
+	justify-content: space-between;
+    flex-direction: column;
+}
+
+.basket_head{
+	
+	display: flex;
+	justify-content: space-between;
+}
+
+.basket_right_button{
+	display: flex;	
+}
+
+.basket_store_contents{
+	display: flex;
+	justify-content: space-between;
+}
+
+#basket_store_contents_left{
+	
+	display: flex;
+	justify-content: space-between;
+}
+
+.basket_menu{
+	display: flex;
+	justify-content: space-between;
+}
+
+.basket_menu_imageline{
+
+display: flex;
+	justify-content: space-between;
+}
+
+.basket_menu_imageline_left{
+	
+	display: flex;
+}
+
+
+.basket_plusline{
+display: flex;
+  
+	
+}
+
+.basket_plusline *{
+	display: table-cell;
+	
+}
+
+
+.basket_allprice{
+	display: flex;
+	justify-content: space-between;
+}
+	
+
+.basket_expectprice{
+	display: flex;
+	justify-content: space-between;
+}
+
+
+.basket_delivery{
+	display:flex;
+	justify-content: center;
+}
+
+
+#chat-bot{
+
+	top:700px;
+}
+
+.red    {background: #FFFFE0;}
+
+.btn-gradient.mini{
+	height: 30px;
+  padding: 4px 12px;  
+  font-size: 12px;
+  border-radius: 2px;
+  width: 95%;
+  text-align: center;
+  color: tomato;
+ 
+  
+}
+
+/* === Reset and Basic Body Styles === */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; 
+    background-color: #f8f8f8; /* Adjust background color as needed */
+}
+
+/* === Main Shopping Cart Structure === */
+.basket_all {
+    width: 90%;
+    max-width: 800px; /* Limit max width for larger screens */
+    margin: 30px auto; 
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.basket_container {
+    padding: 20px;
+}
+
+/* === Basket Header === */
+.basket_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#basket_left_arrow {
+    /* Style the back arrow (use an icon image here) */
+    width: 30px; 
+    height: 30px;
+    background-color: #fafafa;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#basket_head_name {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.basket_right_button {
+    display: flex;
+    gap: 15px;
+}
+
+#basket_right_home, #basket_right_mypage {
+    color: #777;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+#basket_right_home:hover, #basket_right_mypage:hover {
+    color: #333;
+}
+
+.basket_line {
+    height: 1px;
+    background-color: #eee;
+    margin: 15px 0;
+}
+
+/* === Store Information === */
+.basket_store_contents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.basket_store_image { /* Replace with an image if you have one */
+    background-color: #eee;
+    width: 50px; 
+    height: 50px;
+    border-radius: 8px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#basket_store_name {
+    font-size: 18px;
+    margin-left: 10px; 
+}
+
+/* === Menu Items === */
+.basket_menu {
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; 
+}
+
+.basket_menuname {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.basket_cancel {
+    width: 20px;
+    height: 20px;
+    /* Add an 'X' icon for cancel */
+    background-color: #ddd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.basket_menu_imageline {
+    display: flex;
+    align-items: center;
+}
+
+.basket_menu_imageline_left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* === Product Image/Info Enhancements === */
+.basket_menu_imageline {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space items horizontally */
+}
+
+.basket_menu_imageline_left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.basket_menu_imageline_left_image, 
+.basket_menu_imageline_left_price { 
+    font-size: 14px; 
+}
+
+.basket_menu_imageline_amount {
+    font-size: 16px;
+    font-weight: 500; /* Emphasize the quantity */
+}
+
+/* === "Add More" Styling === */
+.basket_plusline {
+    display: flex;    
+    align-items: center;
+    justify-content: center; /* Consider centering for aesthetic */
+    padding: 15px; 
+    background-color: #f0f0f0; /* Subtle background hint */
+    border-top: 1px solid #eee; /* Softer divider */
+}
+
+.basket_plus {
+    display: inline-block;
+    width: 25px; 
+    height: 25px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px; 
+    font-size: 18px; 
+    cursor: pointer;
+}
+
+/* === Payment Styling === */
+.basket_allprice, .basket_expectprice {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.basket_all_price, .basket_expect_price {
+    font-size: 18px; /* Slightly larger text */
+    font-weight: 600;
+}
+
+/* === Delivery Button Refinement === */
+.basket_delivery {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Add some spacing */
+}
+
+.btn-gradient.red.mini {
+    height: 40px; /* Adjusted */ 
+    padding: 8px 16px;  /* Adjusted */
+    font-size: 14px;   /* Adjusted */
+    border-radius: 4px; /* Softer corners */
+    text-align: center;
+    color: rgb(0, 0, 0); /* Make sure text color contrasts */
+}
+
+
+>>>>>>> refs/remotes/choose_remote_name/master

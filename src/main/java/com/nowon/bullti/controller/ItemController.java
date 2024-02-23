@@ -36,4 +36,8 @@ public class ItemController {
 		return "basket/basket";
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/choose_remote_name/master

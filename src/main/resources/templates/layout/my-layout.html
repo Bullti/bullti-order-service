@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(myhead, mymain)">
 <head>
@@ -19,4 +20,27 @@
 </body>
 
 
+=======
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(myhead, mymain)">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>bullti</title>
+	<link rel="stylesheet" href="/css/common/header.css">
+	<link rel="stylesheet" href="/css/common/footer.css">
+	<link rel="stylesheet" href="/css/common/reset.css">
+	<script type="text/javascript" src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+	<th:block th:replace="${myhead}"></th:block>
+</head>
+<body>
+	<th:block th:replace="~{layout/header::header}"></th:block>
+	
+	<th:block th:replace="${mymain}"></th:block>
+	
+	<th:block th:replace="~{layout/footer::footer}"></th:block>
+</body>
+
+
+>>>>>>> refs/remotes/choose_remote_name/master
 </html>
