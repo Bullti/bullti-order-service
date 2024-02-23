@@ -23,4 +23,9 @@ public class IndexController {
 		return "index";
 	}
 	
+	@GetMapping("/my")
+	public String myPage() {
+		return "/my";
+	}
+	
 }
