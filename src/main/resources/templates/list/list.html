@@ -29,8 +29,8 @@
     	<section class="menu" th:each="list:${list}">
 			<section class="menu-wrap">
 				<div class="menu1">
-					<!--<img th:text="${list.img}">-->
-					<img src="/images/menu/핫후라이드-콤보_410x271.png">
+					<img th:src="${list.img}">
+					<!--<img src="/images/menu/핫후라이드-콤보_410x271.png">-->
 				</div>
 				<div class="title1">
 					<p th:text="${list.name}">바삭바삭 후라이드</p>
@@ -44,11 +44,11 @@
 						<a class="btn_up btnUp" href="#" title="수량 더하기">
 						<span class="blind">수량 더하기</span>
 						</a>
+						<button id="cart-button">담기</button>
 					</div>
 				</div>
 			</section>
 		</section>
-		<div id="saveItems"></div>
 		<div class="cart-q" style="display: none;">
 			<div class="button1-area">
 				<button class="button1">X</button>
@@ -57,7 +57,7 @@
 			<p>장바구니로 이동하시겠습니까?</p>
 			<div class="button2-area">
 				<button class="button2">취소</button>
-				<button id="confirmButton" class="button3" >확인</button>
+				<button id="confirmButton" class="button3" onClick="location.href='/basket'">확인</button>
 			</div>
 		</div>
     	
@@ -145,162 +145,62 @@
         };
     }
 
-    $(document).ready(function () {
-        const s1 = new Slider("#slider1", "H");
+	    $(document).ready(function () {
+	        const s1 = new Slider("#slider1", "H");
+	
+	        setInterval(() => {
+	            s1.next();
+	        }, 2500);
+	
+	
+		 $('.menu-button').click(function () {
+        // 선택한 메뉴 버튼에만 클래스 'selected'를 추가하고 이전 선택을 제거한다.
+        $('.menu-button').removeClass('selected');
+        $(this).addClass('selected');
 
-        setInterval(() => {
-            s1.next();
-        }, 2500);
-
-        $('.title1').click(function () {
-            var name = $(this).find('p:first').text();
-            var content = $(this).find('#eng').text();
-            var price = parseInt($(this).find('p:last').text().replace(/[^0-9]/g, ''), 10);
-            var count = parseInt($(this).find('.quantity').val(), 10);
-
-            $('.title1, section.selected').removeClass('selected');
-            $(this).addClass('selected');
-            $(this).closest('section').addClass('selected');
-
-            $.ajax({
-                type: 'GET',
-                contentType: 'application/json',
-                url: '/list',
-                data: {
-                    name: name,
-                    content: content,
-                    price: price,
-                    count: count
-                },
-                success: function (response) {
-                    console.log('name:', name);
-                    console.log('content:', content);
-                    console.log('price:', price);
-                    console.log('count:', count);
-                },
-                error: function (error) {
-                    console.error('Error:', error);
-                }
-            });
-        });
-
- var temporaryData = [];
-
-            $('.btn_up').click(function () {
-                var selectedSection = $(this).closest('section');
-                var quantityInput = selectedSection.find('.quantity');
-                var currentQuantity = parseInt(quantityInput.val(), 10);
-                var newQuantity = currentQuantity;
-                quantityInput.val(newQuantity);
-
-                var name = selectedSection.find('p:first').text();
-                var existingMenuIndex = findMenuIndexByName(temporaryData, name);
-
-                if (existingMenuIndex !== -1) {
-                    temporaryData[existingMenuIndex].count = newQuantity;
-                } else {
-                    var content = selectedSection.find('#eng').text();
-                    var price = parseInt(selectedSection.find('p:last').text().replace(/[^0-9]/g, ''), 10);
-
-                    var menuData = {
-                        name: name,
-                        content: content,
-                        price: price,
-                        count: newQuantity
-                    };
-
-                    temporaryData.push(menuData);
-                }
-
-                updateTemporaryDataUI(temporaryData);
-            });
-
-            $('.btn_down').click(function () {
-                var selectedSection = $(this).closest('section');
-                var quantityInput = selectedSection.find('.quantity');
-                var currentQuantity = parseInt(quantityInput.val(), 10);
-                var newQuantity = Math.max(1, currentQuantity - 1);
-                quantityInput.val(newQuantity);
-
-                var name = selectedSection.find('p:first').text();
-                var existingMenuIndex = findMenuIndexByName(temporaryData, name);
-
-                if (existingMenuIndex !== -1) {
-                    temporaryData[existingMenuIndex].count = newQuantity;
-                    if (temporaryData[existingMenuIndex].count <= 0) {
-                        temporaryData.splice(existingMenuIndex, 1);
-                    }
-                }
-
-                updateTemporaryDataUI(temporaryData);
-            });
-
-		$('#confirmButton').click(function () {
-		    $.ajax({
-		        type: 'POST',
-		        contentType: 'application/json',
-		        url: '/list',
-		        data: JSON.stringify({
-		            name: name,
-		            content: content,
-		            price: price,
-		            count: newQuantity
-		        }),
-		        success: function (response) {
-		            console.log('temporaryData :', temporaryData);
-		        },
-		        error: function (error) {
-		            console.error('Error:', error);
-		        }
-		    });
-		});
-        function updateTemporaryDataUI(data) {
-			    var temporaryDataDiv = $('#saveItems');
-			    temporaryDataDiv.empty();
-			
-			    for (var i = 0; i < data.length; i++) {
-			        var menuItem = data[i];
-			        var menuItemHTML = '<p>' + menuItem.name + ' - 수량: ' + menuItem.count + '</p>';
-			        temporaryDataDiv.append(menuItemHTML);
-			    }
-			
-			    // 전송할 데이터 수집
-			    var sendData = {
-			        temporaryData: data
-			    };
-			
-			    // AJAX 요청으로 데이터 서버에 전송
-			    $.ajax({
-			        type: 'POST',
-			        contentType: 'application/json',
-			        url: '/basket',  // 적절한 엔드포인트로 변경
-			        data: JSON.stringify(sendData),
-			        success: function (response) {
-			            console.log('Data sent to the server');
-			        },
-			        error: function (error) {
-			            console.error('Error:', error);
-			        }
-			    });
-			}
-        $('.menu-button').click(function () {
-            $('.cart-q').show();
-            event.preventDefault();
-        });
-
-        $('.button2').click(function () {
-            $('.cart-q').hide();
-        });
+        event.preventDefault();
     });
+	
+		$('.menu').on('click', '#cart-button', function () {
+	        var selectedSection = $(this).closest('section.menu-wrap');
+	        var name = selectedSection.find('p:first').text();
+	        var count = parseInt(selectedSection.find('.quantity').val(), 10);
+	
+	        // Ajax로 서버로 데이터 전송
+	        $.ajax({
+	            type: 'POST',
+	            contentType: 'application/json',
+	            url: '/basket', 
+	            data: JSON.stringify({
+	                name: name,
+	                count: count
+	            }),
+	            success: function (response) {
+	                console.log('name:', name);
+	                console.log('count:', count);
+	                selectedSection.find('.quantity').val(1);
+	            },
+	            error: function (error) {
+	                console.error('Error sending data:', error);
+	            }
+	        });
+	    });
 
-    function findMenuIndexByName(array, name) {
-        for (var i = 0; i < array.length; i++) {
-            if (array[i].name === name) {
-                return i;
-            }
-        }
-        return -1;
-    }
-</script>
+	        $('#cart-button').click(function () {
+	            $('.cart-q').show();
+	            event.preventDefault();
+	        });
+	
+	        $('.button2').click(function () {
+	            $('.cart-q').hide();
+	        });
+	        
+	         $('.button1').click(function () {
+	            $('.cart-q').hide();
+	        });
+	    });
+	
+
+		</script>
 	</main>
 </html>

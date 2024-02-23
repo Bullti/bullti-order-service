@@ -37,4 +37,8 @@ public class BasketItem {
 	private ItemEntity item;
 	
 	private int count;
+
+	public void updateCnt(int cnt) {
+		this.count = count+cnt;
+	}
 }

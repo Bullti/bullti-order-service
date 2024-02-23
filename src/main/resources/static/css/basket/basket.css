@@ -148,7 +148,7 @@ form{
 .listLi-count{
 	display: flex;
     align-items: center;
-    height: 32px;
+    height: 48px;
     overflow: hidden;
     margin-top:10px;
 }
@@ -189,6 +189,8 @@ form{
     text-align: center;
     white-space: nowrap;
     outline: none;
+    background-color: transparent;
+    border: none;
 }
 
 
