@@ -22,26 +22,24 @@ import lombok.NoArgsConstructor;
 @Table(name = "franchisee")
 @Entity
 public class FranchiseEntity {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long no;
-	@Column(nullable = false)
-	private String name;
-	@Column(nullable = false)
-	private String location;
-	private String locationDetail;
-	@Column(nullable = false)
-	private String phone;
-	
-	@Column(nullable = true)
-	private long memberNo;
-	
-	@OneToMany(mappedBy = "franchisee")
-	private List<Order> order;
-	
-	public StoreListDTO toStoreListDTO() {
-		
-		return StoreListDTO.builder()
-				.id(no).name(name).location(location).locationDetail(locationDetail).phone(phone)
-				.build();
-	}
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long no;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private String location;
+    private String locationDetail;
+    @Column(nullable = false)
+    private String phone;
+
+    private Long memberNo; // 기본값이 null일 수 있도록 변경
+
+    @OneToMany(mappedBy = "franchisee")
+    private List<Order> order;
+
+    public StoreListDTO toStoreListDTO() {
+        return StoreListDTO.builder()
+                .id(no).name(name).location(location).locationDetail(locationDetail).phone(phone)
+                .build();
+    }
 }

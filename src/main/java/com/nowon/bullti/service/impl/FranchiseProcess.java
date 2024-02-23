@@ -15,24 +15,26 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class FranchiseProcess implements FranchiseService{
-	
-	private final FranchiseRepository franchiseRepository;
+public class FranchiseProcess implements FranchiseService {
 
-	@Override
-	public List<StoreListDTO> getstoreList() {
-		
-		return franchiseRepository
-				.findAll()
-				.stream()
-				.map(FranchiseEntity::toStoreListDTO)
-				.collect(Collectors.toList());
-	}
+    private final FranchiseRepository franchiseRepository;
 
-	@Override
-	public void storeList(Model model) {
-		System.out.println(franchiseRepository.findAll().stream().map(FranchiseEntity::toStoreListDTO).collect(Collectors.toList()).toString());
-		model.addAttribute("list",
-				franchiseRepository.findAll().stream().map(FranchiseEntity::toStoreListDTO).collect(Collectors.toList()));	
-	}
+    @Override
+    public List<StoreListDTO> getstoreList() {
+        return franchiseRepository.findAll().stream().map(FranchiseEntity::toStoreListDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public void storeList(Model model) {
+        List<StoreListDTO> storeList = franchiseRepository.findAll().stream()
+                .map(FranchiseEntity::toStoreListDTO)
+                .collect(Collectors.toList());
+        model.addAttribute("list", storeList);
+    }
+
+    @Override
+    public List<StoreListDTO> searchStore(String keyword) {
+        List<FranchiseEntity> searchResult = franchiseRepository.searchByStoreName(keyword);
+        return searchResult.stream().map(FranchiseEntity::toStoreListDTO).collect(Collectors.toList());
+    }
 }
