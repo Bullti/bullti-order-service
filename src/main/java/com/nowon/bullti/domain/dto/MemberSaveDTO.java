@@ -21,13 +21,13 @@ public class MemberSaveDTO {
 	private String tel;
 	private String address;
 	private LocalDate joinDate;
-	
+	private String password;
 	
 	public Member toEntity(PasswordEncoder passwordEncoder) {
 		
 		return Member.builder()
 				.id(id)
-				.password(passwordEncoder.encode(id))
+				.password(passwordEncoder.encode(password))
 				.name(name)
 				.tel(tel)
 				.address(address)

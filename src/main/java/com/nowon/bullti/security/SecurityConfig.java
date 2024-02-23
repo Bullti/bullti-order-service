@@ -43,7 +43,7 @@ public class SecurityConfig {
 				formLogin -> formLogin.loginPage("/login").usernameParameter("id")
 						.passwordParameter("pass")
 						.permitAll().defaultSuccessUrl("/")
-						.failureUrl("/login")
+						//.failureUrl("/login")
 						.loginProcessingUrl("/login")
 				)
 		.logout(logout -> logout

@@ -22,7 +22,6 @@ public class MyUser extends User{
 	}
 	
 	public MyUser(Member member, Set<SimpleGrantedAuthority> grantedAuthority) {
-		
 		this(member.getId(), member.getPassword(), grantedAuthority);
 		memberNo = member.getNo();
 		memberName = member.getName();

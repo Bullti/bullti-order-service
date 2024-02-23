@@ -26,10 +26,12 @@
 			<div>
 				<form action="/login">
 					
-						<button type="submit" class="login-button">
-							<span>Bullti 로그인</span>
+						<button type="submit" class="login-button" sec:authorize="isAnonymous()">
+							<span>로그인</span>
 						</button>
-					
+						<button type="submit" class="login-button" sec:authorize="isAuthenticated()">
+							<span>로그아웃</span>
+						</button>
 				</form>
 			</div>
 			<div class="login-help">
@@ -44,7 +46,7 @@
 		</div>
 		<div class="order-space">
 			<form>
-				<a>
+				<a class="order-btn">
 					<button type="submit" class="order-button">
 						<img src="/images/index/order-button.PNG" width="400px">
 					</button>
