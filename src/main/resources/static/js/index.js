@@ -21,7 +21,7 @@ function Slider(target, type) {
 		  container.style["display"] = "flex";
 		  container.style["flex-direction"] = type === "V" ? "column" : "row";
 		  container.style["width"] = sliderRects.width + "px";
-		  container.style["height"] = sliderRects.height + "px";
+		  /*container.style["height"] = sliderRects.height + "px";*/
 		  container.style["transform"] = translate(index);
 		
 		  // 슬라이더 화면 목록
@@ -34,7 +34,7 @@ function Slider(target, type) {
 		    const box = boxes[i];
 		    box.style["flex"] = "none";
 		    box.style["flex-wrap"] = "wrap";
-		    box.style["height"] = "100%";
+		    /*box.style["height"] = "100%";*/
 		    box.style["width"] = "100%";
 		    container.appendChild(box.cloneNode(true));
 		  }
