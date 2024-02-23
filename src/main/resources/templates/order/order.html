@@ -21,7 +21,7 @@
 				<p>010-000-0000</p>
 			</div>
 		</div>
-		<div class="order-list">
+		<!-- <div class="order-list">
 			<div class="flex order-1 border_bottom">
 				<p>주문내역</p>
 				<p>(총 x건)</p>
@@ -51,7 +51,7 @@
 					<p>수량 : x 개</p>
 				</div>
 			</section>
-		</div>
+		</div> -->
 		<div class="pay-info">
 			<div class="flex between border_bottom">
 				<p>결제 금액</p>
@@ -70,8 +70,16 @@
 				<p>35,000원</p>
 			</div>
 		</div>
+		
+		<input type="hidden" value="상품이름" id="itemName">
+		<input type="hidden" value="99999" id="itemAmount">
+		<input type="hidden" value="444" id="storeNo">
+		<input type="hidden" value="경기도 양주시 옥정동로190 210동 703호" id="adress">
+		<input type="hidden" value="010-2589-8522" id="memberTel">
+		
+		
 		<div class="button-area">
-			<button type="button" onclick="requestPay()">
+			<button type="button" onclick="payment()()">
 				<p>결제하기</p>
 				<img src="/images/list/card.svg">
 			</button>
