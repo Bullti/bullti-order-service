@@ -25,6 +25,7 @@ form{
 
 .info, .order-list, .pay-info,.plus{
 	width: 90%;
+	font-size: 34px;
 	font-weight: bold;
 
 }
@@ -100,14 +101,16 @@ form{
 
 .button-area{
 	margin-top: 50px;
-    margin-bottom: 200px;
 }
 
 .button-area > button {
-    font-size: 2em;
-    font-weight: bold;
-    display: flex;
-    border: 1px solid #8c8c8c;
+	width: 500px;
+	height: 100px;
+	font-size: 48px;
+	font-weight: bold;
+	display: flex;
+	border: 1px solid #8c8c8c; 
+
 }
 
 .button-area > button > p {
@@ -145,7 +148,7 @@ form{
 .listLi-count{
 	display: flex;
     align-items: center;
-    height: 32px;
+    height: 48px;
     overflow: hidden;
     margin-top:10px;
 }
@@ -186,6 +189,8 @@ form{
     text-align: center;
     white-space: nowrap;
     outline: none;
+    background-color: transparent;
+    border: none;
 }
 
 
