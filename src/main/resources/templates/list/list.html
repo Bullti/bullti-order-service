@@ -37,14 +37,14 @@
 					<p id="eng" th:text="${list.content}">fried chicken</p>
 					<p th:text="${#numbers.formatInteger(list.price,3,'COMMA')+'원'}">35,000원</p>
 					<div class="listLi-count border">
-						<a class="btn_down btnDown" href="#" title="수량 빼기">
+						<a class="btn_down btnDown" title="수량 빼기">
 						<span class="blind">수량 빼기</span>
 						</a>
 						<input type="text" class="quantity" value="1" readonly="readonly">
-						<a class="btn_up btnUp" href="#" title="수량 더하기">
+						<a class="btn_up btnUp" title="수량 더하기">
 						<span class="blind">수량 더하기</span>
 						</a>
-						<button id="cart-button">담기</button>
+						<button type="button" id="cart-button">담기</button>
 					</div>
 				</div>
 			</section>
@@ -166,6 +166,10 @@
 	        var name = selectedSection.find('p:first').text();
 	        var count = parseInt(selectedSection.find('.quantity').val(), 10);
 	
+			console.log("장바구니 담아버리기~~~~~");
+			console.log("name : "+name);
+			console.log("count : "+count);
+			
 	        // Ajax로 서버로 데이터 전송
 	        $.ajax({
 	            type: 'POST',
