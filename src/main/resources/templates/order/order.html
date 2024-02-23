@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
+<head>
+<link rel="stylesheet" href="/css/order/order.css">
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="/js/order/payment.js" type="text/javascript"></script>
+</head>
+<main>
+	<form>
+		<div class="info">
+			<div class="flex border_bottom">
+				<p>점포정보</p>
+				<p>노원별빛점</p>
+			</div>
+			<div class="flex border_bottom">
+				<p>받을주소</p>
+				<p>서울시 노원구 xx로 어쩌고 저쩌고</p>
+			</div>
+			<div class="flex border_bottom">
+				<p>전화번호</p>
+				<p>010-000-0000</p>
+			</div>
+		</div>
+		<!-- <div class="order-list">
+			<div class="flex order-1 border_bottom">
+				<p>주문내역</p>
+				<p>(총 x건)</p>
+				<p>35,000원</p>
+			</div>
+			<section class="menu-wrap">
+				<div class="menu1">
+					<img src=/images/list/치킨1.jpg>
+				</div>
+				<div class="title1">
+					<p>바삭바삭 후라이드</p>
+					<p id="eng">fried chicken</p>
+					<p>35,000원</p>
+					<br>
+					<p>수량 : x 개</p>
+				</div>
+			</section>
+			<section class="menu-wrap">
+				<div class="menu1">
+					<img src=/images/list/치킨1.jpg>
+				</div>
+				<div class="title1">
+					<p>바삭바삭 후라이드</p>
+					<p id="eng">fried chicken</p>
+					<p>35,000원</p>
+					<br>
+					<p>수량 : x 개</p>
+				</div>
+			</section>
+		</div> -->
+		<div class="pay-info">
+			<div class="flex between border_bottom">
+				<p>결제 금액</p>
+				<p>35,000원</p>
+			</div>
+			<div class="flex between">
+				<p>주문 금액</p>
+				<p>35,000원</p>
+			</div>
+			<div class="flex between border_bottom">
+				<p>배달팁</p>
+				<p>0원</p>
+			</div>
+			<div class="flex between">
+				<p>총 결제 금액</p>
+				<p>35,000원</p>
+			</div>
+		</div>
+		
+		<input type="hidden" value="상품이름" id="itemName">
+		<input type="hidden" value="99999" id="itemAmount">
+		<input type="hidden" value="444" id="storeNo">
+		<input type="hidden" value="경기도 양주시 옥정동로190 210동 703호" id="adress">
+		<input type="hidden" value="010-2589-8522" id="memberTel">
+		
+		
+		<div class="button-area">
+			<button type="button" onclick="payment()()">
+				<p>결제하기</p>
+				<img src="/images/list/card.svg">
+			</button>
+		</div>
+	</form>
+</main>
+</html>

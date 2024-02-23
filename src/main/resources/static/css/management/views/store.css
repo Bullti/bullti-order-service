@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+.main {
+	width: 1280px;
+    margin: auto;
+	outline: 5px solid var(--bullti2);
+	border-radius: 10px;
+	overflow: hidden;
+	min-height: 600px;
+}
+.store-table {
+	margin: auto;
+	width: 1280px;
+}
+.store-table thead {
+	background-color: #a9a9a9;
+}
+.store-table th,
+.store-table td {
+    padding: 10px; 
+    border: 1px solid #dddddd; 
+    vertical-align: middle;
+}
+.store-table button{
+    font-size: 1rem;
+	
+    padding: 3px 10px; /* 버튼 내부에 여백 추가 */
+    background-color: var(--bullti1); /* 버튼 배경색 */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px; /* 버튼 모서리 둥글게 */
+    transition: background-color 0.3s; /* 배경색 변경 시 부드럽게 변화 */
+}
+
+.store-td {
+    background-color: #ffffff; 
+}
+.store-td:hover {
+	background-color: #efefef;
+}
+
+.button-container {
+	text-align: center;
+}
