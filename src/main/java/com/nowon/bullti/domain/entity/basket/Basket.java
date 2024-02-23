@@ -2,7 +2,7 @@ package com.nowon.bullti.domain.entity.basket;
 
 import java.util.List;
 
-import com.nowon.bullti.domain.entity.franchisee.FranchiseeEntity;
+import com.nowon.bullti.domain.entity.franchise.FranchiseEntity;
 import com.nowon.bullti.domain.entity.member.Member;
 
 import jakarta.persistence.Column;
@@ -42,7 +42,7 @@ public class Basket {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_store")
-	private FranchiseeEntity fran;
+	private FranchiseEntity fran;
 	
 	private long amount;
 }

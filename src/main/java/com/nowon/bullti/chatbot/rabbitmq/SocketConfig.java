@@ -18,12 +18,14 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
 		//js에서 웹소켓 접속시
 		//var socket=new SockJS("/green-bot")
 		registry.addEndpoint("/green-bot").withSockJS();
+		registry.addEndpoint("/store-order").withSockJS();
 	}
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
 		//사용자->서버 메세지를 전송할때
 		registry.setApplicationDestinationPrefixes("/message");
+		registry.setApplicationDestinationPrefixes("/order-item");
 	}
 
 	
