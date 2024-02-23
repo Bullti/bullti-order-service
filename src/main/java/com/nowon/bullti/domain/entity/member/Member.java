@@ -43,7 +43,7 @@ public class Member {
 	@Column(name = "member_no")
 	private long no;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = true, columnDefinition = "VARCHAR(255) COLLATE utf8mb4_bin")
 	private String id;
 	
 	@Column(nullable = false)
