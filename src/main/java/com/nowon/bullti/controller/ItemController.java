@@ -18,7 +18,7 @@ public class ItemController {
 	
 	private final ItemService itemService;
 	
-	@GetMapping("/list")
+	@GetMapping("/items")
 	public String list(Model model) {
 		
 		itemService.list(model);
