@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
+<head>
+<link rel="stylesheet" href="/css/basket/basket.css">
+</head>
+<main>
+	<form action="/orders">
+		<div class="info">
+         매장선택
+		</div>
+		<div class="order-list">
+			<div class="flex order-1 border_bottom">
+				<p>주문내역</p>
+				<p>(총 x건)</p>
+				<p>35,000원</p>
+			</div>
+			<section class="menu-wrap" th:each="dto:${list}">
+				<div class="menu1">
+					<img th:src="${dto.img}">
+				</div>
+				<div class="title1">
+					<div class="listLi-del border">
+						<button type="button" onclick="deleteBtn(this)"class="btn_del btnDeleteRow" title="삭제하기">X</button>
+					</div>
+					<p class="ItemName" th:text="${dto.name}"></p>
+					<p id="eng" th:text="${dto.content}">fried chicken</p>
+					<p th:text="${dto.price}">35,000원</p>
+					<!--<p>수량 : x 개</p>-->
+					<div class="listLi-count border">
+						<a class="btn_down btnDown" href="#" title="수량 빼기">
+						<span class="blind">수량 빼기</span>
+						</a>
+						<input type="text" class="quantity" th:value="${dto.count}" readonly="readonly" >
+						<a class="btn_up btnUp" href="#" title="수량 더하기">
+						<span class="blind">수량 더하기</span>
+						</a>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="plus border_bottom">
+			<img src=/images/list/add_FILL0_wght400_GRAD0_opsz24.svg>
+			<a href="/items">더 담으러 갈래요</a>
+		</div>
+		<div class="pay-info">
+			<div class="flex between border_bottom">
+				<p>결제 금액</p>
+				<p>35,000원</p>
+			</div>
+			<div class="flex between">
+				<p>주문 금액</p>
+				<p>35,000원</p>
+			</div>
+			<div class="flex between border_bottom">
+				<p>배달팁</p>
+				<p>0원</p>
+			</div>
+			<div class="flex between">
+				<p>총 결제 금액</p>
+				<p>35,000원</p>
+			</div>
+		</div>
+		<div class="button-area">
+			<button type="submit">
+				<p>주문하기</p>
+				<img src="/images/list/card.svg">
+			</button>
+		</div>
+	</form>
+	
+	<script>
+		function deleteBtn(button){
+		 // 버튼의 부모 요소 찾기
+        var parentDiv = button.parentNode;
+
+        // 부모의 형제 요소 찾기 (class가 "ItemName"인 요소)
+        var itemNameElement = parentDiv.nextElementSibling;
+
+        // 형제 요소의 텍스트 가져오기
+        var itemNameText = itemNameElement.innerText;
+
+        // 가져온 텍스트 사용 또는 출력
+        console.log(itemNameText);
+			console.log("삭제 버튼 클릭");
+			console.log("name : "+itemNameText);
+			 $.ajax({
+	            type: 'DELETE',
+	            contentType: 'application/json',
+	            url: '/basket', 
+	            data: JSON.stringify({
+	                name: itemNameText
+	            }),
+	            success: function () {
+					console.log("삭제 성공")
+					location.reload();
+	            },
+	            error: function (error) {
+	                console.error('Error sending data:', error);
+	            }
+	        })
+		}
+	</script>
+	
+</main>
+</html>

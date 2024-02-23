@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+.content {
+	padding: 20px 0 150px 0;
+}
+
+.content > .box {
+	background-color: #fff;
+	margin-bottom: 20px;
+	padding: 40px 30px;
+}
+
+.content > .box > .order_result {
+	font-size: 40px;
+    font-weight: bold;
+    color: #f2004d;
+}
+
+.content > .box > .store {
+	margin-top: 20px;
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.content > .box > .menu {
+	margin-top: 30px;
+    font-size: 40px;
+}
+
+.content > .box > .date {
+	margin-top: 50px;
+    color: #747474;
+    font-size: 35px;
+}
+
+.content > .box > .order_menu:not(:last-child){
+	padding-bottom: 40px;
+	border-bottom: 1px solid #a9a9a9;
+}
+
+.content > .box > .order_menu:not(:first-child){
+	padding-top: 40px;
+}
+
+.content > .box > .order_menu > .menu_title {
+	font-size: 35px;
+}
+
+.content > .box > .order_menu > .menu_price {
+	margin-top: 30px;
+    font-size: 35px;
+}
+
+.content > .box > .pay_tilte {
+	font-size: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+.content > .box > .pay_tilte:not(:first-child){
+	margin-top: 60px;
+}
+
+
+.content > .box > .pay {
+	display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    font-size: 30px;
+}
+
+.content > .box > .my:not(:last-child) {
+	padding-bottom: 30px;
+	border-bottom: 1px solid #a9a9a9;
+}
+.content > .box > .my:not(:first-child) {
+	padding-top: 30px;
+}
+
+.content > .box > .my > .info_content {
+	margin-top: 20px;
+    color: #747474;
+    font-size: 14px;
+}

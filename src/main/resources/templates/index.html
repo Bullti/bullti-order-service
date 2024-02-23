@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/index/index.css">
+<script defer src=/js/index.js></script>
+</head>
+<body>
+	<main>
+		<input type="hidden" th:if="${error_msg != null}"
+			th:value="${error_msg}">
+		<section id="slider1" class="slider">
+			<div class="box">
+				<img src="/images/index/banner1.png">
+			</div>
+			<div class="box">
+				<img src="/images/index/banner3.png">
+			</div>
+			<div class="box">
+				<img src="/images/index/banner2.png">
+			</div>
+		</section>
+		<div class="login-space">
+			<div class="login-event">
+				<span>Bullti 회원은 다양한 혜택이 제공됩니다!</span>
+			</div>
+			<div>
+				<a href="/login">
+					<button type="submit" class="login-button"
+						sec:authorize="isAnonymous()">
+						<span>로그인</span>
+					</button>
+				</a> <a href="/logout">
+					<button type="submit" class="login-button"
+						sec:authorize="isAuthenticated()">
+						<span>로그아웃</span>
+					</button>
+				</a>
+			</div>
+			<div class="login-help">
+				<ul>
+					<li><a href="#">아이디 찾기</a></li>
+					<li>|</li>
+					<li><a href="#">비밀번호 찾기</a></li>
+					<li>|</li>
+					<li><a href="#">회원가입</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="order-space">
+			<form>
+				<a class="order-btn">
+					<button type="submit" class="order-button">
+						<img src="/images/index/order-button.PNG" width="400px">
+					</button>
+				</a>
+			</form>
+		</div>
+	</main>
+</body>
+</html>

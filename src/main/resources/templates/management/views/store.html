@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{management/layout/common-layout :: commonLayout(~{this::head},~{this::main} )}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/management/views/store.css">
+</head>
+<body>
+	<main>
+		<div class="main">
+			<table class="store-table">
+				<thead>
+					<tr>
+						<th>주문번호</th>
+						<th>아이디</th>
+						<th>주소</th>
+						<th>상품</th>
+						<th>수량</th>
+						<th>가격</th>
+						<th>주문처리</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="dto:${list}" class="store-td">
+						<td th:text="${dto.no}">1</td>
+						<td th:text="${dto.username}">green</td>
+						<td th:text="${dto.address}">서울시 노원구 상계동 13-1</td>
+						<td>
+							<ul>
+								<li th:each="prod:${dto.products}" th:text="${prod.name}">
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<li th:each="prod:${dto.products}" th:text="${prod.quantity}"></li>
+							</ul>
+						</td>
+						<td>
+							<span th:text="${#numbers.formatInteger(dto.totalPrice,3,'COMMA')}"></span>
+							<span>원</span>
+						</td>
+						<td class="button-container">
+							<button>수락</button>
+							<button>취소</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+</body>
+</html>

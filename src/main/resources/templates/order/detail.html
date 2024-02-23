@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
+<head>
+<link rel="stylesheet" href="/css/order/detail.css">
+</head>
+<body>
+	<main>
+		<div class="content">
+			<div class="box">
+				<p class="order_result">배달 완료</p>
+				<h1 class="store">불티치킨 노원점</h1>
+				<div class="menu">
+					<span>불티훈제치킨 1개</span>
+				</div>
+				<div class="date">
+					<span>주문일시 :</span> <span>2024년 02월 08일 오후 07:46</span>
+				</div>
+			</div>
+			<ul class="box">
+				<li class="order_menu">
+					<h1 class="menu_title">불티훈제치킨 1개</h1>
+					<p class="menu_price">
+						<span>- </span><span>22,000원</span>
+					</p>
+				</li>
+				<li class="order_menu">
+					<h1 class="menu_title">불티훈제치킨 1개</h1>
+					<p class="menu_price">
+						<span>- </span><span>22,000원</span>
+					</p>
+				</li>
+				<li class="order_menu">
+					<h1 class="menu_title">불티훈제치킨 1개</h1>
+					<p class="menu_price">
+						<span>- </span><span>22,000원</span>
+					</p>
+				</li>
+			</ul>
+			<div class="box">
+				<h1 class="pay_tilte">결제금액</h1>
+				<div class="pay">
+					<p>주문금액</p>
+					<p>
+						<span>22,000</span><span>원</span>
+					</p>
+				</div>
+				<h1 class="pay_tilte"><span>총 결제금액</span><p><span>22,000</span><span>원</span></p></h1>
+				<div class="pay">
+					<p>결제방법</p>
+					<p>
+						<span>카카오페이</span>
+					</p>
+				</div>
+			</div>
+			<div class="box">
+				<div class="my">
+					<h1 class="info_title">배달주소</h1>
+					<p class="info_content">경기도 양주시 옥정동로 190 제일풍경채 210동 2703호</p>
+				</div>
+				<div class="my">
+					<h1 class="info_title">전화번호</h1>
+					<p class="info_content">010-5230-0673</p>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
