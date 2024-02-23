@@ -172,3 +172,20 @@
 .user {
 	justify-content: flex-end;
 }
+
+
+.choice-container {
+	gap: 1em;
+}
+.chatbot-choice {
+	cursor: pointer;
+	border: 1px solid #a9a9a9;
+	background-color: #fff;
+	border-radius: 2rem;
+	padding: 5px 1em;
+}
+
+.chatbot-choice:hover {
+	background-color: lightskyblue;
+	
+}

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.nowon.bullti.domain.dto.chatbot.AnswerDTO;
 import com.nowon.bullti.domain.dto.chatbot.MessageDTO;
-import com.nowon.bullti.domain.entity.chatbot.Answer;
 import com.nowon.bullti.domain.entity.chatbot.ChatBotIntention;
 import com.nowon.bullti.domain.entity.chatbot.ChatBotIntentionRepository;
 
@@ -24,12 +23,17 @@ public class KomoranService {
 	
 	
 	private final Komoran komoran;
+	
 	private final ChatBotIntentionRepository intention;
 	
 	
 	public MessageDTO nlpAnalyze(String message) {
 		
 		KomoranResult result=komoran.analyze(message);
+		result.getTokenList().forEach(token->{
+			System.out.format("(%2d, %2d) %s/%s\n", token.getBeginIndex(), token.getEndIndex(),
+					token.getMorph(), token.getPos());
+		});
 		
 		//문자에서 명사들만 추출한 목록 중복제거해서 set
 		Set<String> nouns=result.getNouns().stream()
@@ -55,6 +59,7 @@ public class KomoranService {
 		for(String token:nouns) {
 			
 			Optional<ChatBotIntention> result=decisionTree(token, null);
+			System.out.println("token:"+token);
 			if(result.isEmpty())continue;//존재하지 않으면 다음토큰 검색
 			
 			//1차 토근확인시 실행
@@ -65,14 +70,17 @@ public class KomoranService {
 			next.remove(token);
 			
 			//2차분석 메서드
-			AnswerDTO answer=analyzeToken(next, result).toAnswerDTO();
+			AnswerDTO answer=analyzeToken(next, result);
+			//선택지 answerDTO에 세팅
+			answer.setChoices(intention.findNamesByUpperNo(result.get().getNo())); 
+			
 			
 			//전화인경우 전화,전화번호 번호탐색
-			if(token.contains("전화")) {
-				//PhoneInfo phone=analyzeTokenIsPhone(next);
-				//answer.phone(phone);//전화인경우에만 전화 데이터 
+			if(token.contains("전화")||token.contains("전번")||token.contains("번호")) {
+//				List<PhoneInfo> phone=analyzeTokenIsPhone(next);
+//				answer.phone(phone);//전화인경우에만 전화 데이터 
 				
-			}else if(token.contains("안녕")){
+			}else if(token.contains("인사말")){
 				DateTimeFormatter dateFormatter=DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
 				messageDTO.today(today.format(dateFormatter));//처음 접속할때만 날짜표기
 			}
@@ -88,46 +96,43 @@ public class KomoranService {
 		return messageDTO;
 	}
 
-	/*
-	@Autowired
-	MemberEntityRepository member;
-	//전화문의인경우 DB에서 사원을 을 찾아서 처리
-	private PhoneInfo analyzeTokenIsPhone(Set<String> next) {
-		for(String name : next) {
-			Optional<MemberEntity> m=member.findByName(name);
-			if(m.isEmpty())continue;
-			//존재하면
-			String deptName=m.get().getDept().getDname();
-			String phone=m.get().getPhone();
-			String memberName=m.get().getName();
-			return PhoneInfo.builder()
-			.deptName(deptName)
-			.phone(phone)
-			.memberName(memberName)
-			.build();
-
-		}
-		return null;
-	}
-	*/
+	//*
+	
+//	private final EmpEntityRepository empEntityRepository;
+//	//전화문의인경우 DB에서 사원을 을 찾아서 처리
+//	private List<PhoneInfo> analyzeTokenIsPhone(Set<String> next) {
+//		for(String name : next) {
+//			List<EmpEntity> emps=empEntityRepository.findByName(name);
+//			if(emps.isEmpty())continue;
+//			//존재하면
+//			
+//			return emps.stream()
+//					.map(EmpEntity::toPhoneInfo)
+//					.collect(Collectors.toList());
+//
+//		}
+//		return null;
+//	}
+	//*/
 
 	//1차의도가 존재하면
 	//하위의도가 존재하는지 파악
-	private Answer analyzeToken(Set<String> next, Optional<ChatBotIntention> upper) {
+	private AnswerDTO analyzeToken(Set<String> next, Optional<ChatBotIntention> upper) {
 		for(String token : next) {
 			// 1차의도를 부모로하는 토큰이 존재하는지 파악
 			Optional<ChatBotIntention> result=decisionTree(token, upper.get());
 			if(result.isEmpty())continue;
 			System.out.println(">>>>2차:"+token);
-			return result.get().getAnswer();//1차-2차 존재하는경우 답변
+			return result.get().getAnswer().toAnswerDTO();//1차-2차 존재하는경우 답변
 		}
-		return upper.get().getAnswer();//1차만 존재하는 답변
+		return upper.get().getAnswer().toAnswerDTO();//1차만 존재하는 답변
 	}
 
 	
 	//의도가 존재하는지 DB에서 파악
 	private Optional<ChatBotIntention> decisionTree(String token, ChatBotIntention upper) {
-		return intention.findByNameAndUpper(token, upper); 
+		System.out.println(">>>>>token: "+token);
+		return intention.findByName(token); 
 	}
 
 
