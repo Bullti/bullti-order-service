@@ -44,7 +44,7 @@ public class Member {
 	private long no;
 	
 	@Column(nullable = false, unique = true, columnDefinition = "VARCHAR(255) COLLATE utf8mb4_bin")
-	private String id;
+	private String id; //ci->bin
 	
 	@Column(nullable = false)
 	private String name;
