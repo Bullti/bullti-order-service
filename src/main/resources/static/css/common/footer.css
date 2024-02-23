@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @charset "UTF-8";
 footer {
 	bottom: 0;
@@ -30,37 +29,4 @@ footer {
 .footer_container > .nav > li > a > img {
 	width: 100%;
 	height: 100%;
-=======
-@charset "UTF-8";
-footer {
-	bottom: 0;
-    position: sticky;
-    width: 100%;
-    background-color: #fff;
-}
-
-.footer_container {
-	height: 120px;
-}
-.footer_container > .nav {
-	display: flex;
-	height: 100%;
-	width: 100%;
-	justify-content: center;
-	align-items: center;
-	gap: 10%;
-}
-
-
-.footer_container > .nav > li {
-	width: 10%;
-}
-.footer_container > .nav > li > a {
-	display: block;
-}
-
-.footer_container > .nav > li > a > img {
-	width: 100%;
-	height: 100%;
->>>>>>> refs/remotes/choose_remote_name/master
 }
