@@ -41,4 +41,6 @@ public class BasketItem {
 	public void updateCnt(int cnt) {
 		this.count = count+cnt;
 	}
+	
+	
 }

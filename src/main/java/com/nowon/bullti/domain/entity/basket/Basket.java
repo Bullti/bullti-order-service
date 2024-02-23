@@ -2,7 +2,7 @@ package com.nowon.bullti.domain.entity.basket;
 
 import java.util.List;
 
-import com.nowon.bullti.domain.entity.franchisee.FranchiseeEntity;
+import com.nowon.bullti.domain.entity.franchise.FranchiseEntity;
 import com.nowon.bullti.domain.entity.member.Member;
 
 import jakarta.persistence.Column;
@@ -40,9 +40,14 @@ public class Basket {
 	@OneToMany(mappedBy = "basket")
 	private List<BasketItem> basketItem;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_store")
-	private FranchiseeEntity fran;
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private FranchiseEntity fran;
+
+	@Column(nullable = true)
 	private long amount;
+	
+	public void setAmount(long totPrice) {
+		this.amount = totPrice;
+	}
 }

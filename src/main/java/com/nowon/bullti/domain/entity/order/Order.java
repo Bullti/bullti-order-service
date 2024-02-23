@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.nowon.bullti.domain.entity.franchisee.FranchiseeEntity;
+import com.nowon.bullti.domain.entity.franchise.FranchiseEntity;
 import com.nowon.bullti.domain.entity.member.Member;
 import com.nowon.bullti.domain.entity.payment.Payment;
 
@@ -57,7 +57,7 @@ public class Order {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "franchisee_no")
-	private FranchiseeEntity franchisee;
+	private FranchiseEntity franchisee;
 	
 	@OneToMany(mappedBy = "order")
 	private List<OrderItem> orderItem;

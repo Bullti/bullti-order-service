@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RequiredArgsConstructor
-@RequestMapping("/orders")
 @Controller
 public class OrderController {
 	
@@ -37,7 +36,7 @@ public class OrderController {
 	private final OrderService orderService;
 	
 	
-	@GetMapping("")
+	@GetMapping("/orders")
 	//Authentication authentication
 	public String order(Model model) {
 		//MyUser user = (MyUser) authentication.getPrincipal();
@@ -47,12 +46,22 @@ public class OrderController {
 		return "order/order";
 	}
 	
+	@GetMapping("/my/orders")
+	//Authentication authentication
+	public String orderList(Model model) {
+		//MyUser user = (MyUser) authentication.getPrincipal();
+		//Member member = memberService.getFindById(user.getMemberNo());
+		
+		
+		return "order/list";
+	}
+	
 	/**
 	 * 주문
 	 * @return 주문번호
 	 */
 	@ResponseBody
-	@PostMapping("")
+	@PostMapping("/orders")
 	//Authentication authentication
 	public long orders() {
 		//MyUser user = (MyUser) authentication.getPrincipal();
@@ -69,7 +78,7 @@ public class OrderController {
 	 * @return
 	 */
 	@ResponseBody
-	@GetMapping("/members")
+	@GetMapping("/orders/members")
 	//Authentication authentication
 	public Map<String, String> orderMember() {
 		//MyUser user = (MyUser) authentication.getPrincipal();
@@ -84,7 +93,7 @@ public class OrderController {
 	 * 결제정보 DB 등록
 	 * @param body
 	 */
-	@PostMapping("/payments")
+	@PostMapping("/orders/payments")
 	public void paySaveDb(PaySaveDTO dto) {
 		payservice.save(dto);
 	}
@@ -99,7 +108,7 @@ public class OrderController {
 	 * @param attributes
 	 * @return
 	 */
-	@GetMapping("/payments/complete")
+	@GetMapping("/orders/payments/complete")
 	//Authentication authentication
 	public String complete(@RequestParam(name = "imp_uid") String imp_uid,
 			@RequestParam(name = "merchant_uid") String merchant_uid,
@@ -128,7 +137,7 @@ public class OrderController {
 	 * @param body {merchant_uid, amount}
 	 */
 	@ResponseBody
-	@PostMapping("/payments/prepare")
+	@PostMapping("/orders/payments/prepare")
 	public void postMethodName(@RequestBody Map<String, Object> body) {
 		payservice.prepare(body);
 	}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     margin: 0;
     padding: 0;
@@ -89,4 +90,97 @@ main {
     .order-button img {
         max-width: 100%;
     }
+=======
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#slider1 {
+    width: 100%;
+    max-width: 1200px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    overflow: hidden; /* 넘치는 이미지 감추기 */
+}
+
+.slider {
+    display: flex;
+    width: 300%; /* 이미지 개수에 따라 조절 (100% * 이미지 개수) */
+    transition: transform 0.5s ease-in-out;
+}
+
+.box {
+    width: 100%;
+}
+
+.box img {
+    width: 100%;
+    height: auto;
+}
+
+.login-space {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.login-event {
+    font-size: 1.8vw;
+    margin-bottom: 10px;
+}
+
+.login-button {
+    font-size: 2vw;
+    border-radius: 1vw;
+    background-color: #dc143c;
+    border: none;
+    color: #f8f9fa;
+    height: 4vh;
+    width: 70%;
+}
+
+.login-help ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.login-help li {
+    font-size: 1.8vw;
+    margin: 0 5px;
+}
+
+.order-space {
+    margin-top: 20px;
+}
+
+.order-button {
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.order-button img {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+    .login-button, .login-help li {
+        font-size: 3vw;
+    }
+
+    .order-button img {
+        max-width: 100%;
+    }
+>>>>>>> refs/remotes/choose_remote_name/master
 }
