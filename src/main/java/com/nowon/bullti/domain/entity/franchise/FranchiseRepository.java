@@ -9,4 +9,6 @@ public interface FranchiseRepository extends JpaRepository<FranchiseEntity, Long
 
     @Query("SELECT f FROM FranchiseEntity f WHERE f.name LIKE %:keyword%")
     List<FranchiseEntity> searchByStoreName(String keyword);
+
+//	FranchiseEntity findByMemberNo(long extractMemberNo);
 }

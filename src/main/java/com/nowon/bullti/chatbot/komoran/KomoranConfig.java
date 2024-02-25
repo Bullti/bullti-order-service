@@ -1,14 +1,5 @@
 package com.nowon.bullti.chatbot.komoran;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 public class KomoranConfig {
 	
-	private String USER_DIC="dic.user";
+//	private String USER_DIC="dic.user";
 	
 //	private final DeRepository deRepository; // dept
 //	private final MemberRepository memberRepository;
@@ -28,14 +19,13 @@ public class KomoranConfig {
 	@Bean
 	Komoran komoran() throws Exception {
 		//파일에 DB의 정보 세팅
-		createDic();
-		
+//		createDic();
 		
 		Komoran komoran = new Komoran(DEFAULT_MODEL.FULL);
-		komoran.setUserDic(USER_DIC);
+//		komoran.setUserDic(USER_DIC);
 		return komoran;
 	}
-
+	/*
 	private void createDic() throws Exception {
 		File file = new File(USER_DIC);
 		try {if(!file.exists()) file.createNewFile();} catch (IOException e) {}
@@ -67,5 +57,5 @@ public class KomoranConfig {
 			bw.close();
 		} catch (IOException e1) {}
 	}
-
+	*/
 }

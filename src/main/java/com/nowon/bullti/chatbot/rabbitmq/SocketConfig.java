@@ -15,9 +15,9 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		//js에서 웹소켓 접속시
-		//var socket=new SockJS("/green-bot")
+		//챗봇 웹소켓 연결
 		registry.addEndpoint("/green-bot").withSockJS();
+		//가맹점 주문 소켓연결
 		registry.addEndpoint("/store-order").withSockJS();
 	}
 
@@ -25,7 +25,6 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
 		//사용자->서버 메세지를 전송할때
 		registry.setApplicationDestinationPrefixes("/message");
-		registry.setApplicationDestinationPrefixes("/order-item");
 	}
 
 	

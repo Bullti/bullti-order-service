@@ -1,5 +1,6 @@
 package com.nowon.bullti.controller;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +19,11 @@ public class StoreController {
 	private final StoreService service;
 	
 	@GetMapping
-	public String page(Model model) {
-		service.list(model);
+	public String page(Authentication auth,Model model) {
+		service.list(auth, model);
 		return "management/views/store";
 	}
+	
+	
 	
 }
