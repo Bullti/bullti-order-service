@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.nowon.bullti.domain.dto.basket.BasketMapDTO;
 import com.nowon.bullti.domain.dto.basket.BasketSaveDTO;
+import com.nowon.bullti.domain.dto.storelist.StoreListDTO;
 import com.nowon.bullti.service.BasketService;
 import com.nowon.bullti.utils.AuthenUtils;
 
@@ -27,17 +29,21 @@ public class BasketController {
 
 	@PostMapping("/basket") 
 	public String itemsave(@RequestBody BasketSaveDTO dto, Authentication authentication) {
-	long MemberNo = AuthenUtils.extractMemberNo(authentication);  
+	long MemberNo = AuthenUtils.extractMemberNo(authentication);
+	
 	basketService.update(dto, MemberNo);
-	  
+	 
 	return "basket/basket"; 
 	
-	}
+	} 
 	
 	@GetMapping("/basket")
 	public String basketlist(Model model,Authentication authentication) {
 		long MemberNo = AuthenUtils.extractMemberNo(authentication);  
 		basketService.basketlist(model, MemberNo);
+		
+		System.out.println();
+		
 		
 		return "basket/basket";
 	}
@@ -50,5 +56,19 @@ public class BasketController {
 		basketService.basketlistdel(MemberNo, itemName);
 	}
 	 
+	
+	@PostMapping("/basketMap") 
+	public String mapSelect(@RequestBody BasketMapDTO dto,Authentication authentication) {
+	 
+		
+		System.out.println(dto.getStoreName());
+		System.out.println(dto.getAddress());
+		
+		long MemberNo = AuthenUtils.extractMemberNo(authentication);
+		basketService.updateMap(dto, MemberNo);
+		
+	return "basket/basket"; 
+	
+	} 
 
 }
