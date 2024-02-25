@@ -51,8 +51,8 @@ public class Order {
 	@Enumerated(EnumType.STRING)
 	private OrderState state;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pay_no")
+	
+	@OneToOne(mappedBy = "order")
 	private Payment payment;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -65,6 +65,13 @@ public class Order {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "member_no")
 	private Member member;
+
+	public void progress() {
+		this.state = OrderState.progress;
+	}
+
+	public void fall() {
+		this.state = OrderState.fall;
+	}
 	
-//private 가맹점
 }

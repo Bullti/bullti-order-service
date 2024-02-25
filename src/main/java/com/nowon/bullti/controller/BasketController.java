@@ -35,7 +35,7 @@ public class BasketController {
 	}
 	
 	@GetMapping("/basket")
-	public String basketlist(Model model,Authentication authentication) {
+	public String basketlist(Model model, Authentication authentication) {
 		long MemberNo = AuthenUtils.extractMemberNo(authentication);  
 		basketService.basketlist(model, MemberNo);
 		
