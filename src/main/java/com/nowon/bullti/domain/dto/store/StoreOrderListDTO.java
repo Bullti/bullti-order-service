@@ -21,4 +21,5 @@ public class StoreOrderListDTO {
 	private List<OrderItem> orderItem;
 	private int totalPrice;
 	private String username;
+	
 }

@@ -18,9 +18,10 @@
 				<td th:text="${dto.address}">서울시 노원구 상계동 13-1</td>
 				<td th:text="${dto.state}">상태</td>
 				<td>
-					<ul>
-						<li th:each="prod:${dto.orderItem}" th:text="${prod.count}">
+					<ul th:if="${dto.orderItem != null}">
+					    <li th:each="prod : ${dto.orderItem}" th:text="${prod.item.getName}"></li>
 					</ul>
+
 				</td>
 				<td class="button-container">
 					<button>수락</button>

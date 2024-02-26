@@ -60,7 +60,7 @@ public class Order {
 	@JoinColumn(name = "franchisee_no")
 	private FranchiseEntity franchisee;
 	
-	@OneToMany(mappedBy = "order")
+	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
 	private List<OrderItem> orderItem;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

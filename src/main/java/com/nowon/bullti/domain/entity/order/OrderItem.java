@@ -36,7 +36,7 @@ public class OrderItem {
 	@JoinColumn(name = "order_no")
 	private Order order;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "item_no")
 	private ItemEntity item;
 }
