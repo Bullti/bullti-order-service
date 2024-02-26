@@ -180,8 +180,6 @@
 	                count: count
 	            }),
 	            success: function (response) {
-	                console.log('name:', name);
-	                console.log('count:', count);
 	                selectedSection.find('.quantity').val(1);
 	            },
 	            error: function (error) {
@@ -192,7 +190,7 @@
 
 	        $('#cart-button').click(function () {
 	            $('.cart-q').show();
-	            event.preventDefault();
+	           
 	        });
 	
 	        $('.button2').click(function () {

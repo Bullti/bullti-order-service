@@ -8,10 +8,26 @@
 		<div class="info">
          <a href="/storelist">매장선택</a>
 		</div>
+		<table class="content">
+				<thead>
+					<tr>
+						<th>매장명</th>
+						<th>주소</th>
+						<th>상세주소</th>
+					</tr>
+				</thead>
+				<tbody id="map_table">
+						<tr th:each="fran : ${fran}">
+							<td th:text="${fran.storeName}"></td>
+							<td th:text="${fran.address}"></td>
+							<td th:text="${fran.locationDetail}"></td>
+						</tr>
+				</tbody>
+			</table>
 		<div class="order-list">
 			<div class="flex order-1 border_bottom">
 				<p>주문내역</p>
-				<p>(총 x건)</p>
+				<p>(총 <!--<span th:text="${#lists.size(list)}">--></span>건)</p>
 				<p>35,000원</p>
 			</div>
 			<section class="menu-wrap" th:each="dto:${list}">

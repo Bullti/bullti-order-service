@@ -58,14 +58,14 @@ public class BasketController {
 	 
 	
 	@PostMapping("/basketMap") 
-	public String mapSelect(@RequestBody BasketMapDTO dto,Authentication authentication) {
-	 
-		
-		System.out.println(dto.getStoreName());
-		System.out.println(dto.getAddress());
+	public String mapSelect(@RequestBody BasketMapDTO dto,Authentication authentication,Model model) {
 		
 		long MemberNo = AuthenUtils.extractMemberNo(authentication);
-		basketService.updateMap(dto, MemberNo);
+		basketService.updateMap(dto, MemberNo, model);
+		
+		
+		System.out.println(">>>>"+dto.toString()+"<<<<<");
+		System.out.println(">>>>"+model.toString()+"<<<<<");
 		
 	return "basket/basket"; 
 	

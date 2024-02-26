@@ -117,21 +117,28 @@ public class BasketProcess implements BasketService{
 
 	@Transactional
 	@Override
-	public void updateMap(BasketMapDTO dto, long memberNo) {
+	public void updateMap(BasketMapDTO dto, long memberNo, Model model) {
 	    // 회원 정보 조회
 	    Member member = memberRepo.findById(memberNo).orElseThrow();
-
 	    // 해당 회원의 장바구니 정보 조회
 	    Basket basket = basketRopo.findById(member.getNo()).orElseThrow();
-
 	    // 프랜차이즈 정보 조회
 	    FranchiseEntity fran = franRepo.findByName(dto.getStoreName()).orElseThrow();
-
 	    // 장바구니 엔터티의 프랜차이즈 정보 업데이트
 	    basket.setFran(fran);
-
 	    // 장바구니 엔터티 저장
 	    basketRopo.save(basket);
+	    
+	    List<BasketMapDTO> franMap = franRepo.findById(fran.getNo()).stream()
+	    		.map(i -> BasketMapDTO.builder()
+	    				.storeName(i.getName())
+	    				.address(i.getLocation())
+	    				.locationDetail(i.getLocationDetail())
+	    				.build())
+	    				.collect(Collectors.toList());
+	    model.addAttribute("fran", franMap);
+	    
+	    System.out.println(">>>>"+franMap.toString()+"<<<<<");
 	}
 
 }
