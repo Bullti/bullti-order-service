@@ -46,10 +46,20 @@ form{
 }
 
 .content{
-	margin-top: 5%;
-	border-spacing: 5%;
+	background-color: #fff;
+    width: 90%;
+    margin-top: 1em;
 }
-
+th {
+	height: 3em;
+	vertical-align: middle;
+	border-bottom: 1px solid #e9e9e9;
+}
+td {
+	height: 3em;
+	vertical-align: middle;
+	 text-align: center;
+}
 .flex > p {
 	margin-top: 15px;
 }
