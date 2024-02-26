@@ -6,4 +6,6 @@ import com.nowon.bullti.domain.dto.order.OrderSaveDTO;
 
 public interface OrderRepository extends JpaRepository<Order, Long>{
 
+	public Order save(Order order);
+	
 }

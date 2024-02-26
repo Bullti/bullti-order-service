@@ -3,18 +3,32 @@ package com.nowon.bullti.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.nowon.bullti.domain.dto.store.StoreOrderListDTO;
 import com.nowon.bullti.domain.dto.store.TestProduct;
+import com.nowon.bullti.domain.entity.franchise.FranchiseRepository;
 import com.nowon.bullti.service.StoreService;
+import com.nowon.bullti.utils.AuthenUtils;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class StoreProcess implements StoreService {
+	
+	private final FranchiseRepository franchiseRepository;
 
 	@Override
-	public void list(Model model) {
+	public void list(Authentication auth, Model model) {
+		model.addAttribute("list", createTestData());
+//		model.addAttribute("storeStatus", franchiseRepository.findByMemberNo(AuthenUtils.extractMemberNo(auth)));
+	}
+
+	private List<StoreOrderListDTO> createTestData() {
+
 		List<StoreOrderListDTO> list = new ArrayList<>();
 		List<TestProduct> products = new ArrayList<>();
 		for(int i=0; i<5; i++) {
@@ -33,7 +47,7 @@ public class StoreProcess implements StoreService {
 					.totalPrice(54000+i)
 					.build());
 		}
-		model.addAttribute("list", list);
+		return list;
 	}
 
 }

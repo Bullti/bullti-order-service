@@ -11,10 +11,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nowon.bullti.domain.dto.payment.PaySaveDTO;
 import com.nowon.bullti.domain.entity.order.Order;
 import com.nowon.bullti.domain.entity.order.OrderRepository;
+import com.nowon.bullti.domain.entity.payment.Payment;
 import com.nowon.bullti.domain.entity.payment.PaymentRepository;
 import com.nowon.bullti.service.PayService;
 import com.nowon.bullti.utils.OpenApiUtil;
 
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -110,7 +112,9 @@ public class PayProcess implements PayService{
 	@Override
 	public void save(PaySaveDTO dto) {
 		Order order = orderRepo.findById(dto.getOrderNo()).orElseThrow();
-		payRepo.save(dto.toEntity(order));
+		Payment pay = dto.toEntity(order);
+		
+		payRepo.save(pay);
 	}
 
 }

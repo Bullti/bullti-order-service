@@ -72,7 +72,7 @@ public class KomoranService {
 			//2차분석 메서드
 			AnswerDTO answer=analyzeToken(next, result);
 			//선택지 answerDTO에 세팅
-			answer.setChoices(intention.findNamesByUpperNo(result.get().getNo())); 
+			answer.setChoices(intention.findNamesByParentChoice(result.get().getNo())); 
 			
 			
 			//전화인경우 전화,전화번호 번호탐색

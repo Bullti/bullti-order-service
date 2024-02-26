@@ -1,8 +1,72 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
 <head>
 <link rel="stylesheet" href="/css/order/order.css">
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script type="text/javascript" th:inline="javascript">
+var stompClient=null; 
+var key=new Date().getTime();
+var storeNo = [[${dto.storeNo}]];
+
+$(function(){
+	$("#btn-bot").click(btnBotClicked);
+});
+
+//선택지 선택시 텍스트 추출하여 메세지 보내기
+function choiceValueSend(event) {
+    let choiceValue = $(event.target).text(); // 클릭된 요소의 텍스트 값을 가져옴
+    console.log(choiceValue)
+	sendChatbotMessage(choiceValue);
+}
+function btnCloseClicked(){
+	$("#bot-container").hide();
+	$("#chat-content").html("");
+	disconnect();
+}
+function btnBotClicked(){
+	//1. 소켓 접속
+	$("#bot-container").show();
+	connect()
+}
+
+//1~9 -> 01~09 변환하는 함수
+function fomatNumber(number){
+	return number<10? '0'+number:''+number;
+}
+
+// 시간출력 ex) 오전 9:08
+function formatTime(){
+	var now=new Date();
+	var ampm=(now.getHours()>11)?"오후":"오전";
+	var hour=now.getHours()%12;
+	if(hour==0)hour=12;
+	return `${ampm} ${hour}:${fomatNumber(now.getMinutes())}`;
+}
+
+function connect(){
+	
+	if(stompClient == null) {	
+		stompClient=Stomp.over(new SockJS("/store-order"));
+	}
+	stompClient.connect({},(frame)=>{
+		//접속이 완료되면 인사말수신-구독
+		
+		var data={
+			storeNo : storeNo,
+		}
+		
+		//인사말 보내줘
+		stompClient.send("/message/order",{},JSON.stringify(data));
+		disconnect();
+	});
+}
+function disconnect() {
+	stompClient.disconnect(function(){
+		stompClient = null;
+	});
+}
+</script>
 <script src="/js/order/payment.js" type="text/javascript"></script>
 </head>
 <main>
@@ -10,56 +74,25 @@
 		<div class="info">
 			<div class="flex border_bottom">
 				<p>점포정보</p>
-				<p>노원별빛점</p>
+				<p>[[${dto.storeName}]]</p>
 			</div>
 			<div class="flex border_bottom">
 				<p>받을주소</p>
-				<p>서울시 노원구 xx로 어쩌고 저쩌고</p>
+				<p>[[${dto.adress}]]</p>
 			</div>
 			<div class="flex border_bottom">
 				<p>전화번호</p>
-				<p>010-000-0000</p>
+				<p>[[${dto.tel}]]</p>
 			</div>
 		</div>
-		<!-- <div class="order-list">
-			<div class="flex order-1 border_bottom">
-				<p>주문내역</p>
-				<p>(총 x건)</p>
-				<p>35,000원</p>
-			</div>
-			<section class="menu-wrap">
-				<div class="menu1">
-					<img src=/images/list/치킨1.jpg>
-				</div>
-				<div class="title1">
-					<p>바삭바삭 후라이드</p>
-					<p id="eng">fried chicken</p>
-					<p>35,000원</p>
-					<br>
-					<p>수량 : x 개</p>
-				</div>
-			</section>
-			<section class="menu-wrap">
-				<div class="menu1">
-					<img src=/images/list/치킨1.jpg>
-				</div>
-				<div class="title1">
-					<p>바삭바삭 후라이드</p>
-					<p id="eng">fried chicken</p>
-					<p>35,000원</p>
-					<br>
-					<p>수량 : x 개</p>
-				</div>
-			</section>
-		</div> -->
 		<div class="pay-info">
 			<div class="flex between border_bottom">
 				<p>결제 금액</p>
-				<p>35,000원</p>
+				<p>[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')}]]</p>
 			</div>
 			<div class="flex between">
 				<p>주문 금액</p>
-				<p>35,000원</p>
+				<p>[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')}]]</p>
 			</div>
 			<div class="flex between border_bottom">
 				<p>배달팁</p>
@@ -67,19 +100,19 @@
 			</div>
 			<div class="flex between">
 				<p>총 결제 금액</p>
-				<p>35,000원</p>
+				<p>[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')}]]</p>
 			</div>
 		</div>
-		
-		<input type="hidden" value="상품이름" id="itemName">
-		<input type="hidden" value="99999" id="itemAmount">
-		<input type="hidden" value="444" id="storeNo">
-		<input type="hidden" value="경기도 양주시 옥정동로190 210동 703호" id="adress">
-		<input type="hidden" value="010-2589-8522" id="memberTel">
-		
-		
+
+		<input type="hidden" value="상품이름" id="itemName"> 
+		<input type="hidden" th:value="${dto.amount}" id="itemAmount"> 
+		<input type="hidden" value="444" id="storeNo"> 
+		<input type="hidden" th:value="${dto.adress}" id="adress"> 
+		<input type="hidden" th:value="${dto.tel}" id="memberTel">
+
+
 		<div class="button-area">
-			<button type="button" onclick="payment()()">
+			<button type="button" onclick="payment()">
 				<p>결제하기</p>
 				<img src="/images/list/card.svg">
 			</button>

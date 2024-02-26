@@ -11,12 +11,11 @@ public interface ChatBotIntentionRepository extends JpaRepository<ChatBotIntenti
 
 	Optional<ChatBotIntention> findByNameAndUpper(String token, ChatBotIntention upper);
 
+	Optional<ChatBotIntention> findByName(String Name);
+
 
     // 해당 행의 name 값만을 반환하는 쿼리 메서드
-    @Query("SELECT c.name FROM ChatBotIntention c WHERE c.upper.no = :upperNo")
-    List<String> findNamesByUpperNo(@Param("upperNo") long upperNo);
-
-
-	Optional<ChatBotIntention> findByName(String Name);
+    @Query("SELECT c.name FROM ChatBotIntention c WHERE c.parentChoice.no = :parentChoiceNo")
+	List<String> findNamesByParentChoice(@Param("parentChoiceNo") long parentChoiceNo);
 
 }
