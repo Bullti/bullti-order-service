@@ -15,8 +15,6 @@ public class MessageController {
 	
 	@Value("${spring.rabbitmq.template.prefixName}")
 	private String prefixName;
-	@Value("${spring.rabbitmq.template.suffixQueueName}")
-	private String suffixQueueName;
 
 	private final RabbitTemplate rabbitTemplate;
 	
@@ -31,9 +29,11 @@ public class MessageController {
 	}
 
 	@MessageMapping("/order")
-	public void sendOrder(String storeNo) {
-		System.out.println("/message/order : 데이터 전송됨");
-		String storeExchange = prefixName;
-		String storeRoutingKey = null;
+	public void sendOrder(int storeNo) {
+		System.out.println("/message/order : 데이터 전송됨 " + storeNo);
+		String storeExchange = prefixName + storeNo;
+		String storeRoutingKey = storeNo + ".#";
+
+		rabbitTemplate.convertAndSend(storeExchange,storeRoutingKey,"aaa");
 	}
 }
