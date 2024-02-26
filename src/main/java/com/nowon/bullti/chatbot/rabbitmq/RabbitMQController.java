@@ -48,4 +48,12 @@ public class RabbitMQController {
         return "Queue " + branchName+".queue " + " bound to Exchange " + branchName + " with routing key " + branchName+".#";
     }
 
+
+    @PostMapping("/rabbit/order-service/{branchName}")
+    public String createStoreOrderService(@PathVariable("branchName") String branchName) {
+        rabbitMQService.createQueue(branchName);
+        rabbitMQService.createExchange(branchName);
+        rabbitMQService.bindQueueToExchange(branchName);
+        return "Queue " + branchName + " created successfully!";
+    }
 }

@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.nowon.bullti.domain.dto.store.StoreOrderListDTO;
 import com.nowon.bullti.domain.dto.store.TestProduct;
 import com.nowon.bullti.domain.entity.franchise.FranchiseRepository;
+import com.nowon.bullti.domain.entity.member.MemberRepository;
+import com.nowon.bullti.domain.entity.order.OrderRepository;
 import com.nowon.bullti.service.StoreService;
 import com.nowon.bullti.utils.AuthenUtils;
 
@@ -20,13 +23,23 @@ import lombok.RequiredArgsConstructor;
 public class StoreProcess implements StoreService {
 	
 	private final FranchiseRepository franchiseRepository;
+	private final OrderRepository orderRepository;
+	private final MemberRepository memberRepository;
 
 	@Override
 	public void list(Authentication auth, Model model) {
-		model.addAttribute("list", createTestData());
 //		model.addAttribute("storeStatus", franchiseRepository.findByMemberNo(AuthenUtils.extractMemberNo(auth)));
 	}
 
+	@Override
+	public ModelAndView asynList(Authentication auth) {
+//		return new ModelAndView("management/views/list").addObject("orderList",
+//				orderRepository.findAllByFranchiseeNo( 
+//						franchiseRepository.findByMemberNo(
+//								memberRepository.findById(AuthenUtils.extractMemberNo(auth)).get() ).get() ));
+		return new ModelAndView("management/views/list").addObject("orderList",createTestData() );
+	}
+	
 	private List<StoreOrderListDTO> createTestData() {
 
 		List<StoreOrderListDTO> list = new ArrayList<>();
@@ -49,5 +62,4 @@ public class StoreProcess implements StoreService {
 		}
 		return list;
 	}
-
 }

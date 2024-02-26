@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.nowon.bullti.chatbot.movie.MovieApiService;
 import com.nowon.bullti.domain.dto.chatbot.AnswerDTO;
 import com.nowon.bullti.domain.dto.chatbot.MessageDTO;
 import com.nowon.bullti.domain.entity.chatbot.ChatBotIntention;
@@ -25,7 +26,7 @@ public class KomoranService {
 	private final Komoran komoran;
 	
 	private final ChatBotIntentionRepository intention;
-	
+	private final MovieApiService movieApiService;
 	
 	public MessageDTO nlpAnalyze(String message) {
 		
@@ -83,6 +84,12 @@ public class KomoranService {
 			}else if(token.contains("인사말")){
 				DateTimeFormatter dateFormatter=DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
 				messageDTO.today(today.format(dateFormatter));//처음 접속할때만 날짜표기
+			}else if(token.contains("영화리스트")) {
+				try {
+//					movieApiService.getDailyBoxOffice();
+				} catch(Exception e) {
+					
+				}
 			}
 			messageDTO.answer(answer);//토근에대한 응답정보
 			

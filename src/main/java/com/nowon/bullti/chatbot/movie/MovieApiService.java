@@ -85,7 +85,7 @@ public class MovieApiService {
 		
 	}
 	
-	public String getMoviePosterUrl(String name) {
+	private String getMoviePosterUrl(String name) {
 		return jsoupService.getMoviePoster(name);
 	}
 }
