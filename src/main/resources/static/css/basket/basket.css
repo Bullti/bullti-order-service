@@ -7,7 +7,7 @@
 }
 
 .border_bottom{
-	border-bottom: 1px solid #5b5b5b;
+	border-bottom: 1px solid #e9e9e9;
 }
 
 .inline {
@@ -19,22 +19,36 @@
 }
 
 form{
-	margin-top: 50px;
+	margin-top: 30px;
 	text-align: -webkit-center;
+}
+
+.info{
+	text-align: justify;
+}
+
+.info > a{
+	background-color: #f2004d;
+	color: white;
+	padding: 0.3em;
 }
 
 .info, .order-list, .pay-info,.plus{
 	width: 90%;
-	font-size: 25px;
+	font-size: 1.2em;
 	font-weight: bold;
 
 }
 
 .flex > p:first-child{
 	margin-right: 30px;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
+.content{
+	margin-top: 5%;
+	border-spacing: 5%;
+}
 
 .flex > p {
 	margin-top: 15px;
@@ -42,11 +56,12 @@ form{
 
 .order-list{
 	margin-top: 50px;
-	background-color: #e9e9e9;
+	background-color: white;
 }
 
 .order-1{
 	justify-content: space-around;
+	margin-bottom: 3%
 }
 
 .menu1 {
@@ -69,11 +84,12 @@ form{
 
 .menu-wrap{
 	display: flex;
+	border-bottom: 1px solid #e9e9e9;
 }
 
 
 .title1 {
-    font-size: 22px;
+    font-size: 1em;
     font-weight: bold;
     width: 400px;
     text-align: -webkit-left;
@@ -82,7 +98,7 @@ form{
 }
 
 #eng {
-	font-size: 20px;
+	font-size: 0.8em;
     color: #8c8c8c;
     margin-top: 3%;
     margin-bottom: 3%;
@@ -91,7 +107,7 @@ form{
 
 .pay-info{
 	margin-top: 30px;
-	background-color: #e9e9e9;
+	background-color: white;
 }
 
 .pay-info > div > p:first-child{
@@ -104,15 +120,21 @@ form{
 
 .button-area{
 	margin-top: 20px;
+	margin-bottom: 35%;
 }
 
 .button-area > button {
-	width: 45%;
+	width: 65%;
     height: 25%;
     font-size: 25px;
     font-weight: bold;
     display: flex;
-    border: 1px solid #8c8c8c;
+    background-color: #f2004d;
+    border: none;
+    color: white;
+    box-shadow: 3px 3px 3px gray;
+    border-radius: 3%;
+
 }
 
 .button-area > button > p {
@@ -121,9 +143,12 @@ form{
 }
 
 .button-area > button > img {
-    width: 70px;
-    height: 70px;
+    width: 55px;
+    height: 55px;
     margin-right: auto;
+    margin-left: 3%;
+    -webkit-filter: brightness(0) invert(1); 
+	filter: brightness(0) invert(1);
 }
 
 .plus{

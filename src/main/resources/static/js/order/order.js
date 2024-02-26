@@ -39,29 +39,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-$(document).ready(function() {
-    // ... (기존 코드 생략)
-
-    // 수량 변경에 따른 이벤트 처리
-    $('#quantityInput').on('input', function() {
-        updatePaymentAmount();
-    });
-
-    // 함수로 분리하여 결제 금액 업데이트
-    function updatePaymentAmount() {
-        var quantity = parseInt($('#quantityInput').val());
-        var unitPrice = parseInt($('.title1 p:last').text().replace('원', ''));
-		
-		console.log(unitPrice);
-		
-        var totalAmount = quantity * unitPrice;
-
-        // 각 항목에 대한 가격 업데이트
-        $('.flex.between p:last').text(totalAmount + '원');  // 주문 금액
-        $('.flex.between.border_bottom p:last').text('0원');  // 배달팁 (0원으로 가정)
-        $('.flex.between:last p:last').text(totalAmount + '원');  // 총 결제 금액
-    }
+document.addEventListener('DOMContentLoaded', function() {
+	const count = document.querySelector('.quantity');
+	const price = document.querySelector('.price');
+	
+	console.log(count);
+	console.log(price);
+	
 });
+
 
 
 

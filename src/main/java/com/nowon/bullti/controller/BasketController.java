@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nowon.bullti.domain.dto.basket.BasketMapDTO;
 import com.nowon.bullti.domain.dto.basket.BasketSaveDTO;
+import com.nowon.bullti.domain.dto.order.MemberOrderDTO;
 import com.nowon.bullti.domain.dto.storelist.StoreListDTO;
 import com.nowon.bullti.service.BasketService;
+import com.nowon.bullti.service.OrderService;
 import com.nowon.bullti.utils.AuthenUtils;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +28,8 @@ import lombok.RequiredArgsConstructor;
 public class BasketController {
 
 	private final BasketService basketService;
-
+	private final OrderService orderService;
+	
 	@PostMapping("/basket") 
 	public String itemsave(@RequestBody BasketSaveDTO dto, Authentication authentication) {
 	long MemberNo = AuthenUtils.extractMemberNo(authentication);
@@ -41,6 +44,9 @@ public class BasketController {
 	public String basketlist(Model model, Authentication authentication) {
 		long MemberNo = AuthenUtils.extractMemberNo(authentication);  
 		basketService.basketlist(model, MemberNo);
+		
+		MemberOrderDTO dto= orderService.getOrderInfo(MemberNo);
+		model.addAttribute("dto", dto);
 		
 		return "basket/basket";
 	}
