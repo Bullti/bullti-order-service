@@ -23,8 +23,15 @@ public class MovieApiService {
 	private final KobisOpenAPIRestService kobisOpenAPIRestService;
 	private final JsoupService jsoupService;
 	
-	public ModelAndView getDailyBoxOffice() throws OpenAPIFault, Exception {
+	public String getDailyBoxOffice() throws OpenAPIFault, Exception {
 		List<MovieListDTO> list = new ArrayList<>();
+		StringBuilder sb = new StringBuilder();
+		sb.append("<p>일별 박스오피스 순위입니다.</p>\n"
+				+ "	<ul>\n"
+				+ "		<li>\n"
+				+ "			<div>\n"
+				+ "				<span>순위 :</span>\n"
+				+ "				<span>");
 		
 		//일별 박스오피스 구하기
 		LocalDate day = LocalDate.now().minusDays(1);
@@ -49,7 +56,34 @@ public class MovieApiService {
 	                e.printStackTrace();
 	            }
 	        });
-		return new ModelAndView("/chatbot/chatbot-movieList", "list", list);
+		
+		for(MovieListDTO dto : list) {
+			sb.append(""+dto.getRank());
+			sb.append("</span>\n"
+					+ "				<span>위</span>\n"
+					+ "			</div>\n"
+					+ "			<div>\n"
+					+ "				<span>제목 :</span>\n"
+					+ "				<span>");
+			sb.append(""+dto.getMovieNm());
+			sb.append("</span>\n"
+					+ "			</div>\n"
+					+ "			<div>\n"
+					+ "				<span>개봉일 :</span>\n"
+					+ "				<span>");
+			sb.append(""+dto.getOpenDt());
+			sb.append("</span>\n"
+					+ "			</div>\n"
+					+ "			<div>\n"
+					+ "				<span>영화코드 :</span>\n"
+					+ "				<span>");
+			sb.append(dto.getMovieCd());
+			sb.append("</span>\n"
+					+ "			</div>\n"
+					+ "		</li>\n"
+					+ "	</ul>");
+		}
+		return sb.toString();
 	}
 	
 	
@@ -78,7 +112,6 @@ public class MovieApiService {
 				.nations(nationesBuilder.toString())
 				.posterUrl(getMoviePosterUrl(movieInfo.getString("movieNm")))
 				.build();
-		
 	}
 	
 	private String getMoviePosterUrl(String name) {
