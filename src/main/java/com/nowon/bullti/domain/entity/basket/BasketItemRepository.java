@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.nowon.bullti.domain.entity.item.ItemEntity;
+import com.nowon.bullti.domain.entity.member.Member;
 
 public interface BasketItemRepository extends JpaRepository<BasketItem, Long>{
 
@@ -14,5 +15,7 @@ public interface BasketItemRepository extends JpaRepository<BasketItem, Long>{
 	Optional<BasketItem> findByBasketAndItem(Basket basket, ItemEntity item);
 
 	List<BasketItem> findByBasket(Basket basket);
+
+	void deleteByBasketNoAndItem(long memberNo, ItemEntity item);
 
 }

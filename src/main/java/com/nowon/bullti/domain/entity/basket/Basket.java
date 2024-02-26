@@ -40,9 +40,14 @@ public class Basket {
 	@OneToMany(mappedBy = "basket")
 	private List<BasketItem> basketItem;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_store")
+	@ManyToOne(fetch = FetchType.LAZY)
 	private FranchiseEntity fran;
-	
+
+	@Column(nullable = true)
 	private long amount;
+	
+	public void setAmount(long totPrice) {
+		this.amount = totPrice;
+	}
 }

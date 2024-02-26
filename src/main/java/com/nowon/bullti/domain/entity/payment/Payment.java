@@ -10,16 +10,20 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@ToString
 @Entity
 @Builder
 @AllArgsConstructor
@@ -42,7 +46,17 @@ public class Payment {
 	@Enumerated(EnumType.STRING)
 	private PayState state;
 	
-	@OneToOne(mappedBy = "payment")
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "order_no")
 	private Order order;
+
+	public void succes() {
+		this.state = PayState.succes;
+		
+	}
+
+	public void fall() {
+		this.state = PayState.fall;
+	}
 	
 }
