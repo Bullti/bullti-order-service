@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.nowon.bullti.domain.dto.store.StoreOrderListDTO;
 import com.nowon.bullti.domain.entity.franchise.FranchiseEntity;
 import com.nowon.bullti.domain.entity.member.Member;
 import com.nowon.bullti.domain.entity.payment.Payment;
@@ -70,4 +71,12 @@ public class Order {
 		this.state = state;
 	}
 	
+	public StoreOrderListDTO toStoreOrderListDTO() {
+		return StoreOrderListDTO.builder()
+				.no(no)
+				.address(adress)
+				.state(state.getStateName())
+				.orderItem(orderItem)
+				.build();
+	}
 }

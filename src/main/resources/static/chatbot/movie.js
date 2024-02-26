@@ -8,7 +8,7 @@ function choiceMovie() {
 
             // li 요소 내부의 input 태그를 찾아서 값을 가져옴
             var hiddenInput = clickedLi.querySelector('input[type="hidden"]');
-            var movieCd = hiddenInput.value;
+            var movieCd = "영화코드 "+ hiddenInput.value;
 			
 			console.log(movieCd)
 			sendChatbotMessage(movieCd);
