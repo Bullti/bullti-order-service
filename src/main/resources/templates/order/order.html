@@ -6,8 +6,8 @@
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script type="text/javascript" th:inline="javascript">
 var stompClient=null; 
+var storeNo = /*[[${dto.storeNo}]]*/null;
 var key=new Date().getTime();
-var storeNo = [[${dto.storeNo}]];
 storeNo=parseInt(storeNo);
 
 $(function(){

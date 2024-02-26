@@ -45,11 +45,8 @@ public class OrderController {
 	}
 	
 	@GetMapping("/my/orders")
-	//Authentication authentication
-	public String orderList(Model model) {
-		//MyUser user = (MyUser) authentication.getPrincipal();
-		//Member member = memberService.getFindById(user.getMemberNo());
-		
+	public String orderList(Model model, Authentication authentication) {
+		long MemberNo = AuthenUtils.extractMemberNo(authentication);
 		
 		return "order/list";
 	}
