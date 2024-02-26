@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/css/map/searchstore.css">
 <script defer src="/js/search-store/searsearch-store.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </head>
 <body>
 	<main>
@@ -31,13 +33,14 @@
 					</tr>
 				</thead>
 				<tbody id="dynamic_table">
-					<tr th:each="post : ${list}">
-						<td th:text="${post.name}"></td>
-						<td th:text="${post.location}"></td>
-						<td th:text="${post.locationDetail}"></td>
-						<td th:text="${post.phone}"></td>
-						<td><a href="#">선택</a></td>
-					</tr>
+						<tr th:each="post : ${list}">
+							<td th:text="${post.name}"></td>
+							<td th:text="${post.location}"></td>
+							<td th:text="${post.locationDetail}"></td>
+							<td th:text="${post.phone}"></td>
+							<td><button>선택</button></td>
+						</tr>
+					
 				</tbody>
 			</table>
 		</div>
@@ -163,6 +166,49 @@
 		    }
 		  }
 		}
+		
+		 $(document).ready(function() {
+        // '선택' 버튼 클릭 시 호출될 함수
+        $('button').on('click', function() {
+            // 선택된 행에 대한 데이터 수집
+            var selectedRow = $(this).closest('tr');
+            var storeName = selectedRow.find('td:nth-child(1)').text(); // 매장명
+            var address = selectedRow.find('td:nth-child(2)').text(); // 주소
+            var locationDetail = selectedRow.find('td:nth-child(3)').text(); // 상세주소
+            var phone = selectedRow.find('td:nth-child(4)').text();
+
+            // 수집한 데이터를 객체로 만들기
+            var selectedData = {
+                storeName: storeName,
+                address: address,
+                locationDetail: locationDetail,
+                phone: phone
+               };
+
+            // AJAX를 사용하여 서버로 데이터 전송
+            $.ajax({
+                type: 'POST',
+                url: '/basketMap', // 실제 백엔드 엔드포인트로 대체 필요
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(selectedData),
+                success: function(response) {
+                    // 성공 시 서버의 응답에 대한 처리
+                    console.log('storeName' + storeName);
+                    console.log('address' + address);
+                    console.log('locationDetail' + locationDetail);
+                  	location.href = "/basket";
+                    
+                },
+                error: function(error) {
+                    // 오류 시 처리
+                    console.error('Error sending data:', error);
+                }
+            });
+        });
+    });
+		
+		
+		
 		</script>
 	</main>
 </body>

@@ -2,6 +2,8 @@ package com.nowon.bullti.domain.entity.basket;
 
 import java.util.List;
 
+import com.nowon.bullti.domain.dto.basket.BasketMapDTO;
+import com.nowon.bullti.domain.dto.storelist.StoreListDTO;
 import com.nowon.bullti.domain.entity.franchise.FranchiseEntity;
 import com.nowon.bullti.domain.entity.member.Member;
 
@@ -19,6 +21,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 
 @Getter
 @Builder
@@ -27,6 +31,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "basket")
 @Entity
 public class Basket {
+	
 	
 	@Id
 	@Column(name = "member_no", nullable = false)
@@ -50,4 +55,18 @@ public class Basket {
 	public void setAmount(long totPrice) {
 		this.amount = totPrice;
 	}
+
+	public void updateMap(FranchiseEntity franchiseEntity) {
+        this.fran = franchiseEntity;
+    }
+
+	public void setFran(FranchiseEntity fran2) {
+		this.fran = fran2;
+		
+	}
+	
+	
+
+
+
 }

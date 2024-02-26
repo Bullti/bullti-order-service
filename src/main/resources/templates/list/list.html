@@ -22,15 +22,15 @@
     	</section>
     	<section>
 			<form class="form-section">
-				<button class="menu-button"><img src="/images/list/delivery-bike.svg">배달</button>
-				<button class="menu-button"><img src=/images/list/chicken-packaging.svg>포장</button>
+				<button class="menu-button" id="img1">배달</button>
+				<button class="menu-button" id="img2">포장</button>
 			</form>
 		</section>
     	<section class="menu" th:each="list:${list}">
 			<section class="menu-wrap">
 				<div class="menu1">
-					<img th:src="${list.img}">
-					<!--<img src="/images/menu/핫후라이드-콤보_410x271.png">-->
+					<!--<img th:src="${list.img}">-->
+					<img src="/images/menu/핫후라이드-콤보_410x271.png">
 				</div>
 				<div class="title1">
 					<p th:text="${list.name}">바삭바삭 후라이드</p>
@@ -81,7 +81,7 @@
         container.style["display"] = "flex";
         container.style["flex-direction"] = type === "V" ? "column" : "row";
         container.style["width"] = sliderRects.width + "px";
-        container.style["height"] = sliderRects.height + "px";
+        <!--container.style["height"] = sliderRects.height + "px";-->
         container.style["transform"] = translate(index);
 
         let boxes = [].slice.call(slider.children);
@@ -180,8 +180,6 @@
 	                count: count
 	            }),
 	            success: function (response) {
-	                console.log('name:', name);
-	                console.log('count:', count);
 	                selectedSection.find('.quantity').val(1);
 	            },
 	            error: function (error) {
@@ -192,7 +190,7 @@
 
 	        $('#cart-button').click(function () {
 	            $('.cart-q').show();
-	            event.preventDefault();
+	           
 	        });
 	
 	        $('.button2').click(function () {

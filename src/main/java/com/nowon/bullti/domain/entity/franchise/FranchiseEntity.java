@@ -2,6 +2,8 @@ package com.nowon.bullti.domain.entity.franchise;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.nowon.bullti.domain.dto.storelist.StoreListDTO;
 import com.nowon.bullti.domain.entity.BaseEntity;
 import com.nowon.bullti.domain.entity.member.Member;
@@ -19,8 +21,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Setter
 @Getter
+@Component
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -49,4 +55,6 @@ public class FranchiseEntity extends BaseEntity{
                 .id(no).name(name).location(location).locationDetail(locationDetail).phone(phone)
                 .build();
     }
+    
+    
 }
