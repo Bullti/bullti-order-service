@@ -12,6 +12,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Controller
 public class MessageController {
+	
+	@Value("${spring.rabbitmq.template.prefixName}")
+	private String prefixName;
+	@Value("${spring.rabbitmq.template.suffixQueueName}")
+	private String suffixQueueName;
 
 	private final RabbitTemplate rabbitTemplate;
 	
@@ -22,7 +27,13 @@ public class MessageController {
 	// /message/
 	@MessageMapping("/bot")
 	public void bot(Question dto) {
-		System.out.println("메세지컨트롤러");
 		rabbitTemplate.convertAndSend(exchange,routingKey,dto);
+	}
+
+	@MessageMapping("/order")
+	public void sendOrder(long storeNo) {
+		System.out.println("/message/order : 데이터 전송됨");
+		String storeExchange = prefixName;
+		String storeRoutingKey = null;
 	}
 }
