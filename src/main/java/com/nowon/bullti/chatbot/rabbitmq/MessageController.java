@@ -31,7 +31,7 @@ public class MessageController {
 	}
 
 	@MessageMapping("/order")
-	public void sendOrder(long storeNo) {
+	public void sendOrder(String storeNo) {
 		System.out.println("/message/order : 데이터 전송됨");
 		String storeExchange = prefixName;
 		String storeRoutingKey = null;
