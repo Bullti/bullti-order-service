@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
 <head>
 <link rel="stylesheet" href="/css/basket/basket.css">
+<script src="/js/order/cart.js"></script>
 </head>
 <main>
 	<form action="/orders">
@@ -25,7 +26,7 @@
 		<div class="order-list">
 			<div class="flex order-1 border_bottom">
 				<p>주문내역</p>
-				<p>(총 <!--<span th:text="${#lists.size(list)}">--></span>건)</p>
+				<p>(총 <span th:if="${myList != null}" th:text="${#lists.size(list)}"></span>건)</p>
 				<p>35,000원</p>
 			</div>
 			<section class="menu-wrap" th:each="dto:${list}">
@@ -38,7 +39,7 @@
 					</div>
 					<p class="ItemName" th:text="${dto.name}"></p>
 					<p id="eng" th:text="${dto.content}">fried chicken</p>
-					<p th:text="${dto.price}">35,000원</p>
+					<p th:text="${#numbers.formatInteger(dto.price,3,'COMMA')+'원'}">35,000원</p>
 					<!--<p>수량 : x 개</p>-->
 					<div class="listLi-count border">
 						<a class="btn_down btnDown" href="#" title="수량 빼기">
