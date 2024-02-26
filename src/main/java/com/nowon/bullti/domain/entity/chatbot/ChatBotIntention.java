@@ -13,7 +13,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "intention")
@@ -27,8 +26,12 @@ public class ChatBotIntention {
 	@JoinColumn
 	@ManyToOne
 	private Answer answer;
-		
+	
 	@JoinColumn
 	@ManyToOne
 	private ChatBotIntention upper;
+	
+	@JoinColumn
+	@ManyToOne
+	private ChatBotIntention parentChoice;
 }

@@ -82,8 +82,10 @@ function showMessage(tag){
 }
 
 function connect(){
-	//var socket=new SockJS("/green-bot")
-	stompClient=Stomp.over(new SockJS("/green-bot"));
+	
+	if(stompClient == null) {	
+		stompClient=Stomp.over(new SockJS("/green-bot"));
+	}
 	stompClient.connect({},(frame)=>{
 		//접속이 완료되면 인사말수신-구독
 		stompClient.subscribe(`/topic/order/${key}`,(answerData)=>{
@@ -109,7 +111,7 @@ function connect(){
 		var data={
 			key: key,
 			name:"그린",
-			content: "니코틴아마이드 아데닌 다이뉴클레오타이드"
+			content: "홈"
 		}
 		//인사말 보내줘
 		stompClient.send("/message/bot",{},JSON.stringify(data));
@@ -117,7 +119,7 @@ function connect(){
 }
 function disconnect() {
 	stompClient.disconnect(function(){
-		
+		stompClient = null;
 	});
 }
 function checkEnterKey(event){

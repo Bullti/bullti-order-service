@@ -64,6 +64,7 @@ public class RabbitMQService {
 	private final MessageConverter messageConverter;
     private final SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory;
     
+    //생성한 리스너 컨테이너를 종료하기 위해 객체주소 저장
     public static Vector<SimpleMessageListenerContainer> simpleMessageListenerContainerActivateList = new Vector<>();
     
     // 동적으로 리스너 컨테이너 생성

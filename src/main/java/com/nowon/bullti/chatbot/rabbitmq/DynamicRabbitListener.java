@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.nowon.bullti.chatbot.komoran.KomoranService;
 import com.nowon.bullti.domain.dto.chatbot.AnswerDTO;
+import com.nowon.bullti.domain.dto.chatbot.Question;
 
 import lombok.RequiredArgsConstructor;
 

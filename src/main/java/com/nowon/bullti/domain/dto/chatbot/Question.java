@@ -1,8 +1,8 @@
-package com.nowon.bullti.chatbot.rabbitmq;
+package com.nowon.bullti.domain.dto.chatbot;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class Question {
 
 	private long key;
