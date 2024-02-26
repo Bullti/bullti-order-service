@@ -42,9 +42,6 @@ public class BasketController {
 		long MemberNo = AuthenUtils.extractMemberNo(authentication);  
 		basketService.basketlist(model, MemberNo);
 		
-		System.out.println();
-		
-		
 		return "basket/basket";
 	}
 	 
@@ -57,18 +54,13 @@ public class BasketController {
 	}
 	 
 	
-	@PostMapping("/basketMap") 
-	public String mapSelect(@RequestBody BasketMapDTO dto,Authentication authentication,Model model) {
+	@ResponseBody
+	@PostMapping("/basket/store") 
+	public void mapSelect(@RequestBody BasketMapDTO dto,Authentication authentication) {
 		
 		long MemberNo = AuthenUtils.extractMemberNo(authentication);
-		basketService.updateMap(dto, MemberNo, model);
+		basketService.updateMap(dto, MemberNo);
 		
-		
-		System.out.println(">>>>"+dto.toString()+"<<<<<");
-		System.out.println(">>>>"+model.toString()+"<<<<<");
-		
-	return "basket/basket"; 
-	
 	} 
 
 }

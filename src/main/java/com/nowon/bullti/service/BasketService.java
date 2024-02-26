@@ -21,7 +21,7 @@ public interface BasketService {
 
 	void basketlistdel(long memberNo, String ItemName);
 
-	void updateMap(BasketMapDTO dto, long memberNo, Model model); 
+	void updateMap(BasketMapDTO dto, long memberNo); 
 	
 	//void basketList(Long MemberNo, );
 	
