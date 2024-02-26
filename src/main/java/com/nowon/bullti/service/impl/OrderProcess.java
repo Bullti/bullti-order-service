@@ -19,6 +19,7 @@ import com.nowon.bullti.domain.entity.order.OrderItem;
 import com.nowon.bullti.domain.entity.order.OrderItemRepository;
 import com.nowon.bullti.domain.entity.order.OrderRepository;
 import com.nowon.bullti.domain.entity.order.OrderState;
+import com.nowon.bullti.domain.entity.payment.PayState;
 import com.nowon.bullti.domain.entity.payment.Payment;
 import com.nowon.bullti.domain.entity.payment.PaymentRepository;
 import com.nowon.bullti.service.OrderService;
@@ -39,13 +40,8 @@ public class OrderProcess implements OrderService{
 	
 	@Transactional
 	@Override
-	public Long save(OrderSaveDTO dto) {
-		Long orderNo = orderRepo.save(dto.toEntity()).getNo();
-		//List<> list= busketItemRopo.findByMember();
-		//list.stream
-		
-		
-		return null;
+	public void save(OrderSaveDTO dto) {
+		orderRepo.save(dto.toEntity());
 	}
 
 	/**
@@ -112,6 +108,8 @@ public class OrderProcess implements OrderService{
 
 	/**
 	 * 주문 결제 완료
+	 * 성공 : 1
+	 * 실패 : 0
 	 */
 	@Override
 	public void complete(Long orderNo, int no) {
@@ -119,10 +117,10 @@ public class OrderProcess implements OrderService{
 		Payment payment = paymentRepo.findByOrder(order).orElseThrow();
 		if(no==1) {
 			order.changeState(OrderState.progress);
-			payment.succes();
+			payment.changeState(PayState.succes);
 		}else {
 			order.changeState(OrderState.fall);
-			payment.fall();
+			payment.changeState(PayState.fall);
 		}
 		orderRepo.save(order);
 		paymentRepo.save(payment);

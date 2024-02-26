@@ -5,12 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/css/index/index.css">
 <script defer src=/js/index.js></script>
+<script th:inline="javascript">
+    var errorMsg = /*[[${error_msg}]]*/ null;
+    if (errorMsg !== null) {
+        alert(errorMsg);
+    }
+</script>
 </head>
 
 <body>
 	<main>
-		<input type="hidden" th:if="${error_msg != null}"
-			th:value="${error_msg}">
 		<section id="slider1" class="slider">
 			<div class="box">
 				<img src="/images/index/banner1.png">

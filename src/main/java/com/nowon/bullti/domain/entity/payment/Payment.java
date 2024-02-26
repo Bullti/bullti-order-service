@@ -50,13 +50,9 @@ public class Payment {
 	@JoinColumn(name = "order_no")
 	private Order order;
 
-	public void succes() {
-		this.state = PayState.succes;
-		
-	}
-
-	public void fall() {
-		this.state = PayState.fall;
+	
+	public void changeState(PayState state) {
+		this.state = state;
 	}
 	
 }

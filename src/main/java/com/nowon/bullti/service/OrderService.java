@@ -6,7 +6,7 @@ import com.nowon.bullti.domain.dto.order.OrderSaveDTO;
 
 public interface OrderService {
 
-	public Long save(OrderSaveDTO dto);
+	public void save(OrderSaveDTO dto);
 
 	// 주문하기 페이지 유저 정보
 	public MemberOrderDTO getOrderInfo(long memberNo);

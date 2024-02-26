@@ -28,8 +28,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class OrderController {
 	
-	private final MemberService memberService;
-	
 	private final PayService payservice;
 	
 	private final OrderService orderService;
@@ -49,7 +47,6 @@ public class OrderController {
 	@GetMapping("/my/orders")
 	public String orderList(Model model, Authentication authentication) {
 		long MemberNo = AuthenUtils.extractMemberNo(authentication);
-		
 		return "order/list";
 	}
 	
@@ -101,7 +98,6 @@ public class OrderController {
 	 * @return
 	 */
 	@GetMapping("/orders/payments/complete/{orderNo}")
-	//Authentication authentication
 	public String complete(@RequestParam(name = "imp_uid") String imp_uid,
 			@RequestParam(name = "merchant_uid") String merchant_uid,
 			@RequestParam(name = "imp_success") boolean imp_success,
