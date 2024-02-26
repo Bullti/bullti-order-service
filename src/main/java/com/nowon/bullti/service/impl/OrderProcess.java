@@ -60,6 +60,7 @@ public class OrderProcess implements OrderService{
 				.storeName(basket.getFran().getName())
 				.tel(basket.getMember().getTel())
 				.adress(basket.getMember().getAddress())
+				.storeNo(basket.getFran().getNo())
 				.build();
 	}
 
