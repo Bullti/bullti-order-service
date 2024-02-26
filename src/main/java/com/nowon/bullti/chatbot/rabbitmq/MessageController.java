@@ -6,6 +6,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 
 import com.nowon.bullti.domain.dto.chatbot.Question;
+import com.nowon.bullti.domain.dto.store.OrderMessage;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,10 +30,10 @@ public class MessageController {
 	}
 
 	@MessageMapping("/order")
-	public void sendOrder(int storeNo) {
-		System.out.println("/message/order : 데이터 전송됨 " + storeNo);
-		String storeExchange = prefixName + storeNo;
-		String storeRoutingKey = storeNo + ".#";
+	public void sendOrder(OrderMessage dto) {
+		System.out.println("/message/order : 데이터 전송됨 " + dto.getStoreNo());
+		String storeExchange = prefixName + dto.getStoreNo();
+		String storeRoutingKey = dto.getStoreNo() + ".#";
 
 		rabbitTemplate.convertAndSend(storeExchange,storeRoutingKey,"aaa");
 	}

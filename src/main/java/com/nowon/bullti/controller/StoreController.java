@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.nowon.bullti.service.StoreService;
 import com.nowon.bullti.service.impl.StoreProcess;
@@ -22,6 +24,12 @@ public class StoreController {
 	public String page(Authentication auth,Model model) {
 		service.list(auth, model);
 		return "management/views/store";
+	}
+	
+	@ResponseBody
+	@GetMapping("/list")
+	public ModelAndView list(Authentication auth) {
+		return service.asynList(auth);
 	}
 	
 	

@@ -19,9 +19,9 @@ public class DynamicRabbitListener {
 	@Autowired
 	private SimpMessagingTemplate simpMessagingTemplate;
 	
-	public void receiveMessage(Question message) {
+	public void receiveMessage(String message) {
 		System.out.println(">>>>receiveMessage수신된 메세지:"+ message);
-		simpMessagingTemplate.convertAndSend("/topic/order/"+message.getKey(), message);
+//		simpMessagingTemplate.convertAndSend("/topic/order/"+message.getKey(), message);
 	}
 	
 	public void chatbotMessage(Question message) {
