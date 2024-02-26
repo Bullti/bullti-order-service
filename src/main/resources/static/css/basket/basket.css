@@ -35,6 +35,9 @@ form{
 	margin-bottom: 20px;
 }
 
+.content{
+	margin-top: 3%;
+}
 
 .flex > p {
 	margin-top: 15px;
@@ -47,6 +50,7 @@ form{
 
 .order-1{
 	justify-content: space-around;
+	margin-bottom: 3%
 }
 
 .menu1 {
