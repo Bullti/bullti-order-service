@@ -9,7 +9,7 @@
 }
 
 .main_container > .content > li {
-	padding: 40px 20px;
+	padding: 2em 1em;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -20,23 +20,24 @@
 }
 
 .main_container > .content > li > .left {
-	font-size: 40px;
+	font-size: 1em;
 	font-weight: bold;
 }
 
 .main_container > .content > li > .right {
-	font-size: 30px;
+	font-size: 1em;
 	color: #a9a9a9;
 }
 
 .main_container > .menu {
-	height: 100px;
+	height: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    margin-top: 60px;
+    font-size: 1em;
+    margin-top: 2em;
     font-weight: bold;
+    color: #837f7f;
 }
 
 .main_container > .menu > a:first-child {
