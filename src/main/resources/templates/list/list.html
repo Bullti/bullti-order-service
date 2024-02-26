@@ -29,8 +29,8 @@
     	<section class="menu" th:each="list:${list}">
 			<section class="menu-wrap">
 				<div class="menu1">
-					<!--<img th:src="${list.img}">-->
-					<img src="/images/menu/핫후라이드-콤보_410x271.png">
+					<img th:src="${list.img}">
+					<!--<img src="/images/menu/핫후라이드-콤보_410x271.png">-->
 				</div>
 				<div class="title1">
 					<p th:text="${list.name}">바삭바삭 후라이드</p>
@@ -44,7 +44,7 @@
 						<a class="btn_up btnUp" title="수량 더하기">
 						<span class="blind">수량 더하기</span>
 						</a>
-						<button type="button" id="cart-button">담기</button>
+						<button type="button" class="cart-button">담기</button>
 					</div>
 				</div>
 			</section>
@@ -150,57 +150,63 @@
 	
 	        setInterval(() => {
 	            s1.next();
-	        }, 2500);
+	        }, 2500); });
 	
 	
-		 $('.menu-button').click(function () {
-        // 선택한 메뉴 버튼에만 클래스 'selected'를 추가하고 이전 선택을 제거한다.
-        $('.menu-button').removeClass('selected');
-        $(this).addClass('selected');
+	$(document).ready(function () {
+		// 각각의 담기 버튼에 대한 이벤트 처리
+		$('.menu').on('click', '.cart-button', function () {
+			var selectedSection = $(this).closest('section.menu-wrap');
+			var name = selectedSection.find('p:first').text();
+			var count = parseInt(selectedSection.find('.quantity').val(), 10);
 
-        event.preventDefault();
-    });
-	
-		$('.menu').on('click', '#cart-button', function () {
-	        var selectedSection = $(this).closest('section.menu-wrap');
-	        var name = selectedSection.find('p:first').text();
-	        var count = parseInt(selectedSection.find('.quantity').val(), 10);
-	
 			console.log("장바구니 담아버리기~~~~~");
-			console.log("name : "+name);
-			console.log("count : "+count);
-			
-	        // Ajax로 서버로 데이터 전송
-	        $.ajax({
-	            type: 'POST',
-	            contentType: 'application/json',
-	            url: '/basket', 
-	            data: JSON.stringify({
-	                name: name,
-	                count: count
-	            }),
-	            success: function (response) {
-	                selectedSection.find('.quantity').val(1);
-	            },
-	            error: function (error) {
-	                console.error('Error sending data:', error);
-	            }
-	        });
-	    });
+			console.log("name : " + name);
+			console.log("count : " + count);
 
-	        $('#cart-button').click(function () {
-	            $('.cart-q').show();
-	           
-	        });
-	
-	        $('.button2').click(function () {
-	            $('.cart-q').hide();
-	        });
-	        
-	         $('.button1').click(function () {
-	            $('.cart-q').hide();
-	        });
-	    });
+			// Ajax로 서버로 데이터 전송
+			$.ajax({
+				type: 'POST',
+				contentType: 'application/json',
+				url: '/basket',
+				data: JSON.stringify({
+					name: name,
+					count: count
+				}),
+				success: function (response) {
+					selectedSection.find('.quantity').val(1);
+				},
+				error: function (error) {
+					console.error('Error sending data:', error);
+				}
+			});
+		});
+
+		// 각각의 메뉴 버튼에 대한 이벤트 처리
+		$('.menu-button').click(function () {
+			// 선택한 메뉴 버튼에만 클래스 'selected'를 추가하고 이전 선택을 제거한다.
+			$('.menu-button').removeClass('selected');
+			$(this).addClass('selected');
+
+			event.preventDefault();
+		});
+
+		$('.cart-button').click(function () {
+			$('.cart-q').show();
+
+		});
+
+		$('.button2').click(function () {
+			$('.cart-q').hide();
+		});
+
+		$('.button1').click(function () {
+			$('.cart-q').hide();
+		});
+	});
+
+	       
+	    
 	
 
 		</script>
