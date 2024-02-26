@@ -10,8 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nowon.bullti.domain.dto.store.StoreOrderListDTO;
 import com.nowon.bullti.domain.dto.store.TestProduct;
+import com.nowon.bullti.domain.entity.franchise.FranchiseEntity;
 import com.nowon.bullti.domain.entity.franchise.FranchiseRepository;
+import com.nowon.bullti.domain.entity.member.Member;
 import com.nowon.bullti.domain.entity.member.MemberRepository;
+import com.nowon.bullti.domain.entity.order.Order;
 import com.nowon.bullti.domain.entity.order.OrderRepository;
 import com.nowon.bullti.service.StoreService;
 import com.nowon.bullti.utils.AuthenUtils;
@@ -33,10 +36,12 @@ public class StoreProcess implements StoreService {
 
 	@Override
 	public ModelAndView asynList(Authentication auth) {
-//		return new ModelAndView("management/views/list").addObject("orderList",
-//				orderRepository.findAllByFranchiseeNo( 
-//						franchiseRepository.findByMemberNo(
-//								memberRepository.findById(AuthenUtils.extractMemberNo(auth)).get() ).get() ));
+//		long memberNo = AuthenUtils.extractMemberNo(auth);
+//		Member memberEntity = memberRepository.findByMemberNo(memberNo).get();
+//		FranchiseEntity franchiseEntity = franchiseRepository.findByMemberNo( memberEntity ).get();
+//		List<Order> orderList = orderRepository.findAllByFranchiseeNo( franchiseEntity );
+//		
+//		return new ModelAndView("management/views/list").addObject("orderList", orderList);
 		return new ModelAndView("management/views/list").addObject("orderList",createTestData() );
 	}
 	

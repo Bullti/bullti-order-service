@@ -84,9 +84,9 @@ public class KomoranService {
 			}else if(token.contains("인사말")){
 				DateTimeFormatter dateFormatter=DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
 				messageDTO.today(today.format(dateFormatter));//처음 접속할때만 날짜표기
-			}else if(token.contains("영화리스트")) {
+			}else if(token.contains("영화")) {
 				try {
-//					movieApiService.getDailyBoxOffice();
+					answer.setMovieData(movieApiService.getDailyBoxOffice());
 				} catch(Exception e) {
 					
 				}

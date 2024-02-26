@@ -3,10 +3,6 @@ package com.nowon.bullti.domain.dto.chatbot;
 
 import java.util.List;
 
-import org.springframework.web.servlet.ModelAndView;
-
-import com.nowon.bullti.chatbot.movie.MovieListDTO;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,7 +21,7 @@ public class AnswerDTO {
 	private String keyword;//name
 	private List<String> choices;
 	
-	private ModelAndView movieData;
+	private String movieData;
 	private PhoneInfo phone;
 	
 	public AnswerDTO phone(PhoneInfo phone){
