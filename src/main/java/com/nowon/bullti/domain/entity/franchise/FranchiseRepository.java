@@ -16,8 +16,9 @@ public interface FranchiseRepository extends JpaRepository<FranchiseEntity, Long
 
 	Optional<FranchiseEntity> findByName(String storeName);
 
-	Optional<FranchiseEntity> findById(Long no);
 //	FranchiseEntity findByMemberNo(long extractMemberNo);
 
 	Optional<FranchiseEntity> findByMemberNo(Member member);
+
+//	Object findAllByOrder();
 }

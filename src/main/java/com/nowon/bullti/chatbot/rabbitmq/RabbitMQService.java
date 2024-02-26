@@ -73,10 +73,11 @@ public class RabbitMQService {
     	if(queue.getName().equals(chatbotQueueName)) {
     		dynamicRabbitListener_methodName = "chatbotMessage";
     	}
-    	System.out.println("************"+dynamicRabbitListener_methodName);
-        SimpleMessageListenerContainer container = simpleRabbitListenerContainerFactory.createListenerContainer();
+        SimpleMessageListenerContainer container = 
+        		simpleRabbitListenerContainerFactory.createListenerContainer();
         // MyMessageListener 클래스의 handleMessage 메서드를 호출하는 리스너 설정
-        MessageListenerAdapter messageListenerAdapter = new MessageListenerAdapter(dynamicRabbitListener, dynamicRabbitListener_methodName);
+        MessageListenerAdapter messageListenerAdapter = 
+        		new MessageListenerAdapter(dynamicRabbitListener, dynamicRabbitListener_methodName);
         messageListenerAdapter.setMessageConverter(messageConverter);
         
         container.setQueues(queue);
@@ -84,6 +85,5 @@ public class RabbitMQService {
         container.start();
         //서버종료시 ContextClosedEvent로 컨테이너를 종료하기 위해 객체리스트저장
         simpleMessageListenerContainerActivateList.add(container);
-        System.out.println(">>>:리스너 생성"+container);
     }
 }

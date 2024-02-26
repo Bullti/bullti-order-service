@@ -1,6 +1,5 @@
 package com.nowon.bullti.chatbot.rabbitmq;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +15,7 @@ public class DynamicRabbitListener {
 	
 	private final KomoranService komoranService;
 	
-	@Autowired
-	private SimpMessagingTemplate simpMessagingTemplate;
+	private final SimpMessagingTemplate simpMessagingTemplate;
 	
 	public void receiveMessage(String message) {
 		System.out.println(">>>>receiveMessage수신된 메세지:"+ message);
