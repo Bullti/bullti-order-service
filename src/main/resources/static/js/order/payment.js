@@ -18,15 +18,12 @@ var userId;
 var userName;
 var itemName;
 var itemAmount;
-var storeNo;
-
 
 $(document).ready(function() {
 
 	merchant_uid = "IMP" + makeMerchantUid;
 	itemName = $('#itemName').val();
 	itemAmount = $('#itemAmount').val();
-	storeNo = $('#storeNo').val();
 
 	//결제자 정보
 	buyerInfo();
@@ -57,7 +54,7 @@ async function payment() {
 			//buyer_tel: '010-1234-5678',
 			//buyer_addr: '서울특별시 강남구 삼성동',
 			//buyer_postcode: '123-456',
-			m_redirect_url: "http://localhost:8080/orders/payments/complete"+orderNo
+			m_redirect_url: "http://localhost:8080/orders/payments/complete" + orderNo
 		}, function(rsp) { // callback
 			if (rsp.success) {
 				$.ajax({
@@ -69,7 +66,15 @@ async function payment() {
 						merchant_uid: rsp.merchant_uid,
 						orderNo: orderNo
 					}),
-				});
+					success: function() {
+						console.log("결제 등록 완료");
+						console.log("가맹점에 메시지를 보냅니다");
+						connect();
+					},
+					error: function() {
+						console.error("결제 등록 실패");
+					}
+				})
 			} else {
 				$.ajax({
 					url: "/orders/payments/complete/" + 0,
