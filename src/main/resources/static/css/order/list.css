@@ -1,15 +1,17 @@
 @charset "UTF-8";
 
 .content {
-	padding: 20px 0 150px 0;
+	padding: 1em 0 1em 0;
 }
 
 
 .content > .nav > .box {
-	border: 1px solid #fff;
-	margin-bottom: 20px;
-	background-color: #fff;
-	padding: 20px 20px;
+    background-color: #fff;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 0.5em;
+    padding: 1em 1em;
+    margin-bottom: 1em;
 }
 
 .content > .nav > .box > .box_hd {
@@ -22,11 +24,14 @@
 
 .content > .nav > .box > .box_hd > .left {
 	color: #a9a9a9;
+    font-size: 0.7em;
 }
 .content > .nav > .box > .box_hd > .right > a {
-	padding: 7px 18px;
+	padding: 0.1em 0.5em;
     border: 1px solid #a9a9a9;
-    border-radius: 50px;
+    border-radius: 1em;
+    font-size: 0.6em;
+    color: #a9a9a9;
 }
 
 .content > .nav > .box > .box_md {
@@ -36,8 +41,8 @@
 }
 
 .content > .nav > .box > .box_md > .img_area {
-	width: 200px;
-	height: 200px;
+	width: 30%;
+    height: 30%;
 }
 
 .content > .nav > .box > .box_md > .box_content {
@@ -45,11 +50,11 @@
 }
 
 .content > .nav > .box > .box_md > .box_content > .content_title {
-	font-size: 55px;
+	font-size: 2em;
 	font-weight: bold;
 }
 
 .content > .nav > .box > .box_md > .box_content > .content_content {
-	margin-top: 20px;
-	font-size: 30px;
+	margin-top: 1em;
+    font-size: 1em;
 }

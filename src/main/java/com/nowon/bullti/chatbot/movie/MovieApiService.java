@@ -10,6 +10,7 @@ import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService;
 import kr.or.kobis.kobisopenapi.consumer.rest.exception.OpenAPIFault;
@@ -22,8 +23,7 @@ public class MovieApiService {
 	private final KobisOpenAPIRestService kobisOpenAPIRestService;
 	private final JsoupService jsoupService;
 	
-	public List<MovieListDTO> getDailyBoxOffice() throws OpenAPIFault, Exception {
-		
+	public ModelAndView getDailyBoxOffice() throws OpenAPIFault, Exception {
 		List<MovieListDTO> list = new ArrayList<>();
 		
 		//일별 박스오피스 구하기
@@ -49,11 +49,7 @@ public class MovieApiService {
 	                e.printStackTrace();
 	            }
 	        });
-		for(MovieListDTO dto : list) {
-			System.out.println(dto);
-		}
-		
-		return list;
+		return new ModelAndView("/chatbot/chatbot-movieList", "list", list);
 	}
 	
 	

@@ -17,4 +17,5 @@ public class MemberOrderDTO {
 	private String tel;
 	private String adress;
 	private long storeNo;
+	private String itemName;
 }
