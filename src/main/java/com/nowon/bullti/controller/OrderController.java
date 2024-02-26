@@ -34,6 +34,7 @@ public class OrderController {
 	
 	private final OrderService orderService;
 	
+	// 주문하기 페이지
 	@GetMapping("/orders")
 	public String order(Model model, Authentication authentication) {
 		
@@ -44,6 +45,7 @@ public class OrderController {
 		return "order/order";
 	}
 	
+	// 나의 주문 내역
 	@GetMapping("/my/orders")
 	public String orderList(Model model, Authentication authentication) {
 		long MemberNo = AuthenUtils.extractMemberNo(authentication);
@@ -52,7 +54,7 @@ public class OrderController {
 	}
 	
 	/**
-	 * 주문
+	 * 주문하기
 	 * @return 주문번호
 	 */
 	@ResponseBody
@@ -66,7 +68,7 @@ public class OrderController {
 	}
 	
 	/**
-	 * 결제자 정보
+	 * 결제자 정보 가져오기
 	 * @return
 	 */
 	@ResponseBody
@@ -121,6 +123,7 @@ public class OrderController {
 			no = 1;
 		}
 		orderService.complete(orderNo, no);
+		
 		return "redirect:/";
 	}
 	

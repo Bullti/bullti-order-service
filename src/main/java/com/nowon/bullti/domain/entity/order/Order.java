@@ -66,12 +66,8 @@ public class Order {
 	@JoinColumn(name = "member_no")
 	private Member member;
 
-	public void progress() {
-		this.state = OrderState.progress;
-	}
-
-	public void fall() {
-		this.state = OrderState.fall;
+	public void changeState(OrderState state) {
+		this.state = state;
 	}
 	
 }
