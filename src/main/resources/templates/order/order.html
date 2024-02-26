@@ -73,41 +73,40 @@ function disconnect() {
 <main>
 	<form>
 		<div class="info">
-			<div class="flex border_bottom">
-				<p>점포정보</p>
-				<p>[[${dto.storeName}]]</p>
+			<div class="flex between border_bottom">
+				<p class="left">점포정보</p>
+				<p >[[${dto.storeName}]]</p>
 			</div>
-			<div class="flex border_bottom">
-				<p>받을주소</p>
-				<p>[[${dto.adress}]]</p>
+			<div class="flex between border_bottom">
+				<p class="left">받을주소</p>
+				<p class="right">[[${dto.adress}]]</p>
 			</div>
-			<div class="flex border_bottom">
-				<p>전화번호</p>
-				<p>[[${dto.tel}]]</p>
+			<div class="flex between border_bottom">
+				<p class="left">전화번호</p>
+				<p >[[${dto.tel}]]</p>
 			</div>
 		</div>
 		<div class="pay-info">
 			<div class="flex between border_bottom">
-				<p>결제 금액</p>
+				<p class="left">결제 금액</p>
 				<p>[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')}]]</p>
 			</div>
 			<div class="flex between">
-				<p>주문 금액</p>
+				<p class="left">주문 금액</p>
 				<p>[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')}]]</p>
 			</div>
 			<div class="flex between border_bottom">
-				<p>배달팁</p>
+				<p class="left">배달팁</p>
 				<p>0원</p>
 			</div>
 			<div class="flex between">
-				<p>총 결제 금액</p>
+				<p class="left">총 결제 금액</p>
 				<p>[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')}]]</p>
 			</div>
 		</div>
 
-		<input type="hidden" value="상품이름" id="itemName"> 
+		<input type="hidden" value="${dto.itemName}" id="itemName"> 
 		<input type="hidden" th:value="${dto.amount}" id="itemAmount"> 
-		<input type="hidden" value="444" id="storeNo"> 
 		<input type="hidden" th:value="${dto.adress}" id="adress"> 
 		<input type="hidden" th:value="${dto.tel}" id="memberTel">
 

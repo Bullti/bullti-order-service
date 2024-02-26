@@ -55,12 +55,17 @@ public class OrderProcess implements OrderService{
 	@Override
 	public MemberOrderDTO getOrderInfo(long memberNo) {
 		Basket basket = basketRopo.findById(memberNo).orElseThrow();
+		int size = basket.getBasketItem().size();
+		String itemName = size > 1 ?  basket.getBasketItem().get(0).getItem().getName()
+				: basket.getBasketItem().get(0).getItem().getName() + " 등"+ size+ "개";
+		
 		return MemberOrderDTO.builder()
 				.amount(basket.getAmount())
 				.storeName(basket.getFran().getName())
 				.tel(basket.getMember().getTel())
 				.adress(basket.getMember().getAddress())
 				.storeNo(basket.getFran().getNo())
+				.itemName(itemName)
 				.build();
 	}
 

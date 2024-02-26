@@ -8,6 +8,25 @@ main {
     flex-direction: column;
     align-items: center;
 }
+.content {
+	background-color: #fff;
+	width: 100%;
+}
+tr:not(:last-child) {
+    border-bottom: 0.1em solid #a9a9a9;
+}
+
+td {
+	text-align: center;
+	height: 4em;
+	vertical-align: middle;
+}
+
+th {
+	height: 4em;
+	vertical-align: middle;
+	border-bottom: 0.1em solid #a9a9a9;
+}
 
 #slider1 {
     width: 100%;
