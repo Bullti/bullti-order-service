@@ -60,8 +60,8 @@ public class Basket {
         this.fran = franchiseEntity;
     }
 
-	public void setFran(FranchiseEntity fran2) {
-		this.fran = fran2;
+	public void setFran(FranchiseEntity fran) {
+		this.fran = fran;
 		
 	}
 	

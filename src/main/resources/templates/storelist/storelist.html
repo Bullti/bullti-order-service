@@ -38,9 +38,8 @@
 							<td th:text="${post.location}"></td>
 							<td th:text="${post.locationDetail}"></td>
 							<td th:text="${post.phone}"></td>
-							<td><button>선택</button></td>
+							<td><button >선택</button></td>
 						</tr>
-					
 				</tbody>
 			</table>
 		</div>
@@ -167,7 +166,7 @@
 		  }
 		}
 		
-		 $(document).ready(function() {
+		$(document).ready(function() {
         // '선택' 버튼 클릭 시 호출될 함수
         $('button').on('click', function() {
             // 선택된 행에 대한 데이터 수집
@@ -188,16 +187,12 @@
             // AJAX를 사용하여 서버로 데이터 전송
             $.ajax({
                 type: 'POST',
-                url: '/basketMap', // 실제 백엔드 엔드포인트로 대체 필요
+                url: '/basket/store', // 실제 백엔드 엔드포인트로 대체 필요
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(selectedData),
-                success: function(response) {
+                success: function() {
                     // 성공 시 서버의 응답에 대한 처리
-                    console.log('storeName' + storeName);
-                    console.log('address' + address);
-                    console.log('locationDetail' + locationDetail);
                   	location.href = "/basket";
-                    
                 },
                 error: function(error) {
                     // 오류 시 처리

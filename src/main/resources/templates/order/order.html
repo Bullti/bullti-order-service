@@ -8,6 +8,7 @@
 var stompClient=null; 
 var key=new Date().getTime();
 var storeNo = [[${dto.storeNo}]];
+storeNo=parseInt(storeNo);
 
 $(function(){
 	$("#btn-bot").click(btnBotClicked);

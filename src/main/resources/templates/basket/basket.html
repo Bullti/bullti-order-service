@@ -13,14 +13,12 @@
 					<tr>
 						<th>매장명</th>
 						<th>주소</th>
-						<th>상세주소</th>
 					</tr>
 				</thead>
 				<tbody id="map_table">
-						<tr th:each="fran : ${fran}">
+						<tr th:if="${fran.storeName != null}">
 							<td th:text="${fran.storeName}"></td>
-							<td th:text="${fran.address}"></td>
-							<td th:text="${fran.locationDetail}"></td>
+							<td th:text="${fran.storeAdress}"></td>
 						</tr>
 				</tbody>
 			</table>

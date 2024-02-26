@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.nowon.bullti.domain.dto.basket.BasketFranDTO;
 import com.nowon.bullti.domain.dto.basket.BasketItemDTO;
 import com.nowon.bullti.domain.dto.basket.BasketMapDTO;
 import com.nowon.bullti.domain.dto.basket.BasketSaveDTO;
@@ -103,7 +104,21 @@ public class BasketProcess implements BasketService{
 				.build())
 				.collect(Collectors.toList());
 		
+		BasketFranDTO fran = null;
+		if(basket.getFran() == null) {
+			fran = BasketFranDTO.builder()
+					.storeAdress(null)
+					.storeName(null)
+					.build();
+		}else {
+			fran = BasketFranDTO.builder()
+					.storeAdress(basket.getFran().getLocation()+basket.getFran().getLocationDetail())
+					.storeName(basket.getFran().getName())
+					.build();
+		}
+		
 		model.addAttribute("list", list);
+		model.addAttribute("fran", fran);
 		
 		return null;
 	}
@@ -117,28 +132,15 @@ public class BasketProcess implements BasketService{
 
 	@Transactional
 	@Override
-	public void updateMap(BasketMapDTO dto, long memberNo, Model model) {
-	    // 회원 정보 조회
-	    Member member = memberRepo.findById(memberNo).orElseThrow();
+	public void updateMap(BasketMapDTO dto, long memberNo) {
 	    // 해당 회원의 장바구니 정보 조회
-	    Basket basket = basketRopo.findById(member.getNo()).orElseThrow();
+	    Basket basket = basketRopo.findById(memberNo).orElseThrow();
 	    // 프랜차이즈 정보 조회
 	    FranchiseEntity fran = franRepo.findByName(dto.getStoreName()).orElseThrow();
 	    // 장바구니 엔터티의 프랜차이즈 정보 업데이트
 	    basket.setFran(fran);
 	    // 장바구니 엔터티 저장
 	    basketRopo.save(basket);
-	    
-	    List<BasketMapDTO> franMap = franRepo.findById(fran.getNo()).stream()
-	    		.map(i -> BasketMapDTO.builder()
-	    				.storeName(i.getName())
-	    				.address(i.getLocation())
-	    				.locationDetail(i.getLocationDetail())
-	    				.build())
-	    				.collect(Collectors.toList());
-	    model.addAttribute("fran", franMap);
-	    
-	    System.out.println(">>>>"+franMap.toString()+"<<<<<");
 	}
 
 }
