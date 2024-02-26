@@ -27,7 +27,7 @@
 			<div class="flex order-1 border_bottom">
 				<p>주문내역</p>
 				<p>(총 <span th:text="${#lists.size(list)}"></span>건)</p>
-				<p>[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')+'원'}]]</p>
+				<p class="totalPrice">[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')+'원'}]]</p>
 			</div>
 			<section class="menu-wrap" th:each="dto:${list}">
 				<div class="menu1">
@@ -39,14 +39,14 @@
 					</div>
 					<p class="ItemName" th:text="${dto.name}"></p>
 					<p id="eng" th:text="${dto.content}">fried chicken</p>
-					<p th:text="${#numbers.formatInteger(dto.price,3,'COMMA')+'원'}">35,000원</p>
+					<p class="price" th:text="${#numbers.formatInteger(dto.price,3,'COMMA')+'원'}">35,000원</p>
 					<!--<p>수량 : x 개</p>-->
 					<div class="listLi-count border">
-						<a class="btn_down btnDown" href="#" title="수량 빼기">
+						<a class="btn_down btnDown" title="수량 빼기">
 						<span class="blind">수량 빼기</span>
 						</a>
 						<input type="text" class="quantity" th:value="${dto.count}" readonly="readonly" >
-						<a class="btn_up btnUp" href="#" title="수량 더하기">
+						<a class="btn_up btnUp" title="수량 더하기">
 						<span class="blind">수량 더하기</span>
 						</a>
 					</div>
@@ -60,11 +60,11 @@
 		<div class="pay-info">
 			<div class="flex between border_bottom">
 				<p>결제 금액</p>
-				<p>[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')+'원'}]]</p>
+				<p class="totalPrice">[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')+'원'}]]</p>
 			</div>
 			<div class="flex between">
 				<p>주문 금액</p>
-				<p>[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')+'원'}]]</p>
+				<p class="totalPrice">[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')+'원'}]]</p>
 			</div>
 			<div class="flex between border_bottom">
 				<p>배달팁</p>
@@ -72,7 +72,7 @@
 			</div>
 			<div class="flex between">
 				<p>총 결제 금액</p>
-				<p>[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')+'원'}]]</p>
+				<p class="totalPrice">[[${#numbers.formatInteger(dto.amount, 1, 'COMMA')+'원'}]]</p>
 			</div>
 		</div>
 		<div class="button-area">
