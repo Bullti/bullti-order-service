@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<div class="part movie">
 	<p>일별 박스오피스 순위입니다.</p>
-	<ul>
-		<li>
+	<ul class="mvContent">
+		<li onclick="choiceMovie()">
 			<div>
-				<span>순위 :</span>
-				<span>[[${dto.rank}]]</span>
-				<span>위</span>
+				<span>[[${dto.rank}]]</span> <span>위</span>
 			</div>
 			<div>
-				<span>제목 :</span>
-				<span>[[${dto.movieNm}]]</span>
+				<span>제목 :</span> <span>[[${dto.movieNm}]]</span>
 			</div>
 			<div>
-				<span>개봉일 :</span>
-				<span>[[${dto.openDt}]]</span>
+				<span>개봉일 :</span> <span>[[${dto.openDt}]]</span>
 			</div>
-			<div>
-				<span>영화코드 :</span>
-				<span>[[${dto.movieCd}]]</span>
-			</div>
+			<input type="hidden" th:value="${dto.movieCd}">
 		</li>
 	</ul>
+</div>
 </html>

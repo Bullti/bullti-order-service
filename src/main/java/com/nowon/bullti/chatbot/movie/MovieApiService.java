@@ -26,12 +26,9 @@ public class MovieApiService {
 	public String getDailyBoxOffice() throws OpenAPIFault, Exception {
 		List<MovieListDTO> list = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();
-		sb.append("<p>일별 박스오피스 순위입니다.</p>\n"
-				+ "	<ul>\n"
-				+ "		<li>\n"
-				+ "			<div>\n"
-				+ "				<span>순위 :</span>\n"
-				+ "				<span>");
+		sb.append("<div class=\"part movie\">\n");
+		sb.append("    <p>일별 박스오피스 순위입니다.</p>\n");
+		sb.append("    <ul class=\"mvContent\">");
 		
 		//일별 박스오피스 구하기
 		LocalDate day = LocalDate.now().minusDays(1);
@@ -44,7 +41,7 @@ public class MovieApiService {
 		
 		JSONArray dailyBoxOfficeList = jsonObject.getJSONObject("boxOfficeResult").getJSONArray("dailyBoxOfficeList");
 		
-		IntStream.range(0, dailyBoxOfficeList.length()).boxed().forEach(i -> {
+		IntStream.range(0, dailyBoxOfficeList.length()/2).boxed().forEach(i -> {
 	            try {
 	            	list.add(MovieListDTO.builder()
 	            			.rank(dailyBoxOfficeList.getJSONObject(i).getString("rank"))
@@ -58,36 +55,43 @@ public class MovieApiService {
 	        });
 		
 		for(MovieListDTO dto : list) {
-			sb.append(""+dto.getRank());
-			sb.append("</span>\n"
-					+ "				<span>위</span>\n"
+			sb.append("<li onclick=\"choiceMovie()\">\n"
+					+ "			<div>\n"
+					+ "				<span>");
+			sb.append(dto.getRank());
+			sb.append("</span> <span>위</span>\n"
 					+ "			</div>\n"
 					+ "			<div>\n"
-					+ "				<span>제목 :</span>\n"
-					+ "				<span>");
-			sb.append(""+dto.getMovieNm());
-			sb.append("</span>\n"
-					+ "			</div>\n"
-					+ "			<div>\n"
-					+ "				<span>개봉일 :</span>\n"
-					+ "				<span>");
-			sb.append(""+dto.getOpenDt());
+					+ "				<span>제목 :</span> <span>");
+			sb.append(dto.getMovieNm());
 			sb.append("</span>\n"
 					+ "			</div>\n"
 					+ "			<div>\n"
-					+ "				<span>영화코드 :</span>\n"
-					+ "				<span>");
+					+ "				<span>개봉일 :</span> <span>");
+			sb.append(dto.getOpenDt());
+			sb.append("</span>\n"
+					+ "			</div>\n"
+					+ "			<input type=\"hidden\" value=\"");
 			sb.append(dto.getMovieCd());
-			sb.append("</span>\n"
-					+ "			</div>\n"
-					+ "		</li>\n"
-					+ "	</ul>");
+			sb.append("\">\n"
+					+ "		</li>\n\n");
 		}
+		sb.append("</ul>\n"
+				+ "</div>");
+		
 		return sb.toString();
 	}
 	
 	
-	public MovieInfoDTO getMovieInfo(String movieCd) throws OpenAPIFault, Exception {
+	public String getMovieInfo(String movieCd) throws OpenAPIFault, Exception {
+		StringBuilder sb = new StringBuilder();
+		sb.append("<div class=\"part movie\">\n"
+				+ "	<p>영화 정보 입니다.</p>\n"
+				+ "	<ul class=\"mvContent\">\n"
+				+ "		<li>\n"
+				+ "			<div>\n"
+				+ "				<span>제목 :</span> <span>");
+		
 		
 		JSONObject jsonObject = new JSONObject(
 				kobisOpenAPIRestService.getMovieInfo(true, movieCd)
@@ -105,13 +109,35 @@ public class MovieApiService {
                 e.printStackTrace();
             }
         });
-		return MovieInfoDTO.builder()
-				.movieNm(movieInfo.getString("movieNm"))
-				.showTm(movieInfo.getString("showTm")+"분")
-				.openDt(movieInfo.getString("openDt"))
-				.nations(nationesBuilder.toString())
-				.posterUrl(getMoviePosterUrl(movieInfo.getString("movieNm")))
-				.build();
+		 sb.append(movieInfo.getString("movieNm"));
+		 sb.append("</span>\n"
+		 		+ "			</div>\n"
+		 		+ "			<br>\n"
+		 		+ "			<div>\n"
+		 		+ "				<span>장르 :</span> <span>");
+		 sb.append(nationesBuilder.toString());
+		 sb.append("</span>\n"
+		 		+ "			</div>\n"
+		 		+ "			<br>\n"
+		 		+ "			<div>\n"
+		 		+ "				<span>러닝타임 :</span> <span>");
+		 sb.append(movieInfo.getString("movieNm"));
+		 sb.append("</span>\n"
+		 		+ "			</div>\n"
+		 		+ "			<br>\n"
+		 		+ "			<div>\n"
+		 		+ "				<span>개봉일 :</span> <span>");
+		 sb.append(movieInfo.getString("openDt"));
+		 sb.append("</span>\n"
+		 		+ "			</div>\n"
+		 		+ "			<br>\n"
+		 		+ "			<img alt=\"poster\" src=\"");
+		 sb.append(getMoviePosterUrl(movieInfo.getString("movieNm")));
+		 sb.append("\">\n"
+		 		+ "		</li>\n"
+		 		+ "	</ul>\n"
+		 		+ "</div>");
+		 return sb.toString();
 	}
 	
 	private String getMoviePosterUrl(String name) {
