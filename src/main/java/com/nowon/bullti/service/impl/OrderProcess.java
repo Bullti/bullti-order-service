@@ -118,14 +118,30 @@ public class OrderProcess implements OrderService{
 		Order order = orderRepo.findById(orderNo).orElseThrow();
 		Payment payment = paymentRepo.findByOrder(order).orElseThrow();
 		if(no==1) {
-			order.progress();
+			order.changeState(OrderState.progress);
 			payment.succes();
 		}else {
-			order.fall();
+			order.changeState(OrderState.fall);
 			payment.fall();
 		}
 		orderRepo.save(order);
 		paymentRepo.save(payment);
+	}
+
+	/**
+	 * 가게 승인 / 반려
+	 * 승인 : 1
+	 * 반려 : 0
+	 */
+	@Override
+	public void storeResult(Long orderNo, int no) {
+		Order order = orderRepo.findById(orderNo).orElseThrow();
+		
+		if(no == 0) {
+			order.changeState(OrderState.cancle);
+		}else if(no == 1) {
+			order.changeState(OrderState.complate);
+		}
 	}
 
 	

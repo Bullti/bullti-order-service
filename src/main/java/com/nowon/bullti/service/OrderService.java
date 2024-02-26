@@ -18,4 +18,6 @@ public interface OrderService {
 
 	// 주문:결제 완료
 	public void complete(Long orderNo, int no);
+	
+	public void storeResult(Long orderNo, int no);
 }

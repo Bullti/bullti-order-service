@@ -16,13 +16,13 @@ public class JsoupService {
 	private String movie_image_url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=";
 	
     public String getMoviePoster(String name) {
-    	movie_image_url = movie_image_url+name;
-    	System.out.println("movie_image_url : "+movie_image_url);
+    	String poster = movie_image_url+name;
+    	System.out.println("poster : "+poster);
     	
         Document document = null;
         	try {
         		// 바로 주소에 값을 가져오다보면 Read time out 오류가 나올 수 있어서 timeout(시간)을 줘서 잠깐 대기시간
-				document = Jsoup.connect(movie_image_url).timeout(10000).get();
+				document = Jsoup.connect(poster).timeout(10000).get();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
