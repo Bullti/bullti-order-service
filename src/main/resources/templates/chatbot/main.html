@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>버스정보</title>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2f99d6358736f503688fe29f502d2d30&libraries=services"></script>
+</head>
+<body>
+	<h1>버스정보</h1>
+	<div id="station-list" style="display: flex;">
+		
+	</div>
+	<div id="map" style="width:100%;height:600px;"></div>
+
+	<script th:inline="javascript">
+		var geocoder = new kakao.maps.services.Geocoder();
+		var data;
+
+		navigator.geolocation.getCurrentPosition((position) => {
+			var latitude = position.coords.latitude;
+			var longitude = position.coords.longitude;
+			data = {
+				'latitude': latitude,
+				'longitude': longitude
+			};
+			getLocation(); // 위치 정보를 가져오면 바로 정류장 조회 함수 호출
+		});
+
+		function getLocation() {
+			busApiFetch(data);
+		}
+
+		function busApiFetch(data) {
+			console.log("data:", JSON.stringify(data))
+			fetch('/bus/stations', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(data)
+			})
+			.then(response => response.text())
+			.then(data => {
+				const stationList = document.querySelector("#station-list");
+				stationList.innerHTML = data;
+				kakaoMap();
+			})
+			.catch(error => { console.log("sorry~~") })
+		}
+
+		function kakaoMap() {
+			var stationNmEl = document.querySelectorAll(".stationNm");
+			var xElements = document.querySelectorAll(".gpsX");
+			var yElements = document.querySelectorAll(".gpsY");
+			
+			var positions = [];
+
+			xElements.forEach(function (xElement, index) {
+			    var xValue = xElement.value.trim();
+			    var yValue = yElements[index].value.trim();
+			    var stationNmValue =stationNmEl[index].textContent.trim();
+				console.log(xValue, yValue, stationNmValue);
+				positions.push({
+			    	title:  stationNmValue,
+			    	latlng: new kakao.maps.LatLng(yValue, xValue)
+			    });
+			});
+
+			//var jsonData = JSON.stringify(data);
+			
+			
+			//지도생성
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+			    mapOption = { 
+			        center: new kakao.maps.LatLng(data.latitude , data.longitude ), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };
+			
+			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			 
+			// 마커를 표시할 위치와 title 객체 배열입니다 
+			
+			//*
+			// 마커 이미지의 이미지 주소입니다
+			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			    
+			for (var i = 0; i < positions.length; i ++) {
+			    
+			    // 마커 이미지의 이미지 크기 입니다
+			    var imageSize = new kakao.maps.Size(24, 35); 
+			    
+			    // 마커 이미지를 생성합니다    
+			    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			    
+			    // 마커를 생성합니다
+			    var marker = new kakao.maps.Marker({
+			        map: map, // 마커를 표시할 지도
+			        position: positions[i].latlng, // 마커를 표시할 위치
+			        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			        image : markerImage // 마커 이미지 
+			    });
+			}
+			//*/
+		}
+	</script>
+</body>
+</html>
