@@ -1,24 +1,25 @@
 @charset "UTF-8";
 
 .container {
-    width: 400px;
-    margin: 50px auto;
+    width: 90%;
+    margin: 4em auto;
     text-align: center;
     border: 1px solid #ddd;
-    padding: 20px;
+    padding: 1em;
 }
 
 .title {
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 1em;
+    font-size: 1em;
 }
 
 input[type="text"], input[type="password"] {
-    width: 340px;
-    padding: 10px;
+   	width: 80%;
+    padding: 0.8em;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 0.5em;
 }
 
 button[type="submit"] {
