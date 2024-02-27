@@ -1,0 +1,9 @@
+
+<ul>
+	<li th:each="item:${list}" th:data-stationId="${item.stationId}">
+		<span class="stationNm" th:text="${item.stationNm}"></span>
+		<input class="gpsX" type="hidden" th:value="${item.gpsX}">
+		<input class="gpsY" type="hidden" th:value="${item.gpsY}">
+	</li>
+</ul>
+
