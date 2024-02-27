@@ -34,7 +34,8 @@ public class MessageController {
 		System.out.println("/message/order : 데이터 전송됨 " + dto.getStoreNo());
 		String storeExchange = prefixName + dto.getStoreNo();
 		String storeRoutingKey = dto.getStoreNo() + ".#";
-
-		rabbitTemplate.convertAndSend(storeExchange,storeRoutingKey,"aaa");
+		System.out.println("storeExchange"+storeExchange);
+		System.out.println("storeRoutingKey"+storeRoutingKey);
+		rabbitTemplate.convertAndSend(storeExchange,storeRoutingKey,dto.getStoreNo());
 	}
 }

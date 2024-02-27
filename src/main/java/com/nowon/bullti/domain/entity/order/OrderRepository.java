@@ -13,4 +13,7 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
 
 	public List<Order> findAllByFranchiseeNo(long no);
 	
+	public List<Order> findAllByFranchiseeNoAndState(long franchiseeNo, OrderState progress);
+
+	
 }

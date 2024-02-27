@@ -63,7 +63,7 @@ public class Order {
 	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
 	private List<OrderItem> orderItem;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "member_no")
 	private Member member;
 
@@ -72,11 +72,15 @@ public class Order {
 	}
 	
 	public StoreOrderListDTO toStoreOrderListDTO() {
+		int totalPrice = orderItem.stream().mapToInt( orderItem->Integer.valueOf(orderItem.getItem().getPrice()) ).sum();
 		return StoreOrderListDTO.builder()
 				.no(no)
 				.address(adress)
 				.state(state.getStateName())
 				.orderItem(orderItem)
+				.totalPrice(totalPrice)
+				.userName(member.getId())
 				.build();
 	}
+
 }

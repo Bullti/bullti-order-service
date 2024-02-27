@@ -18,9 +18,9 @@ public class DynamicRabbitListener {
 	private final SimpMessagingTemplate simpMessagingTemplate;
 	private final MovieApiService movieApiService;
 	
-	public void receiveMessage(String message) {
+	public void receiveMessage(int message) {
 		System.out.println(">>>>receiveMessage수신된 메세지:"+ message);
-//		simpMessagingTemplate.convertAndSend("/topic/order/"+message.getKey(), message);
+		simpMessagingTemplate.convertAndSend("/topic/store-order/"+message, message);
 	}
 	
 	public void chatbotMessage(Question message) {

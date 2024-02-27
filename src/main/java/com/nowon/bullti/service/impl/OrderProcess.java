@@ -142,6 +142,8 @@ public class OrderProcess implements OrderService{
 		}else if(no == 1) {
 			order.changeState(OrderState.complate);
 		}
+		
+		orderRepo.save(order);
 	}
 
 	
