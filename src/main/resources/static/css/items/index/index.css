@@ -9,8 +9,9 @@
 
 .login-event {
 	font-size: 1em;
-	margin: 30px;
+	margin: 2em;
 	font-weight: bold;
+	 color: rgb(50, 66, 102);
 }
 
 .login-help {
@@ -21,7 +22,9 @@
 
 .login-help > ul {
 	justify-content: center;
-	display: flex;
+    display: flex;
+    font-weight: bold;
+    color: rgb(50, 66, 102);
 }
 
 .login-help > ul > li{
@@ -37,11 +40,12 @@
 	border: none;
     background-color: #dc143c;
     height: 2em;
-    border-radius: 0.5em;
+    border-radius: 0.3em;
     font-size: 2em;
     font-weight: bold;
     color: #f8f9fa;
     padding: 0 0.8em;
+    width: 80%;
 }
 
 .order-space form {

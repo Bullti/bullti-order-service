@@ -5,7 +5,8 @@
 }
 .main_container > .content {
 	border: 1px solid #a9a9a9;
-	background-color: #fff;
+    background-color: #fff;
+    border-radius: 0.5em;
 }
 
 .main_container > .content > li {

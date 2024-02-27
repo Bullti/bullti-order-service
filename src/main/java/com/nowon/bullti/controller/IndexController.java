@@ -25,7 +25,7 @@ public class IndexController {
 	
 	@GetMapping("/my")
 	public String myPage() {
-		return "/my";
+		return "/members/my";
 	}
 	
 }

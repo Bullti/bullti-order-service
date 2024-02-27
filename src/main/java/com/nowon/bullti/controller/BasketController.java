@@ -28,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 public class BasketController {
 
 	private final BasketService basketService;
-	private final OrderService orderService;
 	
 	@PostMapping("/basket") 
 	public String itemsave(@RequestBody BasketSaveDTO dto, Authentication authentication) {
