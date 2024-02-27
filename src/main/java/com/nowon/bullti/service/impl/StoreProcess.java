@@ -1,6 +1,5 @@
 package com.nowon.bullti.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,14 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.nowon.bullti.domain.dto.store.StoreOrderListDTO;
-import com.nowon.bullti.domain.dto.store.TestProduct;
 import com.nowon.bullti.domain.entity.franchise.FranchiseEntity;
 import com.nowon.bullti.domain.entity.franchise.FranchiseRepository;
 import com.nowon.bullti.domain.entity.member.Member;
 import com.nowon.bullti.domain.entity.member.MemberRepository;
 import com.nowon.bullti.domain.entity.order.Order;
 import com.nowon.bullti.domain.entity.order.OrderRepository;
+import com.nowon.bullti.domain.entity.order.OrderState;
 import com.nowon.bullti.service.StoreService;
 import com.nowon.bullti.utils.AuthenUtils;
 
@@ -32,7 +30,7 @@ public class StoreProcess implements StoreService {
 
 	@Override
 	public void list(Authentication auth, Model model) {
-//		model.addAttribute("storeStatus", franchiseRepository.findByMemberNo(AuthenUtils.extractMemberNo(auth)));
+		model.addAttribute("storeStatus", franchiseRepository.findByMemberNo(memberRepository.findById(AuthenUtils.extractMemberNo(auth)).get()).get());
 	}
 
 	@Override
@@ -40,7 +38,8 @@ public class StoreProcess implements StoreService {
 		long memberNo = AuthenUtils.extractMemberNo(auth);
 		Member memberEntity = memberRepository.findById(memberNo).get();
 		FranchiseEntity franchiseEntity = franchiseRepository.findByMemberNo( memberEntity ).get();
-		List<Order> orderList = orderRepository.findAllByFranchiseeNo( franchiseEntity.getNo() );
+		List<Order> orderList = orderRepository.findAllByFranchiseeNoAndState(franchiseEntity.getNo(), OrderState.progress);
+
 		return new ModelAndView("management/views/list").addObject("orderList", 
 				orderList.stream().map(Order::toStoreOrderListDTO).collect(Collectors.toList()));
 //		return new ModelAndView("management/views/list").addObject("orderList",createTestData() );

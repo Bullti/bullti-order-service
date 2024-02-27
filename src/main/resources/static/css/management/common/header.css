@@ -10,11 +10,11 @@ header {
 }
 .header-container {
 	width: 100%;
-	margin-top: 1rem;
+	margin: 1rem 0;
 }
 .store-state {
 	background-color: #aaa;
-	width: 50%;
+	width: 40%;
 }
 .store-state th {
 	padding: 5px 0;

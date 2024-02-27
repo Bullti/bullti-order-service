@@ -20,6 +20,6 @@ public class StoreOrderListDTO {
 	private String state;
 	private List<OrderItem> orderItem;
 	private int totalPrice;
-	private String username;
+	private String userName;
 	
 }

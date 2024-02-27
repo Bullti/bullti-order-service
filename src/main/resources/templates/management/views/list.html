@@ -4,28 +4,36 @@
 		<thead>
 			<tr>
 				<th>주문번호</th>
-				<th>아이디</th>
+				<th>유저아이디</th>
 				<th>주소</th>
 				<th>상품</th>
-				<th>수량</th>
 				<th>가격</th>
+				<th>진행상태</th>
 				<th>주문처리</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="dto:${orderList}" class="store-td">
 				<td th:text="${dto.no}">1</td>
+				<td th:text="${dto.userName}">green</td>
 				<td th:text="${dto.address}">서울시 노원구 상계동 13-1</td>
-				<td th:text="${dto.state}">상태</td>
 				<td>
-					<ul th:if="${dto.orderItem != null}">
-					    <li th:each="prod : ${dto.orderItem}" th:text="${prod.item.getName}"></li>
+					<ul th:if="${dto.orderItem != null}" th:each="prod : ${dto.orderItem}">
+						<img th:src="${prod.item.img}" width="50px"></img>
+					    <li>
+							<span th:text="${prod.item.name}"></span>
+							<span th:text="${prod.count}+개"></span>
+						</li>
 					</ul>
-
 				</td>
+				<td>
+					<span th:text="${#numbers.formatInteger(dto.totalPrice,3,'COMMA')}"></span>
+					<span>원</span>
+				</td>
+				<td th:text="${dto.state}">상태</td>
 				<td class="button-container">
-					<button>수락</button>
-					<button>취소</button>
+			        <button class="accept-btn" th:value="${dto.no}" onclick="handleOrderAction(this, '1')">수락</button>
+			        <button class="cancel-btn" th:value="${dto.no}" onclick="handleOrderAction(this, '0')">취소</button>
 				</td>
 			</tr>
 		</tbody>
