@@ -95,7 +95,6 @@ function connect(){
 			let choiceArray = message.choices;
 			
 			let movieData = message.movieData;
-			console.log(movieData)
 			showMessage(movieData)
 			/*$('#chat-content').html(movieData)*/
 			/////////////////////////////

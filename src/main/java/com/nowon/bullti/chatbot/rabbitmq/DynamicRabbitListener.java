@@ -31,6 +31,7 @@ public class DynamicRabbitListener {
 		try {
 			if(message.getContent().contains("영화코드")) {
 				answer = AnswerDTO.builder().movieData(movieApiService.getMovieInfo(message.getContent().split(" ")[1])).build();
+				answer.setContent("");
 			}else {
 				answer = komoranService.nlpAnalyze(message.getContent()).getAnswer();
 			}

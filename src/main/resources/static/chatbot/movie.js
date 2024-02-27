@@ -10,6 +10,5 @@ function choiceMovie() {
             var hiddenInput = clickedLi.querySelector('input[type="hidden"]');
             var movieCd = "영화코드 "+ hiddenInput.value;
 			
-			console.log(movieCd)
 			sendChatbotMessage(movieCd);
         }
