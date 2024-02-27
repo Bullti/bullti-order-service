@@ -120,8 +120,13 @@ public class BasketProcess implements BasketService{
 	@Transactional
 	@Override
 	public void basketlistdel(long memberNo, String ItemName) {
+		Basket basket = basketRopo.findById(memberNo).orElseThrow();
 		ItemEntity item = itemRepo.findByName(ItemName).orElseThrow();
 		basketItemRepo.deleteByBasketNoAndItem(memberNo, item);
+		
+		long totPrice = totalPrice(basket.getNo());
+		basket.setAmount(totPrice);
+		basketRopo.save(basket);
 	}
 
 	@Transactional
