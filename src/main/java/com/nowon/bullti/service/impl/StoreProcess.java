@@ -2,6 +2,7 @@ package com.nowon.bullti.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -36,15 +37,16 @@ public class StoreProcess implements StoreService {
 
 	@Override
 	public ModelAndView asynList(Authentication auth) {
-//		long memberNo = AuthenUtils.extractMemberNo(auth);
-//		Member memberEntity = memberRepository.findByMemberNo(memberNo).get();
-//		FranchiseEntity franchiseEntity = franchiseRepository.findByMemberNo( memberEntity ).get();
-//		List<Order> orderList = orderRepository.findAllByFranchiseeNo( franchiseEntity );
-//		
-//		return new ModelAndView("management/views/list").addObject("orderList", orderList);
-		return new ModelAndView("management/views/list").addObject("orderList",createTestData() );
+		long memberNo = AuthenUtils.extractMemberNo(auth);
+		Member memberEntity = memberRepository.findById(memberNo).get();
+		FranchiseEntity franchiseEntity = franchiseRepository.findByMemberNo( memberEntity ).get();
+		List<Order> orderList = orderRepository.findAllByFranchiseeNo( franchiseEntity.getNo() );
+		return new ModelAndView("management/views/list").addObject("orderList", 
+				orderList.stream().map(Order::toStoreOrderListDTO).collect(Collectors.toList()));
+//		return new ModelAndView("management/views/list").addObject("orderList",createTestData() );
 	}
 	
+	/*
 	private List<StoreOrderListDTO> createTestData() {
 
 		List<StoreOrderListDTO> list = new ArrayList<>();
@@ -66,5 +68,5 @@ public class StoreProcess implements StoreService {
 					.build());
 		}
 		return list;
-	}
+	} */
 }

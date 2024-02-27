@@ -15,21 +15,13 @@
 		<tbody>
 			<tr th:each="dto:${orderList}" class="store-td">
 				<td th:text="${dto.no}">1</td>
-				<td th:text="${dto.username}">green</td>
 				<td th:text="${dto.address}">서울시 노원구 상계동 13-1</td>
+				<td th:text="${dto.state}">상태</td>
 				<td>
-					<ul>
-						<li th:each="prod:${dto.products}" th:text="${prod.name}">
+					<ul th:if="${dto.orderItem != null}">
+					    <li th:each="prod : ${dto.orderItem}" th:text="${prod.item.getName}"></li>
 					</ul>
-				</td>
-				<td>
-					<ul>
-						<li th:each="prod:${dto.products}" th:text="${prod.quantity}"></li>
-					</ul>
-				</td>
-				<td>
-					<span th:text="${#numbers.formatInteger(dto.totalPrice,3,'COMMA')}"></span>
-					<span>원</span>
+
 				</td>
 				<td class="button-container">
 					<button>수락</button>

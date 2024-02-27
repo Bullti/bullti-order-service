@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.nowon.bullti.domain.dto.basket.BasketMapDTO;
 import com.nowon.bullti.domain.entity.member.Member;
 
 public interface FranchiseRepository extends JpaRepository<FranchiseEntity, Long> {
@@ -16,9 +15,5 @@ public interface FranchiseRepository extends JpaRepository<FranchiseEntity, Long
 
 	Optional<FranchiseEntity> findByName(String storeName);
 
-//	FranchiseEntity findByMemberNo(long extractMemberNo);
-
 	Optional<FranchiseEntity> findByMemberNo(Member member);
-
-//	Object findAllByOrder();
 }

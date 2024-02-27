@@ -11,6 +11,6 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
 
 	public Order save(Order order);
 
-	public List<Order> findAllByFranchiseeNo(FranchiseEntity franchiseEntity);
+	public List<Order> findAllByFranchiseeNo(long no);
 	
 }

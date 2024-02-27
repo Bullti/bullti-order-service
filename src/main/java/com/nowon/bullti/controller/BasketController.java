@@ -42,11 +42,10 @@ public class BasketController {
 	
 	@GetMapping("/basket")
 	public String basketlist(Model model, Authentication authentication) {
-		long MemberNo = AuthenUtils.extractMemberNo(authentication);  
-		basketService.basketlist(model, MemberNo);
+		long MemberNo = AuthenUtils.extractMemberNo(authentication);
 		
-		MemberOrderDTO dto= orderService.getOrderInfo(MemberNo);
-		model.addAttribute("dto", dto);
+		basketService.basketlist(model, MemberNo);
+		basketService.basketInfo(model, MemberNo);
 		
 		return "basket/basket";
 	}

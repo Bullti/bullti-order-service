@@ -2,6 +2,8 @@ package com.nowon.bullti.domain.dto.store;
 
 import java.util.List;
 
+import com.nowon.bullti.domain.entity.order.OrderItem;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,8 +16,10 @@ import lombok.NoArgsConstructor;
 public class StoreOrderListDTO {
 
 	private long no;
-	private String username;
 	private String address;
-	private List<TestProduct> products;
+	private String state;
+	private List<OrderItem> orderItem;
 	private int totalPrice;
+	private String username;
+	
 }

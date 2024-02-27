@@ -22,7 +22,7 @@
 				</tr>
 			</thead>
 			<tbody id="map_table">
-				<tr th:if="${fran.storeName != null}">
+				<tr th:if="${fran != null}">
 					<td th:text="${fran.storeName}"></td>
 					<td th:text="${fran.storeAdress}"></td>
 				</tr>
@@ -34,7 +34,7 @@
 				<p>
 					(총 <span th:text="${#lists.size(list)}"></span>건)
 				</p>
-				<p class="totalPrice">[[${#numbers.formatInteger(dto.amount, 1,
+				<p class="totalPrice">[[${#numbers.formatInteger(tot, 1,
 					'COMMA')+'원'}]]</p>
 			</div>
 			<section class="menu-wrap" th:each="dto:${list}">
@@ -69,12 +69,12 @@
 		<div class="pay-info">
 			<div class="flex between border_bottom">
 				<p>결제 금액</p>
-				<p class="totalPrice">[[${#numbers.formatInteger(dto.amount, 1,
+				<p class="totalPrice">[[${#numbers.formatInteger(tot, 1,
 					'COMMA')+'원'}]]</p>
 			</div>
 			<div class="flex between">
 				<p>주문 금액</p>
-				<p class="totalPrice">[[${#numbers.formatInteger(dto.amount, 1,
+				<p class="totalPrice">[[${#numbers.formatInteger(tot, 1,
 					'COMMA')+'원'}]]</p>
 			</div>
 			<div class="flex between border_bottom">
@@ -83,7 +83,7 @@
 			</div>
 			<div class="flex between">
 				<p>총 결제 금액</p>
-				<p class="totalPrice">[[${#numbers.formatInteger(dto.amount, 1,
+				<p class="totalPrice">[[${#numbers.formatInteger(tot, 1,
 					'COMMA')+'원'}]]</p>
 			</div>
 		</div>

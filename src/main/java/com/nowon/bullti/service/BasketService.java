@@ -15,13 +15,13 @@ public interface BasketService {
 
 	void update(BasketSaveDTO dto, long memberNo);
 
-	long totalPrice(Long basketNo);
-
 	List<BasketItemDTO> basketlist(Model model, long MemberNo);
 
 	void basketlistdel(long memberNo, String ItemName);
 
-	void updateMap(BasketMapDTO dto, long memberNo); 
+	void updateMap(BasketMapDTO dto, long memberNo);
+
+	void basketInfo(Model model, long memberNo); 
 	
 	//void basketList(Long MemberNo, );
 	
