@@ -89,6 +89,7 @@ public class OrderController {
 	
 	/**
 	 * 결제완료
+	 * 모바일 버전 리다이렉트
 	 * @param imp_uid 포트원 결제 고유번호 ex) imp_172034826844
 	 * @param merchant_uid 가맹점 주문번호 ex) IMP380
 	 * @param imp_success 결제 성공 여부
@@ -117,6 +118,7 @@ public class OrderController {
 		}else {
 			// 사후 유효성 검사 생략
 			no = 1;
+			return "redirect:/my/orders";
 		}
 		orderService.complete(orderNo, no);
 		
@@ -125,6 +127,7 @@ public class OrderController {
 	
 	/**
 	 * no : 1=성공, 0=실패
+	 * PC 버전 콜백함수
 	 * @param dto
 	 */
 	@ResponseBody

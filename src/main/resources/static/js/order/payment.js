@@ -70,6 +70,8 @@ async function payment() {
 						console.log("결제 등록 완료");
 						console.log("가맹점에 메시지를 보냅니다");
 						connect();
+						
+						window.location.href = "/my/orders";
 					},
 					error: function() {
 						console.error("결제 등록 실패");
