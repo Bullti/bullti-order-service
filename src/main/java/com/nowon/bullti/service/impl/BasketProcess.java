@@ -53,13 +53,8 @@ public class BasketProcess implements BasketService{
 	    }
 		
 		ItemEntity item = itemRepo.findByName(dto.getName()).orElseThrow();
-		
-		
-		
-		
 		boolean flag = basketItemRepo.existsByBasketAndItem(basket, item);
 
-		
 		
 		if(flag) {
 			BasketItem basketItem = basketItemRepo.findByBasketAndItem(basket, item).orElseThrow();
@@ -78,8 +73,7 @@ public class BasketProcess implements BasketService{
 		basketRopo.save(basket);
 	}
 
-	@Override
-	public long totalPrice(Long basketNo) {
+	private long totalPrice(Long basketNo) {
 		Basket basket = basketRopo.findById(basketNo).orElseThrow();
 		List<BasketItem> basketList = basketItemRepo.findByBasket(basket);
 		long tot = 0;
@@ -141,6 +135,22 @@ public class BasketProcess implements BasketService{
 	    basket.setFran(fran);
 	    // 장바구니 엔터티 저장
 	    basketRopo.save(basket);
+	}
+
+	@Transactional
+	@Override
+	public void basketInfo(Model model, long memberNo) {
+		Basket basket = basketRopo.findById(memberNo).orElseThrow();
+		
+		if(basket.getFran() != null) {
+			BasketFranDTO dto = BasketFranDTO.builder()
+			.storeAdress(basket.getFran().getLocation()+basket.getFran().getLocationDetail())
+			.storeName(basket.getFran().getName())
+			.build();
+			model.addAttribute("fran", dto);
+		}
+		
+		model.addAttribute("tot", basket.getAmount());
 	}
 
 }
