@@ -121,8 +121,8 @@ public class MovieApiService {
 		 		+ "			<br>\n"
 		 		+ "			<div>\n"
 		 		+ "				<span>러닝타임 :</span> <span>");
-		 sb.append(movieInfo.getString("movieNm"));
-		 sb.append("</span>\n"
+		 sb.append(movieInfo.getString("showTm"));
+		 sb.append("</span><span>분</span>\n"
 		 		+ "			</div>\n"
 		 		+ "			<br>\n"
 		 		+ "			<div>\n"

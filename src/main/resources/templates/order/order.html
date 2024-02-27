@@ -7,43 +7,7 @@
 <script type="text/javascript" th:inline="javascript">
 var stompClient=null; 
 var storeNo = /*[[${dto.storeNo}]]*/null;
-var key=new Date().getTime();
 storeNo=parseInt(storeNo);
-
-$(function(){
-	$("#btn-bot").click(btnBotClicked);
-});
-
-//선택지 선택시 텍스트 추출하여 메세지 보내기
-function choiceValueSend(event) {
-    let choiceValue = $(event.target).text(); // 클릭된 요소의 텍스트 값을 가져옴
-    console.log(choiceValue)
-	sendChatbotMessage(choiceValue);
-}
-function btnCloseClicked(){
-	$("#bot-container").hide();
-	$("#chat-content").html("");
-	disconnect();
-}
-function btnBotClicked(){
-	//1. 소켓 접속
-	$("#bot-container").show();
-	connect()
-}
-
-//1~9 -> 01~09 변환하는 함수
-function fomatNumber(number){
-	return number<10? '0'+number:''+number;
-}
-
-// 시간출력 ex) 오전 9:08
-function formatTime(){
-	var now=new Date();
-	var ampm=(now.getHours()>11)?"오후":"오전";
-	var hour=now.getHours()%12;
-	if(hour==0)hour=12;
-	return `${ampm} ${hour}:${fomatNumber(now.getMinutes())}`;
-}
 
 function connect(){
 	
@@ -52,7 +16,6 @@ function connect(){
 	}
 	stompClient.connect({},(frame)=>{
 		//접속이 완료되면 인사말수신-구독
-		
 		var data={
 			storeNo : storeNo,
 		}
