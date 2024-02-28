@@ -5,9 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/css/map/searchstore.css">
 <script defer src="/js/search-store/searsearch-store.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b4d10c092ae135f954caef18aff79de&libraries=services"></script>
-
+<script type="text/javascript">
+	function changeStore(row) {
+		let storeNo = row.querySelector('input[type="hidden"]').value;
+        
+        $.ajax({
+            url: "/basket/store",
+            type: 'post',
+            data: {
+            	storeNo:storeNo	
+            },
+            success: function onData (data) {
+            	location.href="/basket"
+            },
+            error: function onError (error) {
+                console.error(error);
+            }
+        });
+	}
+</script>
 </head>
 <body>
 	<main>
@@ -40,7 +57,8 @@
 					</tr>
 				</thead>
 				<tbody id="dynamic_table">
-					<tr th:each="post : ${list}">
+					<tr th:each="post : ${list}" th:onclick="changeStore(this)">
+						<input type="hidden" th:value="${post.id}">
 						<td th:text="${post.name}"></td>
 						<td th:text="${post.location}+${post.LocationDetail}"></td>
 						<td th:text="${post.phone}"></td>
