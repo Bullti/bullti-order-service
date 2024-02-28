@@ -2,10 +2,10 @@ package com.nowon.bullti.domain.entity.order;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.nowon.bullti.domain.dto.order.OrderSaveDTO;
-import com.nowon.bullti.domain.entity.franchise.FranchiseEntity;
+import com.nowon.bullti.domain.entity.member.Member;
 
 public interface OrderRepository extends JpaRepository<Order, Long>{
 
@@ -15,5 +15,5 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
 	
 	public List<Order> findAllByFranchiseeNoAndState(long franchiseeNo, OrderState progress);
 
-	
+	public List<Order> findByMemberAndStateIn(Member member, List<OrderState> states, Sort sort);
 }

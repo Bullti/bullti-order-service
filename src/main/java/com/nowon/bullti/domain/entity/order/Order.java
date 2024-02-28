@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.nowon.bullti.domain.dto.order.OrderListDTO;
 import com.nowon.bullti.domain.dto.store.StoreOrderListDTO;
 import com.nowon.bullti.domain.entity.franchise.FranchiseEntity;
 import com.nowon.bullti.domain.entity.member.Member;
@@ -71,6 +72,29 @@ public class Order {
 		this.state = state;
 	}
 	
+	public OrderListDTO toListDTO() {
+		String itemName = "";
+		if(orderItem.size() > 1) {
+			int cnt=0;
+			for(OrderItem item : orderItem) {
+				cnt+=item.getCount();
+			}
+			itemName = orderItem.get(0).getItem().getName() + " 등 " + cnt + "개";
+			
+		}else {
+			itemName = orderItem.get(0).getItem().getName() + " " +orderItem.get(0).getCount() + "개";
+		}
+		
+		return OrderListDTO.builder()
+				.orderNo(no)
+				.orderDateTime(createdDateTime)
+				.orderState(state.getStateName())
+				.itemName(itemName)
+				.storeName(franchisee.getName())
+				.tot(payment.getTotalPrice().toString())
+				.build();
+	}
+	
 	public StoreOrderListDTO toStoreOrderListDTO() {
 		int totalPrice = orderItem.stream().mapToInt( orderItem->Integer.valueOf(orderItem.getItem().getPrice()) ).sum();
 		return StoreOrderListDTO.builder()
@@ -83,4 +107,7 @@ public class Order {
 				.build();
 	}
 
+	public void completeDateTime() {
+		this.complatedDateTime = LocalDateTime.now();
+	}
 }

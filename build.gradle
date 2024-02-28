@@ -25,7 +25,9 @@ repositories {
 ext {
 	set('springCloudVersion', "2023.0.0")
 }
-
+jar {
+	enabled=false
+}
 dependencies {
 	//크롤링 JSoup
 	implementation 'org.jsoup:jsoup:1.17.2'

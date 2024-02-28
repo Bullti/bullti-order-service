@@ -1,12 +1,15 @@
 package com.nowon.bullti.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.nowon.bullti.domain.dto.order.BuyerInfoDTO;
 import com.nowon.bullti.domain.dto.order.MemberOrderDTO;
+import com.nowon.bullti.domain.dto.order.OrderListDTO;
 import com.nowon.bullti.domain.dto.order.OrderSaveDTO;
 import com.nowon.bullti.domain.entity.basket.Basket;
 import com.nowon.bullti.domain.entity.basket.BasketItem;
@@ -131,6 +134,7 @@ public class OrderProcess implements OrderService{
 	 * 승인 : 1
 	 * 반려 : 0
 	 */
+	@Transactional
 	@Override
 	public void storeResult(Long orderNo, int no) {
 		Order order = orderRepo.findById(orderNo).orElseThrow();
@@ -140,8 +144,23 @@ public class OrderProcess implements OrderService{
 		}else if(no == 1) {
 			order.changeState(OrderState.complate);
 		}
-		
+		order.completeDateTime();
 		orderRepo.save(order);
+	}
+
+	/**
+	 * 주문 내역
+	 */
+	@Transactional
+	@Override
+	public List<OrderListDTO> getMyList(Long MemberNo) {
+		Member member = memberRepo.findById(MemberNo).orElseThrow();
+		List<OrderState> stateList = List.of(OrderState.cancle, OrderState.complate, OrderState.progress);
+		Sort sort = Sort.by("createdDateTime").descending();
+		
+		return orderRepo.findByMemberAndStateIn(member, stateList, sort).stream()
+			.map(Order::toListDTO)
+			.collect(Collectors.toList());
 	}
 
 	
