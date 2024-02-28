@@ -1,7 +1,12 @@
 package com.nowon.bullti.service;
 
+import java.util.List;
+
+import org.springframework.ui.Model;
+
 import com.nowon.bullti.domain.dto.order.BuyerInfoDTO;
 import com.nowon.bullti.domain.dto.order.MemberOrderDTO;
+import com.nowon.bullti.domain.dto.order.OrderListDTO;
 import com.nowon.bullti.domain.dto.order.OrderSaveDTO;
 
 public interface OrderService {
@@ -20,4 +25,7 @@ public interface OrderService {
 	public void complete(Long orderNo, int no);
 	
 	public void storeResult(Long orderNo, int no);
+
+	// 주문 내역
+	public List<OrderListDTO> getMyList(Long MemberNo);
 }

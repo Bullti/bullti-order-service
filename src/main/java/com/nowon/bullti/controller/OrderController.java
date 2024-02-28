@@ -1,5 +1,6 @@
 package com.nowon.bullti.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nowon.bullti.domain.dto.order.BuyerInfoDTO;
 import com.nowon.bullti.domain.dto.order.MemberOrderDTO;
+import com.nowon.bullti.domain.dto.order.OrderListDTO;
 import com.nowon.bullti.domain.dto.payment.PaySaveDTO;
 import com.nowon.bullti.domain.dto.payment.payCompleteDTO;
 import com.nowon.bullti.service.MemberService;
@@ -47,6 +49,8 @@ public class OrderController {
 	@GetMapping("/my/orders")
 	public String orderList(Model model, Authentication authentication) {
 		long MemberNo = AuthenUtils.extractMemberNo(authentication);
+		List<OrderListDTO> list = orderService.getMyList(MemberNo);
+		model.addAttribute("list", list);
 		return "order/list";
 	}
 	

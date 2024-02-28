@@ -7,11 +7,11 @@
 	<main>
 		<div class="content">
 			<ul class="nav">
-				<li class="box">
+				<li class="box" th:each="dto : ${list}">
 					<div class="box_hd">
 						<div class="left">
-							<span>2024.11.6 (월)</span>
-							<span>배달완료</span>
+							<span th:text="${#temporals.format(dto.orderDateTime, 'yyyy.MM.dd (E)')}"></span>
+							<span>[[${dto.orderState}]]</span>
 						</div>
 						<div class="right">
 							<a href="#">
@@ -25,146 +25,12 @@
 						</div>
 						<div class="box_content">
 							<h1 class="content_title">
-								노원점
+								[[${dto.storeName}]]
 							</h1>
 							<div class="content_content">
-								<span>불티훈제치킨 1개</span>
-								<span>23,000원</span>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="box">
-					<div class="box_hd">
-						<div class="left">
-							<span>2024.11.6 (월)</span>
-							<span>배달완료</span>
-						</div>
-						<div class="right">
-							<a href="#">
-								<span>주문상세</span>
-							</a>
-						</div>
-					</div>
-					<div class="box_md">
-						<div class="img_area">
-							<img src="/images/icon/home.svg">
-						</div>
-						<div class="box_content">
-							<h1 class="content_title">
-								노원점
-							</h1>
-							<div class="content_content">
-								<span>불티훈제치킨 1개</span>
-								<span>23,000원</span>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="box">
-					<div class="box_hd">
-						<div class="left">
-							<span>2024.11.6 (월)</span>
-							<span>배달완료</span>
-						</div>
-						<div class="right">
-							<a href="#">
-								<span>주문상세</span>
-							</a>
-						</div>
-					</div>
-					<div class="box_md">
-						<div class="img_area">
-							<img src="/images/icon/home.svg">
-						</div>
-						<div class="box_content">
-							<h1 class="content_title">
-								노원점
-							</h1>
-							<div class="content_content">
-								<span>불티훈제치킨 1개</span>
-								<span>23,000원</span>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="box">
-					<div class="box_hd">
-						<div class="left">
-							<span>2024.11.6 (월)</span>
-							<span>배달완료</span>
-						</div>
-						<div class="right">
-							<a href="#">
-								<span>주문상세</span>
-							</a>
-						</div>
-					</div>
-					<div class="box_md">
-						<div class="img_area">
-							<img src="/images/icon/home.svg">
-						</div>
-						<div class="box_content">
-							<h1 class="content_title">
-								노원점
-							</h1>
-							<div class="content_content">
-								<span>불티훈제치킨 1개</span>
-								<span>23,000원</span>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="box">
-					<div class="box_hd">
-						<div class="left">
-							<span>2024.11.6 (월)</span>
-							<span>배달완료</span>
-						</div>
-						<div class="right">
-							<a href="#">
-								<span>주문상세</span>
-							</a>
-						</div>
-					</div>
-					<div class="box_md">
-						<div class="img_area">
-							<img src="/images/icon/home.svg">
-						</div>
-						<div class="box_content">
-							<h1 class="content_title">
-								노원점
-							</h1>
-							<div class="content_content">
-								<span>불티훈제치킨 1개</span>
-								<span>23,000원</span>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="box">
-					<div class="box_hd">
-						<div class="left">
-							<span>2024.11.6 (월)</span>
-							<span>배달완료</span>
-						</div>
-						<div class="right">
-							<a href="#">
-								<span>주문상세</span>
-							</a>
-						</div>
-					</div>
-					<div class="box_md">
-						<div class="img_area">
-							<img src="/images/icon/home.svg">
-						</div>
-						<div class="box_content">
-							<h1 class="content_title">
-								노원점
-							</h1>
-							<div class="content_content">
-								<span>불티훈제치킨 1개</span>
-								<span>23,000원</span>
+								<span>[[${dto.itemName}]]</span>
+								<br>
+								<span>[[${#numbers.formatInteger(dto.tot, 1, 'COMMA')}]]원</span>
 							</div>
 						</div>
 					</div>

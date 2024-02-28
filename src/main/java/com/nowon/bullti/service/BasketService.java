@@ -19,7 +19,7 @@ public interface BasketService {
 
 	void basketlistdel(long memberNo, String ItemName);
 
-	void updateMap(BasketMapDTO dto, long memberNo);
+	void updateMap(long storeNo, long memberNo);
 
 	void basketInfo(Model model, long memberNo); 
 	

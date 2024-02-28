@@ -2,11 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/css/list/list.css">
+<link rel="stylesheet" href="/css/items/list.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link rel="stylesheet" href="/css/basket/basket.css">
-<script src="/js/order/cart.js"></script>
+<script src="/js/basket/basket.js"></script>
 </head>
 <main>
 		<section id="slider1" class="slider">
@@ -49,6 +48,7 @@
 				</div>
 			</section>
 		</section>
+		<div class="modal-side"></div>
 		<div class="cart-q" style="display: none;">
 			<div class="button1-area">
 				<button class="button1">X</button>
@@ -192,16 +192,19 @@
 		});
 
 		$('.cart-button').click(function () {
+			$('.modal-side').show();
 			$('.cart-q').show();
 
 		});
 
 		$('.button2').click(function () {
 			$('.cart-q').hide();
+			$('.modal-side').hide();
 		});
 
 		$('.button1').click(function () {
 			$('.cart-q').hide();
+			$('.modal-side').hide();
 		});
 	});
 

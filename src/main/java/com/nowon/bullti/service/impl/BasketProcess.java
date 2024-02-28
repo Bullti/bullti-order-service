@@ -131,11 +131,11 @@ public class BasketProcess implements BasketService{
 
 	@Transactional
 	@Override
-	public void updateMap(BasketMapDTO dto, long memberNo) {
+	public void updateMap(long storeNo, long memberNo) {
 	    // 해당 회원의 장바구니 정보 조회
 	    Basket basket = basketRopo.findById(memberNo).orElseThrow();
 	    // 프랜차이즈 정보 조회
-	    FranchiseEntity fran = franRepo.findByName(dto.getStoreName()).orElseThrow();
+	    FranchiseEntity fran = franRepo.findById(storeNo).orElseThrow();
 	    // 장바구니 엔터티의 프랜차이즈 정보 업데이트
 	    basket.setFran(fran);
 	    // 장바구니 엔터티 저장

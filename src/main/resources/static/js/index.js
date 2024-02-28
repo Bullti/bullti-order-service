@@ -97,4 +97,4 @@ function Slider(target, type) {
 		setInterval(() => {
 		  s1.next();
 		  //s2.next();
-		}, 1000)
+		}, 3000)

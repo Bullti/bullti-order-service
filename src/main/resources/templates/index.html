@@ -3,7 +3,7 @@
 	th:replace="~{layout/my-layout::layout(~{this::head}, ~{this::main})}">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/css/index/index.css">
+<link rel="stylesheet" href="/css/index.css">
 <script defer src=/js/index.js></script>
 <script th:inline="javascript">
     var errorMsg = /*[[${error_msg}]]*/ null;
@@ -43,13 +43,13 @@
 					</button>
 				</a>
 			</div>
-			<div class="login-help">
+			<div class="login-help" sec:authorize="isAnonymous()">
 				<ul>
-					<li><a href="#">아이디 찾기</a></li>
+					<li><a href="#">아이디</a></li>
 					<li>|</li>
 					<li><a href="#">비밀번호 찾기</a></li>
 					<li>|</li>
-					<li><a href="#">회원가입</a></li>
+					<li><a href="/signup">회원가입</a></li>
 				</ul>
 			</div>
 		</div>

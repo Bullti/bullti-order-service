@@ -28,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 public class BasketController {
 
 	private final BasketService basketService;
-	private final OrderService orderService;
 	
 	@PostMapping("/basket") 
 	public String itemsave(@RequestBody BasketSaveDTO dto, Authentication authentication) {
@@ -61,11 +60,10 @@ public class BasketController {
 	
 	@ResponseBody
 	@PostMapping("/basket/store") 
-	public void mapSelect(@RequestBody BasketMapDTO dto,Authentication authentication) {
-		
+	public void mapSelect(@RequestParam(name = "storeNo") long storeNo, Authentication authentication) {
 		long MemberNo = AuthenUtils.extractMemberNo(authentication);
-		basketService.updateMap(dto, MemberNo);
+		basketService.updateMap(storeNo, MemberNo);
 		
 	} 
-
+	
 }
