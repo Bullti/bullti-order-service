@@ -6,7 +6,8 @@
 - Test PW :
   
 <br>
-![Animation](https://github.com/Bullti/bullti-order-service/assets/141596791/392d829f-4719-4d2e-89b5-6d092716605c)
+
+<img src="https://github.com/Bullti/bullti-order-service/assets/141596791/392d829f-4719-4d2e-89b5-6d092716605c">
 
 ## 프로젝트 소개
 
