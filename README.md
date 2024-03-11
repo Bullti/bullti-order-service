@@ -10,7 +10,7 @@
 <br>
 
 <img src="https://github.com/Bullti/bullti-order-service/assets/141596791/392d829f-4719-4d2e-89b5-6d092716605c">
-![image](https://github.com/Bullti/bullti-order-service/assets/141596791/f9b22887-680f-4985-b5f4-3aea2d232b8c)
+<img src="https://github.com/Bullti/bullti-order-service/assets/141596791/f9b22887-680f-4985-b5f4-3aea2d232b8c">
 
 ## 프로젝트 소개
 
