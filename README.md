@@ -10,7 +10,6 @@
 <br>
 
 <img src="https://github.com/Bullti/bullti-order-service/assets/141596791/392d829f-4719-4d2e-89b5-6d092716605c">
-<img src="https://github.com/Bullti/bullti-order-service/assets/141596791/f9b22887-680f-4985-b5f4-3aea2d232b8c">
 
 ## 프로젝트 소개
 
@@ -142,6 +141,8 @@
 - SNS(카카오톡, 구글, 페이스북) 로그인 기능은 구현되어 있지 않습니다.
 
 | 초기화면 |
+#### 주문 관리 페이지
+<img src="https://github.com/Bullti/bullti-order-service/assets/141596791/f9b22887-680f-4985-b5f4-3aea2d232b8c">
 |----------|
 
 <br>
