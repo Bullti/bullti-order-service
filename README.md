@@ -1,8 +1,9 @@
 
 # 치킨 가맹점 주문시스템(빌드테스트3)
 
-- 배포 URL : https://manjuu.shop
-- 주문관리 페이지 : https://manjuu.shop/store
+
+- 배포 URL (모바일) : https://manjuu.shop
+- 주문관리 페이지 (PC) : https://manjuu.shop/store
 - Test ID : green
 - Test PW : green
   
