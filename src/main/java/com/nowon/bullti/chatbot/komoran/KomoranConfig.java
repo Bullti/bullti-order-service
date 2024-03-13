@@ -21,7 +21,7 @@ public class KomoranConfig {
 		//파일에 DB의 정보 세팅
 //		createDic();
 		
-		Komoran komoran = new Komoran(DEFAULT_MODEL.FULL);
+		Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
 //		komoran.setUserDic(USER_DIC);
 		return komoran;
 	}
