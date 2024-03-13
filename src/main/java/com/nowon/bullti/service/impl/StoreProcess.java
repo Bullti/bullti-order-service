@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nowon.bullti.aspect.LogPerf;
 import com.nowon.bullti.domain.entity.franchise.FranchiseEntity;
 import com.nowon.bullti.domain.entity.franchise.FranchiseRepository;
 import com.nowon.bullti.domain.entity.member.Member;
@@ -33,6 +34,7 @@ public class StoreProcess implements StoreService {
 		model.addAttribute("storeStatus", franchiseRepository.findByMemberNo(memberRepository.findById(AuthenUtils.extractMemberNo(auth)).get()).get());
 	}
 
+	@LogPerf
 	@Override
 	public ModelAndView asynList(Authentication auth) {
 		long memberNo = AuthenUtils.extractMemberNo(auth);
